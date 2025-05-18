@@ -50,20 +50,21 @@ nav a:hover::after, .dropdown-toggle:hover::after {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   
-  /* Animation properties */
+  /* Animation properties - significantly increased duration */
   max-height: 0;
   transform-origin: top center;
-  transition: max-height 0.3s ease-out;
+  transition: max-height 0.9s ease-out; /* Increased to 0.9s for much slower animation */
   
   /* Remove any margins that cause separation */
   margin-top: 0;
   border-top: none;
 }
 
-/* When dropdown is active */
+/* When dropdown is active - matching slower animation */
 .group:hover .dropdown-menu,
 .active-dropdown .dropdown-menu {
   max-height: 200px; /* Enough for all items */
+  transition: max-height 0.9s ease-out; /* Match the slower duration */
 }
 
 /* Remove staggered animation from items so they appear with the dropdown */
@@ -193,7 +194,8 @@ input:focus, textarea:focus {
 
 /* More defensive timing for disappearance to prevent flickering */
 .group:not(:hover) .dropdown-menu:not(:hover) {
-  transition-delay: 0.3s; /* Longer delay before disappearing */
+  transition: max-height 0.7s ease-in; /* Reduced from 0.9s to 0.7s for slightly faster closing */
+  transition-delay: 0.1s; /* Keep the same delay before closing starts */
 }
 
 /* Additional custom styles can be added here as needed */
