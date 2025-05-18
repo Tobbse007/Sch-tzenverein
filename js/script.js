@@ -39,71 +39,67 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Desktop dropdown functionality - click to toggle
+    // Desktop dropdown functionality - Fixed version
     const dropdowns = document.querySelectorAll('.dropdown');
-    let activeDropdown = null;
-
-    // Function to close all dropdowns
-    function closeAllDropdowns() {
-        dropdowns.forEach(dropdown => {
-            const menu = dropdown.querySelector('.dropdown-menu');
-            if (!dropdown.matches(':hover')) { // Don't close if hovering
-                menu.classList.add('dropdown-hidden');
-                
-                const arrow = dropdown.querySelector('svg');
-                arrow.classList.remove('rotate-180');
-            }
-        });
-        activeDropdown = null;
-    }
-
-    // Toggle dropdown on button click
+    
     dropdowns.forEach(dropdown => {
-        const toggleButton = dropdown.querySelector('.dropdown-toggle');
+        const button = dropdown.querySelector('.dropdown-toggle');
         const menu = dropdown.querySelector('.dropdown-menu');
         
-        // Click event
-        toggleButton.addEventListener('click', (e) => {
+        // Track if dropdown is actively toggled by click
+        dropdown.isToggled = false;
+        
+        // Click handler for dropdown button
+        button.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             
-            const isHidden = menu.classList.contains('dropdown-hidden');
+            // Toggle the active state
+            dropdown.isToggled = !dropdown.isToggled;
             
-            if (isHidden) {
-                // Close other open dropdowns first
-                closeAllDropdowns();
-                
-                // Open this dropdown
-                menu.classList.remove('dropdown-hidden');
-                menu.classList.remove('opacity-0', 'invisible');
-                menu.classList.add('opacity-100', 'visible');
-                toggleButton.querySelector('svg').classList.add('rotate-180');
-                activeDropdown = dropdown;
+            // Close all other dropdowns
+            dropdowns.forEach(otherDropdown => {
+                if (otherDropdown !== dropdown) {
+                    otherDropdown.isToggled = false;
+                    otherDropdown.classList.remove('active-dropdown');
+                    otherDropdown.querySelector('svg').classList.remove('rotate-180');
+                }
+            });
+            
+            // Update current dropdown
+            if (dropdown.isToggled) {
+                dropdown.classList.add('active-dropdown');
+                dropdown.querySelector('svg').classList.add('rotate-180');
             } else {
-                // Close this dropdown
-                menu.classList.add('dropdown-hidden');
-                menu.classList.remove('opacity-100', 'visible');
-                menu.classList.add('opacity-0', 'invisible');
-                toggleButton.querySelector('svg').classList.remove('rotate-180');
-                activeDropdown = null;
+                dropdown.classList.remove('active-dropdown');
+                dropdown.querySelector('svg').classList.remove('rotate-180');
             }
         });
-
-        // Prevent clicks inside dropdown from closing it
-        menu.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
     });
-
+    
     // Close dropdowns when clicking outside
-    document.addEventListener('click', () => {
-        closeAllDropdowns();
+    document.addEventListener('click', function() {
+        dropdowns.forEach(dropdown => {
+            dropdown.isToggled = false;
+            dropdown.classList.remove('active-dropdown');
+            dropdown.querySelector('svg').classList.remove('rotate-180');
+        });
     });
 
     // Close dropdowns on scroll
-    window.addEventListener('scroll', () => {
-        closeAllDropdowns();
+    window.addEventListener('scroll', function() {
+        dropdowns.forEach(dropdown => {
+            dropdown.isToggled = false;
+            dropdown.classList.remove('active-dropdown');
+            dropdown.querySelector('svg').classList.remove('rotate-180');
+        });
+    });
+
+    // Stop propagation for click events inside dropdown menu
+    dropdowns.forEach(dropdown => {
+        const menu = dropdown.querySelector('.dropdown-menu');
+        menu.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
     });
 });
-
-// Add any additional JavaScript functionality here
