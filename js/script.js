@@ -2,6 +2,32 @@
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
     
+    // Back to Top Button Funktionalität
+    const backToTopButton = document.getElementById('backToTop');
+    if (backToTopButton) {
+        // Button anfänglich verstecken
+        backToTopButton.classList.remove('visible');
+        
+        // Scroll-Event-Listener hinzufügen
+        window.addEventListener('scroll', function() {
+            // Button anzeigen, wenn der Benutzer 300px nach unten gescrollt hat
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        // Klick-Event für den Button
+        backToTopButton.addEventListener('click', function() {
+            // Sanft nach oben scrollen
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+    
     // ========== Mobile Menu Handling ==========
 const mobileMenuButton = document.getElementById('mobile-menu-button');
 const mobileMenu = document.getElementById('mobile-menu');
@@ -323,47 +349,231 @@ function setupKeyboardNavigation(button, menu) {
     });
 }
 
-// ========== Form Validation ==========
-const contactForm = document.querySelector('#contact form');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+// ========== Contact Form Validation ==========
+    const initFormValidation = () => {
+        const contactForm = document.getElementById('contactForm');
         
-        // Simple form validation
-        let isValid = true;
-        const name = document.getElementById('name');
-        const email = document.getElementById('email');
-        const message = document.getElementById('message');
-        
-        // Check required fields
-        [name, email, message].forEach(field => {
-            if (!field.value.trim()) {
-                isValid = false;
-                field.classList.add('border-red-500');
-            } else {
-                field.classList.remove('border-red-500');
-            }
-        });
-        
-        // Validate email format
-        if (email.value && !isValidEmail(email.value)) {
-            isValid = false;
-            email.classList.add('border-red-500');
+        if (contactForm) {
+            // Add validation to contact form
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                let isValid = true;
+                const name = this.querySelector('#name');
+                const email = this.querySelector('#email');
+                const message = this.querySelector('#message');
+                const privacy = this.querySelector('#privacy');
+                
+                // Reset previous error states
+                document.querySelectorAll('.error-message').forEach(el => el.classList.add('hidden'));
+                
+                // Name validation
+                if (!name.value.trim()) {
+                    document.querySelector('[for="name"]').nextElementSibling.nextElementSibling.classList.remove('hidden');
+                    isValid = false;
+                    name.focus();
+                }
+                
+                // Email validation
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email.value.trim())) {
+                    document.querySelector('[for="email"]').nextElementSibling.nextElementSibling.classList.remove('hidden');
+                    if (isValid) {
+                        email.focus();
+                        isValid = false;
+                    }
+                }
+                
+                // Message validation
+                if (!message.value.trim()) {
+                    document.querySelector('[for="message"]').nextElementSibling.nextElementSibling.classList.remove('hidden');
+                    if (isValid) {
+                        message.focus();
+                        isValid = false;
+                    }
+                }
+                
+                // Privacy validation
+                if (!privacy.checked) {
+                    document.getElementById('privacy-error').classList.remove('hidden');
+                    if (isValid) {
+                        privacy.focus();
+                        isValid = false;
+                    }
+                }
+                
+                // If all validations pass
+                if (isValid) {
+                    // Hide any previous messages
+                    document.getElementById('form-success').classList.add('hidden');
+                    document.getElementById('form-error').classList.add('hidden');
+                    
+                    // Simulate form submission (replace with actual backend submission)
+                    const formData = new FormData(contactForm);
+                    
+                    // Show loading state
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    const originalButtonText = submitButton.innerHTML;
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = `<span class="inline-block animate-spin mr-2">⟳</span> Wird gesendet...`;
+                    
+                    // Simulate API call
+                    setTimeout(() => {
+                        // Success
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = originalButtonText;
+                        document.getElementById('form-success').classList.remove('hidden');
+                        
+                        // Reset form
+                        contactForm.reset();
+                        
+                        // Scroll success message into view
+                        document.getElementById('form-success').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 1500);
+                }
+            });
+            
+            // Input focus behavior
+            const inputs = contactForm.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                // Clear error on input
+                input.addEventListener('input', function() {
+                    const errorMessage = this.nextElementSibling;
+                    if (errorMessage && errorMessage.classList.contains('error-message')) {
+                        errorMessage.classList.add('hidden');
+                    }
+                    
+                    // Special case for privacy checkbox
+                    if (this.id === 'privacy' && this.checked) {
+                        document.getElementById('privacy-error').classList.add('hidden');
+                    }
+                });
+                
+                // Add focus highlight
+                input.addEventListener('focus', function() {
+                    this.parentElement.classList.add('focused');
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('focused');
+                });
+            });
         }
-        
-        // Form submission (placeholder for future implementation)
-        if (isValid) {
-            // Here you would normally send the data to your backend
-            alert('Vielen Dank für Ihre Nachricht! Wir werden uns in Kürze bei Ihnen melden.');
-            contactForm.reset();
+    };
+    
+    // Initialize form validation
+    initFormValidation();
+    
+    // ========== Lazy Loading Images ==========
+    // Using Intersection Observer for better performance
+    const lazyLoadImages = () => {
+        // Check if browser supports Intersection Observer
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        const src = img.dataset.src;
+                        
+                        if (src) {
+                            img.src = src;
+                            img.addEventListener('load', () => {
+                                img.classList.add('loaded');
+                                // Add small delay to smooth transition
+                                setTimeout(() => {
+                                    const placeholder = img.nextElementSibling;
+                                    if (placeholder && placeholder.classList.contains('image-placeholder')) {
+                                        placeholder.style.opacity = '0';
+                                    }
+                                }, 100);
+                            });
+                            
+                            // Stop observing this image
+                            observer.unobserve(img);
+                        }
+                    }
+                });
+            }, {
+                rootMargin: '50px', // Start loading when images come within 50px of viewport
+                threshold: 0.1 // Trigger when 10% of image is visible
+            });
+            
+            // Observe all lazy images
+            document.querySelectorAll('img.lazy-image').forEach(img => {
+                imageObserver.observe(img);
+            });
+        } else {
+            // Fallback for browsers that don't support Intersection Observer
+            // Simple scroll-based loading
+            const lazyLoad = () => {
+                const lazyImages = document.querySelectorAll('img.lazy-image:not(.loaded)');
+                const scrollTop = window.pageYOffset;
+                
+                lazyImages.forEach(img => {
+                    if (img.offsetTop < window.innerHeight + scrollTop + 300) {
+                        const src = img.dataset.src;
+                        if (src) {
+                            img.src = src;
+                            img.addEventListener('load', () => {
+                                img.classList.add('loaded');
+                                const placeholder = img.nextElementSibling;
+                                if (placeholder && placeholder.classList.contains('image-placeholder')) {
+                                    placeholder.style.opacity = '0';
+                                }
+                            });
+                        }
+                    }
+                });
+                
+                // If all images have been loaded, stop listening
+                if (lazyImages.length === 0) {
+                    document.removeEventListener('scroll', lazyLoad);
+                    window.removeEventListener('resize', lazyLoad);
+                    window.removeEventListener('orientationchange', lazyLoad);
+                }
+            };
+            
+            document.addEventListener('scroll', lazyLoad);
+            window.addEventListener('resize', lazyLoad);
+            window.addEventListener('orientationchange', lazyLoad);
+            
+            // Initial load
+            lazyLoad();
         }
-    });
-}
-
-// Email validation helper
-function isValidEmail(email) {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
-}
-
+    };
+    
+    // Initialize lazy loading
+    lazyLoadImages();
+    
+    // ========== Animate Content on Scroll ==========
+    // Add animation to elements as they scroll into view
+    const initScrollAnimations = () => {
+        if ('IntersectionObserver' in window) {
+            const animationObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        // Apply different animation class based on data attribute
+                        if (el.dataset.animation === 'fade') {
+                            el.classList.add('animate-fade-in');
+                        } else {
+                            el.classList.add('animate-slide-up');
+                        }
+                        animationObserver.unobserve(el);
+                    }
+                });
+            }, {
+                rootMargin: '0px',
+                threshold: 0.15
+            });
+            
+            // Select elements to animate
+            document.querySelectorAll('[data-animate]').forEach(el => {
+                animationObserver.observe(el);
+            });
+        }
+    };
+    
+    // Initialize scroll animations
+    initScrollAnimations();
 });
