@@ -5,20 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schützenverein Tell Quierschied</title>
     <meta name="description" content="Offizielle Webseite des Schützenvereins Tell in Quierschied">
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Custom CSS -->
+    <!-- Tailwind CSS CDN mit Preconnect für schnellere Verbindung -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <!-- Custom CSS mit Preload für wichtige Styles -->
+    <link rel="preload" href="css/styles.css" as="style">
     <link rel="stylesheet" href="css/styles.css">
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <!-- Meta-Tags für SEO -->
+    <meta name="keywords" content="Schützenverein, Tell, Quierschied, Schießsport, Verein">
+    <meta name="author" content="Schützenverein Tell Quierschied">
+    <!-- Open Graph Tags für Social Media -->
+    <meta property="og:title" content="Schützenverein Tell Quierschied">
+    <meta property="og:description" content="Offizielle Webseite des Schützenvereins Tell in Quierschied">
+    <meta property="og:type" content="website">
 </head>
 <body>
     <!-- Header Section - Fixed floating navbar -->
     <header>
-        <div class="navbar-container container mx-auto flex justify-between items-center">
+        <div class="navbar-container flex justify-between items-center">
             <!-- Logo & Title -->
             <div class="flex items-center">
-                <div class="w-12 h-12 bg-gray-200 mr-3 rounded">
+                <div class="w-12 h-12 bg-gray-200 mr-3 rounded" aria-hidden="true">
                     <!-- Platzhalter für Logo -->
                     <div class="w-full h-full flex items-center justify-center text-xs text-gray-500">Logo</div>
                 </div>
@@ -28,21 +37,21 @@
             </div>
             
             <!-- Desktop Navigation -->
-            <nav class="hidden lg:flex space-x-6 items-center">
+            <nav class="hidden lg:flex space-x-6 items-center" aria-label="Hauptnavigation">
                 <a href="#" class="hover:text-green-700 transition duration-300">Startseite</a>
                 
                 <!-- Verein Dropdown -->
                 <div class="nav-dropdown">
-                    <button class="dropdown-button hover:text-green-700 flex items-center transition duration-300">
+                    <button class="dropdown-button hover:text-green-700 flex items-center transition duration-300" aria-expanded="false" aria-haspopup="true">
                         Verein
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
-                    <div class="dropdown-content">
-                        <a href="#about"><span>Über uns</span></a>
-                        <a href="#gastronomie"><span>Gastronomie</span></a>
-                        <a href="#galerie"><span>Galerie</span></a>
+                    <div class="dropdown-content" role="menu">
+                        <a href="#about" role="menuitem"><span>Über uns</span></a>
+                        <a href="#gastronomie" role="menuitem"><span>Gastronomie</span></a>
+                        <a href="#galerie" role="menuitem"><span>Galerie</span></a>
                     </div>
                 </div>
                 
@@ -50,16 +59,16 @@
                 
                 <!-- Schießsport Dropdown -->
                 <div class="nav-dropdown">
-                    <button class="dropdown-button hover:text-green-700 flex items-center transition duration-300">
+                    <button class="dropdown-button hover:text-green-700 flex items-center transition duration-300" aria-expanded="false" aria-haspopup="true">
                         Schießsport
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
-                    <div class="dropdown-content">
-                        <a href="#gewehre"><span>Gewehre</span></a>
-                        <a href="#disziplinen"><span>Disziplinen</span></a>
-                        <a href="#halle"><span>Halle/Ausstattung</span></a>
+                    <div class="dropdown-content" role="menu">
+                        <a href="#gewehre" role="menuitem"><span>Gewehre</span></a>
+                        <a href="#disziplinen" role="menuitem"><span>Disziplinen</span></a>
+                        <a href="#halle" role="menuitem"><span>Halle/Ausstattung</span></a>
                     </div>
                 </div>
                 
@@ -72,45 +81,44 @@
             </a>
             
             <!-- Mobile Menu Button - only visible on mobile -->
-            <button id="mobile-menu-button" class="hamburger-menu lg:hidden focus:outline-none">
+            <button id="mobile-menu-button" class="hamburger-menu lg:hidden focus:outline-none" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
             </button>
         </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white shadow-lg absolute w-full">
-            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+          <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white shadow-lg absolute w-full" aria-labelledby="mobile-menu-button">
+            <div class="px-4 py-3 flex flex-col space-y-3">
                 <a href="#" class="hover:text-green-700 transition duration-300">Startseite</a>
                 
                 <!-- Mobile Verein Dropdown -->
                 <div class="mobile-dropdown">
-                    <button class="flex justify-between items-center w-full hover:text-green-700 transition duration-300">
+                    <button class="flex justify-between items-center w-full hover:text-green-700 transition duration-300" aria-expanded="false" aria-haspopup="true">
                         Verein
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
-                    <div class="mobile-dropdown-content hidden pl-4 mt-2 space-y-2">
-                        <a href="#about" class="block hover:text-green-700">Über uns</a>
-                        <a href="#gastronomie" class="block hover:text-green-700">Gastronomie</a>
-                        <a href="#galerie" class="block hover:text-green-700">Galerie</a>
+                    <div class="mobile-dropdown-content hidden pl-4 mt-2 space-y-2" role="menu">
+                        <a href="#about" class="block hover:text-green-700" role="menuitem">Über uns</a>
+                        <a href="#gastronomie" class="block hover:text-green-700" role="menuitem">Gastronomie</a>
+                        <a href="#galerie" class="block hover:text-green-700" role="menuitem">Galerie</a>
                     </div>
                 </div>
                 
                 <!-- Mobile Schießsport Dropdown -->
                 <div class="mobile-dropdown">
-                    <button class="flex justify-between items-center w-full hover:text-green-700 transition duration-300">
+                    <button class="flex justify-between items-center w-full hover:text-green-700 transition duration-300" aria-expanded="false" aria-haspopup="true">
                         Schießsport
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
-                    <div class="mobile-dropdown-content hidden pl-4 mt-2 space-y-2">
-                        <a href="#gewehre" class="block hover:text-green-700">Gewehre</a>
-                        <a href="#disziplinen" class="block hover:text-green-700">Disziplinen</a>
-                        <a href="#halle" class="block hover:text-green-700">Halle/Ausstattung</a>
+                    <div class="mobile-dropdown-content hidden pl-4 mt-2 space-y-2" role="menu">
+                        <a href="#gewehre" class="block hover:text-green-700" role="menuitem">Gewehre</a>
+                        <a href="#disziplinen" class="block hover:text-green-700" role="menuitem">Disziplinen</a>
+                        <a href="#halle" class="block hover:text-green-700" role="menuitem">Halle/Ausstattung</a>
                     </div>
                 </div>
                 
@@ -119,11 +127,9 @@
                 <a href="#contact" class="bg-green-700 text-white hover:bg-green-800 px-4 py-2 rounded text-center transition duration-300">Kontaktieren Sie uns</a>
             </div>
         </div>
-    </header>
-
-    <!-- Hero Section that starts from the top -->
+    </header>    <!-- Hero Section that starts from the top -->
     <section id="hero" class="text-white">
-        <div class="container mx-auto px-4 flex flex-col items-center text-center hero-content">
+        <div class="container mx-auto px-6 flex flex-col items-center text-center hero-content">
             <h1 class="text-4xl md:text-5xl font-bold mb-6">Willkommen beim Schützenverein Tell</h1>
             <p class="text-xl mb-8 max-w-2xl">Tradition, Sport und Gemeinschaft seit [Gründungsjahr]</p>
             <a href="#contact" class="btn bg-white text-green-800 hover:bg-gray-50">Kontakt aufnehmen</a>
@@ -139,7 +145,7 @@
                     <p class="mb-4">Der Schützenverein Tell Quierschied wurde [Gründungsjahr] gegründet und blickt auf eine lange Tradition zurück. Wir bieten unseren Mitgliedern die Möglichkeit, den Schießsport in verschiedenen Disziplinen auszuüben.</p>
                     <p>Bei uns steht neben dem sportlichen Wettkampf vor allem die Gemeinschaft im Vordergrund. Wir veranstalten regelmäßig Vereinsabende, Wettkämpfe und gesellige Zusammenkünfte.</p>
                 </div>
-                <div class="bg-gray-200 h-64 rounded-lg">
+                <div class="bg-gray-200 h-64 rounded-lg" role="img" aria-label="Vereinsbild">
                     <!-- Placeholder for an image -->
                     <div class="w-full h-full flex items-center justify-center text-gray-400">Vereinsbild</div>
                 </div>
@@ -175,7 +181,7 @@
             <div class="grid md:grid-cols-4 gap-8">
                 <!-- Team member 1 -->
                 <div class="text-center">
-                    <div class="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4">
+                    <div class="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4" role="img" aria-label="Profilfoto">
                         <!-- Placeholder for team member photo -->
                     </div>
                     <h3 class="text-lg font-semibold">Name</h3>
@@ -183,7 +189,7 @@
                 </div>
                 <!-- Team member 2 -->
                 <div class="text-center">
-                    <div class="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4">
+                    <div class="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4" role="img" aria-label="Profilfoto">
                         <!-- Placeholder for team member photo -->
                     </div>
                     <h3 class="text-lg font-semibold">Name</h3>
@@ -191,7 +197,7 @@
                 </div>
                 <!-- Team member 3 -->
                 <div class="text-center">
-                    <div class="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4">
+                    <div class="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4" role="img" aria-label="Profilfoto">
                         <!-- Placeholder for team member photo -->
                     </div>
                     <h3 class="text-lg font-semibold">Name</h3>
@@ -199,7 +205,7 @@
                 </div>
                 <!-- Team member 4 -->
                 <div class="text-center">
-                    <div class="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4">
+                    <div class="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4" role="img" aria-label="Profilfoto">
                         <!-- Placeholder for team member photo -->
                     </div>
                     <h3 class="text-lg font-semibold">Name</h3>
@@ -229,15 +235,15 @@
                     <form class="space-y-4">
                         <div>
                             <label for="name" class="block mb-1">Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-green-500">
+                            <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-green-500" required>
                         </div>
                         <div>
                             <label for="email" class="block mb-1">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-green-500">
+                            <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-green-500" required>
                         </div>
                         <div>
                             <label for="message" class="block mb-1">Nachricht</label>
-                            <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-green-500"></textarea>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-green-500" required></textarea>
                         </div>
                         <button type="submit" class="btn">Nachricht senden</button>
                     </form>
@@ -251,7 +257,7 @@
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-4 md:mb-0">
-                    <p>&copy; 2023 Schützenverein Tell Quierschied. Alle Rechte vorbehalten.</p>
+                    <p>&copy; 2025 Schützenverein Tell Quierschied. Alle Rechte vorbehalten.</p>
                 </div>
                 <div class="flex space-x-4">
                     <a href="#" class="hover:text-green-300 transition duration-300">Impressum</a>
@@ -261,7 +267,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="js/script.js"></script>
+    <!-- JavaScript am Ende für schnelleres Laden -->
+    <script src="js/script.js" defer></script>
 </body>
 </html>
