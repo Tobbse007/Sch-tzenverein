@@ -55,109 +55,130 @@ nav.main-nav {
   align-items: center;
 }
 
-/* Completely redesigned dropdown animation - seamless slide from navbar */
-
-/* Position the dropdown properly */
-.dropdown {
-  position: relative;
-}
-
-/* Main dropdown container animation */
-.dropdown-menu {
-  position: absolute;
-  left: 0;
-  top: 100%;
-  width: auto;
-  background-color: white;
-  border-radius: 0 0 0.375rem 0.375rem; /* Round only bottom corners */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  
-  /* Animation properties - significantly increased duration */
-  max-height: 0;
-  transform-origin: top center;
-  transition: max-height 0.9s ease-out; /* Increased to 0.9s for much slower animation */
-  
-  /* Remove any margins that cause separation */
-  margin-top: 0;
-  border-top: none;
-}
-
-/* When dropdown is active - matching slower animation */
+/* Entfernen aller vorherigen Dropdown-Stile, die Konflikte verursachen könnten */
+.dropdown-menu,
+.dropdown,
+.dropdown-toggle,
 .group:hover .dropdown-menu,
-.active-dropdown .dropdown-menu {
-  max-height: 200px; /* Enough for all items */
-  transition: max-height 0.9s ease-out; /* Match the slower duration */
-}
-
-/* Remove staggered animation from items so they appear with the dropdown */
-.dropdown-menu a {
-  opacity: 1; /* Always fully visible */
-  transform: none; /* No separate movement */
-  pointer-events: auto; /* Always interactive */
-  transition: none; /* No transition for items individually */
-}
-
-/* Remove any individual item animations */
+.dropdown.active .dropdown-menu,
+.dropdown:hover .dropdown-menu,
+.group:not(:hover) .dropdown-menu:not(:hover),
+.dropdown-menu a,
 .group:hover .dropdown-menu a:nth-child(n),
-.active-dropdown .dropdown-menu a:nth-child(n) {
-  transition-delay: 0s;
-  opacity: 1;
-  transform: none;
-}
-
-/* Same for when dropdown disappears - no item-specific animations */
+.active-dropdown .dropdown-menu a:nth-child(n),
 .group:not(:hover) .dropdown-menu a:nth-child(n) {
-  transition-delay: 0s;
-  opacity: 1;
-  transform: none;
+  all: unset;
 }
 
-/* Dropdown item text-only underline animation */
-.dropdown-menu a {
-  position: relative;
-  display: block;
-}
-
-/* Remove previous underline implementation for dropdown items */
-.dropdown-menu a::after {
-  content: none;
-}
-
-/* Add new inner span for each dropdown item to enable text-only underline */
-.dropdown-menu a span {
+/* Einfaches, robustes Dropdown */
+.simple-dropdown {
   position: relative;
   display: inline-block;
 }
 
-.dropdown-menu a span::after {
-  content: '';
+.simple-dropdown-content {
+  /* Keep basic positioning */
   position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: #15803d;
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-  transform-origin: center;
+  top: 100%;
+  left: auto;
+  z-index: 10000;
+  min-width: 160px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 8px 0;
+  
+  /* Animation properties */
+  opacity: 0;
+  transform: translateY(-10px) scaleY(0.8);
+  transform-origin: top center;
+  transition: opacity 0.3s ease-out, 
+              transform 0.3s cubic-bezier(0.17, 0.84, 0.44, 1),
+              visibility 0.3s ease-out;
+  visibility: hidden;
+  display: block; /* Always display but control visibility */
 }
 
-.dropdown-menu a:hover span::after {
+/* Dropdown show animation */
+.simple-dropdown:hover .simple-dropdown-content {
+  opacity: 1;
+  transform: translateY(0) scaleY(1);
+  visibility: visible;
+}
+
+/* Dropdown items sequential animation */
+.simple-dropdown-content a {
+  display: block;
+  padding: 10px 16px;
+  color: #333;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.2s ease-out, 
+              transform 0.2s ease-out,
+              background-color 0.2s ease;
+}
+
+/* Sequential appearance animation for items */
+.simple-dropdown:hover .simple-dropdown-content a:nth-child(1) {
+  transition-delay: 0.05s;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.simple-dropdown:hover .simple-dropdown-content a:nth-child(2) {
+  transition-delay: 0.1s;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.simple-dropdown:hover .simple-dropdown-content a:nth-child(3) {
+  transition-delay: 0.15s;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Arrow rotation animation */
+.simple-dropdown-button svg {
+  transition: transform 0.3s ease;
+}
+
+.simple-dropdown:hover .simple-dropdown-button svg {
+  transform: rotate(180deg);
+}
+
+/* Item hover effect - underline */
+.simple-dropdown-content a {
+  position: relative;
+}
+
+.simple-dropdown-content a::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 16px;
+  right: 16px;
+  height: 2px;
+  background-color: #15803d; /* green-700 */
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.simple-dropdown-content a:hover {
+  background-color: transparent; /* Override previous background color */
+  color: #15803d; /* green-700 */
+}
+
+.simple-dropdown-content a:hover::after {
   transform: scaleX(1);
 }
 
-/* Ensuring hover effect has no background */
-.dropdown-menu a:hover {
-  background-color: transparent; /* Remove gray background */
+/* Reset pointer events for all navbar elements to ensure they're clickable */
+.navbar-container *, #mobile-menu * {
+  pointer-events: auto;
 }
 
-/* Override any Tailwind hover background classes */
-.dropdown-menu a.hover\:bg-gray-100:hover {
-  background-color: transparent !important;
-}
-
-/* Remove focus outlines from form elements */
+/* Remove focus outlines */
 input:focus, textarea:focus, button:focus {
   outline: none;
 }
@@ -263,4 +284,373 @@ input:focus, textarea:focus {
   transition-delay: 0.1s;
 }
 
-/* Additional custom styles can be added here as needed */
+/* Improved button styling with animations */
+.btn {
+  background-color: #15803d; /* green-700 */
+  color: white;
+  padding: 0.6rem 1.4rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  top: 0;
+}
+
+/* Hover effect - lift up slightly */
+.btn:hover {
+  background-color: #166534; /* green-800 - slightly darker */
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Press effect - push down */
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Add subtle shine effect on hover */
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  transition: left 0.7s ease;
+}
+
+.btn:hover::after {
+  left: 100%;
+}
+
+/* Responsive navbar improvements */
+.navbar-container {
+  width: 100%;
+  transition: padding 0.3s ease;
+}
+
+/* Round the navbar at the left and right sides */
+.navbar-container {
+  border-radius: 1rem;
+  margin: 0 1rem; /* Add some margin on sides to make the rounded edges visible */
+  width: calc(100% - 2rem); /* Adjust width to account for margin */
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Make header background transparent to show rounded container */
+header {
+  background-color: transparent !important;
+}
+
+/* Make sure mobile menu also has rounded edges */
+#mobile-menu {
+  border-radius: 0 0 1rem 1rem;
+  margin: 0 1rem;
+  width: calc(100% - 2rem);
+}
+
+/* Floating + sticky navbar with rounded sides */
+header {
+  position: sticky;
+  top: 1rem; /* Space from top of page */
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background-color: transparent;
+  padding: 0 1rem;
+}
+
+.navbar-container {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 1.5rem;
+}
+
+/* Mobile menu adjustments for floating navbar */
+#mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 1rem;
+  right: 1rem;
+  border-radius: 0 0 1rem 1rem;
+  background-color: white;
+  margin-top: 0.25rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Fix the hero section to be full-width and start from top */
+#hero {
+  margin-top: 0;
+  padding-top: 9rem; /* Increased from 7rem */
+  padding-bottom: 9rem; /* Increased from 6rem */
+  min-height: 90vh; /* Increased from 80vh for more vertical space */
+  background-color: #15803d; /* green-700 */
+  position: relative;
+  display: flex;
+  align-items: center; /* Center content vertically */
+}
+
+/* Adjust hero content vertical positioning */
+.hero-content {
+  position: relative;
+  z-index: 2; /* Ensure content is above background but below navbar */
+  padding-top: 4rem; /* Increased from 3rem */
+  width: 100%;
+}
+
+/* Ensure all interactive elements are clickable */
+.btn, nav a, .dropdown-toggle, #mobile-menu-button {
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+/* Reset body margin and improve overall layout */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar basic styling */
+header {
+  position: fixed;
+  top: 1rem;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background-color: transparent;
+  padding: 0 1rem;
+}
+
+.navbar-container {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 1.5rem;
+  overflow: visible;
+}
+
+/* Dropdown styling - truly seamless connection with navbar */
+.nav-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); /* Center the dropdown under the button */
+  padding: 0;
+  background-color: white; /* Same as navbar */
+  width: max-content; /* Only as wide as content requires */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 0.5rem 0.5rem; /* Only round bottom corners */
+  border-top: none;
+  
+  /* Remove top shadow to prevent visible separation */
+  box-shadow: 0 8px 16px -6px rgba(0, 0, 0, 0.1);
+  
+  /* Initial state for animation */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.8s cubic-bezier(0.17, 0.84, 0.44, 1); /* Slower animation */
+  z-index: 10000;
+  margin-top: 0; /* No margin to ensure seamless connection */
+}
+
+/* Prevent top nav underline from showing when dropdown is active */
+.nav-dropdown:hover .dropdown-button::after {
+  opacity: 0;
+}
+
+/* Dropdown items styling and animation - slower */
+.dropdown-content a {
+  padding: 12px 16px;
+  display: block;
+  color: #333;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Slower animations */
+  border-bottom: none; /* Entferne jeden möglichen unteren Rand */
+}
+
+/* Sequential item appearance - slower */
+.nav-dropdown:hover .dropdown-content a:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.05s; /* Reduziert von 0.2s */
+}
+
+.nav-dropdown:hover .dropdown-content a:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s; /* Reduziert von 0.3s */
+}
+
+.nav-dropdown:hover .dropdown-content a:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.15s; /* Reduziert von 0.4s */
+}
+
+/* Auch die Verschwinde-Animationen beschleunigen */
+.nav-dropdown:not(:hover) .dropdown-content a:nth-child(3) {
+  transition-delay: 0s;
+}
+
+.nav-dropdown:not(:hover) .dropdown-content a:nth-child(2) {
+  transition-delay: 0.05s; /* Reduziert von 0.1s */
+}
+
+.nav-dropdown:not(:hover) .dropdown-content a:nth-child(1) {
+  transition-delay: 0.1s; /* Reduziert von 0.2s */
+}
+
+/* Word-specific underline effect - ensure no conflicts with top nav */
+.dropdown-content a span {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content a span::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #15803d; /* green-700 */
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.5s ease; /* Slower animation */
+}
+
+/* Arrow animation - slower */
+.dropdown-button svg {
+  transition: transform 0.5s ease; /* Slower animation */
+}
+
+/* Top nav items underline animation */
+nav a, .dropdown-button {
+  position: relative;
+}
+
+nav a::after, .dropdown-button::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  right: 50%;
+  height: 2px;
+  background-color: #15803d; /* green-700 */
+  transition: left 0.3s ease, right 0.3s ease;
+}
+
+nav a:hover::after, .dropdown-button:hover::after {
+  left: 0;
+  right: 0;
+}
+
+/* Clear hover background effect */
+.dropdown-content a:hover {
+  background-color: transparent;
+}
+
+/* Entfernung des zusätzlichen Balkens am Box-Rand */
+.dropdown-content {
+  border-bottom: none !important;
+}
+
+/* Stelle sicher, dass Dropdown-Menüpunkte keine zusätzlichen Balken haben */
+.dropdown-content a {
+  border-bottom: none !important;
+}
+
+/* Spezifischer Selektor, um nur den Wort-Unterstrich zu behalten */
+.dropdown-content a span::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #15803d; /* green-700 */
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.5s ease;
+}
+
+/* Keine ::after Elemente für .dropdown-content a selbst */
+.dropdown-content > a::after {
+  display: none !important;
+}
+
+/* Stelle sicher, dass Dropdown weiterhin sichtbar ist */
+.nav-dropdown:hover .dropdown-content {
+  max-height: 300px; /* Ensure this value is large enough */
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Wiederherstellung der Pfeilanimation */
+.dropdown-button svg {
+  transition: transform 0.5s ease;
+}
+
+.nav-dropdown:hover .dropdown-button svg {
+  transform: rotate(180deg);
+}
+
+/* Wiederherstellung des Hover-Effekts für Dropdown-Items */
+.dropdown-content a span {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content a span::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #15803d; /* green-700 */
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.5s ease;
+}
+
+.dropdown-content a:hover span::after {
+  transform: scaleX(1);
+}
+
+.dropdown-content a:hover {
+  color: #15803d; /* green-700 */
+}
+
+/* Stelle sicher, dass keine anderen ::after-Elemente die Balken erstellen */
+.dropdown-content a::after {
+  display: none !important;
+}
+
+/* Stelle sicher, dass das Dropdown weiterhin funktioniert */
+.nav-dropdown:hover .dropdown-content {
+  max-height: 300px; /* Ensure this value is large enough */
+  visibility: visible !important;
+  opacity: 1 !important;
+}

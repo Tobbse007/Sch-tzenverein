@@ -6,14 +6,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (mobileMenuButton && mobileMenu) {
         mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-            // Add a small delay to allow the hidden class to be processed first
-            setTimeout(() => {
-                mobileMenu.classList.toggle('open');
-            }, 10);
+            // Toggle button animation
+            this.classList.toggle('active');
+            
+            // Toggle mobile menu with animation
+            if (mobileMenu.classList.contains('open')) {
+                mobileMenu.classList.remove('open');
+                // Wait for animation to complete before hiding
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 500);
+            } else {
+                mobileMenu.classList.remove('hidden');
+                // Small delay to ensure the display:block is applied before animation
+                setTimeout(() => {
+                    mobileMenu.classList.add('open');
+                }, 10);
+            }
         });
     }
 
+    // Close mobile menu when window is resized to desktop size
+    window.addEventListener('resize', function() {
+        if (window.innerWidth >= 1024 && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.remove('open');
+            mobileMenu.classList.add('hidden');
+            if (mobileMenuButton) {
+                mobileMenuButton.classList.remove('active');
+            }
+        }
+    });
+    
     // Mobile dropdown functionality with animations
     const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
     mobileDropdowns.forEach(dropdown => {
@@ -248,6 +271,87 @@ document.addEventListener('DOMContentLoaded', function() {
                 dropdown.classList.remove('active-dropdown');
                 toggle.setAttribute('aria-expanded', 'false');
             }
+        });
+    });
+
+    // Fix dropdown functionality with touch support
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        
+        // Touch event for mobile
+        toggle.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            dropdowns.forEach(otherDropdown => {
+                if (otherDropdown !== dropdown && otherDropdown.classList.contains('active-dropdown')) {
+                    otherDropdown.classList.remove('active-dropdown');
+                }
+            });
+            dropdown.classList.toggle('active-dropdown');
+        });
+        
+        // Prevent click event from closing dropdown immediately after opening
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+        });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown')) {
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                dropdown.classList.remove('active-dropdown');
+            });
+        }
+    });
+    
+    // Close dropdowns with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                dropdown.classList.remove('active-dropdown');
+            });
+        }
+    });
+    
+    // New dropdown implementation
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        
+        // Toggle dropdown on click
+        toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Close all other open dropdowns
+            dropdowns.forEach(item => {
+                if (item !== dropdown && item.classList.contains('active')) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Toggle current dropdown
+            dropdown.classList.toggle('active');
+        });
+        
+        // Optional: Add hover functionality
+        dropdown.addEventListener('mouseenter', () => {
+            dropdown.classList.add('active');
+        });
+        
+        dropdown.addEventListener('mouseleave', () => {
+            dropdown.classList.remove('active');
+        });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', () => {
+        dropdowns.forEach(dropdown => {
+            dropdown.classList.remove('active');
         });
     });
 });

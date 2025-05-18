@@ -12,10 +12,10 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
-<body class="bg-gray-50 text-gray-800">
-    <!-- Header Section -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+<body>
+    <!-- Header Section - Fixed floating navbar -->
+    <header>
+        <div class="navbar-container container mx-auto flex justify-between items-center">
             <!-- Logo & Title -->
             <div class="flex items-center">
                 <div class="w-12 h-12 bg-gray-200 mr-3 rounded">
@@ -28,54 +28,54 @@
             </div>
             
             <!-- Desktop Navigation -->
-            <nav class="hidden lg:flex space-x-6 items-center main-nav">
+            <nav class="hidden lg:flex space-x-6 items-center">
                 <a href="#" class="hover:text-green-700 transition duration-300">Startseite</a>
                 
                 <!-- Verein Dropdown -->
-                <div class="relative dropdown group">
-                    <button class="dropdown-toggle flex items-center transition duration-300" aria-haspopup="true" aria-expanded="false">
+                <div class="nav-dropdown">
+                    <button class="dropdown-button hover:text-green-700 flex items-center transition duration-300">
                         Verein
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
-                    <div class="dropdown-menu z-50" role="menu">
-                        <a href="#about" class="block px-4 py-2" role="menuitem"><span>Über uns</span></a>
-                        <a href="#gastronomie" class="block px-4 py-2" role="menuitem"><span>Gastronomie</span></a>
-                        <a href="#galerie" class="block px-4 py-2" role="menuitem"><span>Galerie</span></a>
+                    <div class="dropdown-content">
+                        <a href="#about"><span>Über uns</span></a>
+                        <a href="#gastronomie"><span>Gastronomie</span></a>
+                        <a href="#galerie"><span>Galerie</span></a>
                     </div>
                 </div>
                 
                 <a href="#aktuelles" class="hover:text-green-700 transition duration-300">Aktuelles</a>
                 
                 <!-- Schießsport Dropdown -->
-                <div class="relative dropdown group">
-                    <button class="dropdown-toggle flex items-center transition duration-300" aria-haspopup="true" aria-expanded="false">
+                <div class="nav-dropdown">
+                    <button class="dropdown-button hover:text-green-700 flex items-center transition duration-300">
                         Schießsport
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
-                    <div class="dropdown-menu z-50" role="menu">
-                        <a href="#gewehre" class="block px-4 py-2" role="menuitem"><span>Gewehre</span></a>
-                        <a href="#disziplinen" class="block px-4 py-2" role="menuitem"><span>Disziplinen</span></a>
-                        <a href="#halle" class="block px-4 py-2" role="menuitem"><span>Halle/Ausstattung</span></a>
+                    <div class="dropdown-content">
+                        <a href="#gewehre"><span>Gewehre</span></a>
+                        <a href="#disziplinen"><span>Disziplinen</span></a>
+                        <a href="#halle"><span>Halle/Ausstattung</span></a>
                     </div>
                 </div>
                 
                 <a href="#training" class="hover:text-green-700 transition duration-300">Training & Preise</a>
             </nav>
             
-            <!-- Kontakt Button -->
-            <a href="#contact" class="hidden lg:inline-block bg-green-700 text-white hover:bg-green-800 px-4 py-2 rounded transition duration-300">
+            <!-- Kontakt Button - hidden on mobile -->
+            <a href="#contact" class="btn hidden lg:inline-block">
                 Kontaktieren Sie uns
             </a>
             
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="lg:hidden focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
+            <!-- Mobile Menu Button - only visible on mobile -->
+            <button id="mobile-menu-button" class="hamburger-menu lg:hidden focus:outline-none">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </button>
         </div>
         
@@ -121,12 +121,12 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="hero" class="py-16 bg-green-700 text-white">
-        <div class="container mx-auto px-4 flex flex-col items-center text-center">
+    <!-- Hero Section that starts from the top -->
+    <section id="hero" class="text-white">
+        <div class="container mx-auto px-4 flex flex-col items-center text-center hero-content">
             <h1 class="text-4xl md:text-5xl font-bold mb-6">Willkommen beim Schützenverein Tell</h1>
             <p class="text-xl mb-8 max-w-2xl">Tradition, Sport und Gemeinschaft seit [Gründungsjahr]</p>
-            <a href="#contact" class="bg-white text-green-800 hover:bg-gray-100 px-8 py-3 rounded-lg font-medium transition duration-300">Kontakt aufnehmen</a>
+            <a href="#contact" class="btn bg-white text-green-800 hover:bg-gray-50">Kontakt aufnehmen</a>
         </div>
     </section>
 
@@ -239,7 +239,7 @@
                             <label for="message" class="block mb-1">Nachricht</label>
                             <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-green-500"></textarea>
                         </div>
-                        <button type="submit" class="bg-green-700 text-white hover:bg-green-800 px-6 py-2 rounded-lg transition duration-300">Nachricht senden</button>
+                        <button type="submit" class="btn">Nachricht senden</button>
                     </form>
                 </div>
             </div>
