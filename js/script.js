@@ -544,36 +544,6 @@ function setupKeyboardNavigation(button, menu) {
     
     // Initialize lazy loading
     lazyLoadImages();
-    
-    // ========== Animate Content on Scroll ==========
-    // Add animation to elements as they scroll into view
-    const initScrollAnimations = () => {
-        if ('IntersectionObserver' in window) {
-            const animationObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const el = entry.target;
-                        // Apply different animation class based on data attribute
-                        if (el.dataset.animation === 'fade') {
-                            el.classList.add('animate-fade-in');
-                        } else {
-                            el.classList.add('animate-slide-up');
-                        }
-                        animationObserver.unobserve(el);
-                    }
-                });
-            }, {
-                rootMargin: '0px',
-                threshold: 0.15
-            });
-            
-            // Select elements to animate
-            document.querySelectorAll('[data-animate]').forEach(el => {
-                animationObserver.observe(el);
-            });
-        }
-    };
-    
-    // Initialize scroll animations
-    initScrollAnimations();
+      // We've simplified the design, so we don't need scroll animations anymore
+      // Initialize animations and functionality
 });

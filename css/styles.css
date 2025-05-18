@@ -103,7 +103,6 @@ header {
   padding: 0.75rem 1.5rem;
   display: flex;
   align-items: center;
-  transition: padding var(--transition-normal);
   overflow: visible;
 }
 
@@ -433,6 +432,11 @@ nav a.active::after, .dropdown-toggle.active::after, .dropdown-button.active::af
   #hero p {
     font-size: 1.1rem;
   }
+  
+  #hero {
+    min-height: 80vh;
+    padding-top: 5rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -565,6 +569,119 @@ nav a.active::after, .dropdown-toggle.active::after, .dropdown-button.active::af
   }
 }
 
+/* ========== Hero Section Styles ========== */
+#hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  padding-top: 6rem;
+  padding-bottom: 3rem;
+  margin-top: 0;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  z-index: 1;
+}
+
+#hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Darker overlay for better text contrast */
+  background-image: url('../images/hero-background.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.25; /* Slightly increased opacity */
+  z-index: -1;
+}
+
+#hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(0deg, rgba(21, 128, 61, 0.7), rgba(22, 101, 52, 0.6)); /* Adjusted opacity */
+  z-index: -1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding-top: 2rem;
+  max-width: 1200px;
+  animation: fadeIn 1s ease-out;
+}
+
+#hero h1 {
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: var(--color-white); /* Ensure text is white */
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); /* Much stronger shadow for better visibility */
+  opacity: 1; /* Make sure it's fully visible */
+}
+
+#hero p {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--color-white); /* Ensure text is white */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6); /* Stronger shadow for better visibility */
+  opacity: 1; /* Make sure it's fully visible */
+}
+
+#hero .flex {
+  opacity: 1;
+}
+
+/* Hero section responsive adjustments */
+@media (max-width: 1024px) {
+  #hero {
+    min-height: 80vh;
+    padding-top: 5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #hero {
+    min-height: 70vh;
+  }
+  
+  #hero h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+  
+  #hero p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 640px) {
+  #hero {
+    min-height: 60vh;
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+  }
+  
+  .hero-content {
+    padding-top: 1rem;
+  }
+}
+
 /* ========== Image Optimization Styles ========== */
 .image-container {
   position: relative;
@@ -612,37 +729,14 @@ nav a.active::after, .dropdown-toggle.active::after, .dropdown-button.active::af
 }
 
 /* Image hover effects */
-.team-image-container:hover .lazy-image,
-.gallery-image:hover .lazy-image {
+.image-container img:hover {
   transform: scale(1.05);
 }
 
-/* Animation for content elements */
-.animate-fade-in {
-  animation: fadeIn 0.8s ease forwards;
-  opacity: 0;
-}
-
-.animate-slide-up {
-  animation: slideUp 0.8s ease forwards;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
+/* Basic animations */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
-}
-
-@keyframes slideUp {
-  from { 
-    opacity: 0; 
-    transform: translateY(20px);
-  }
-  to { 
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* ========== Form Styles and Validation ========== */
@@ -694,7 +788,7 @@ input[type="checkbox"]:checked {
 
 /* Form success/error messages */
 #form-success, #form-error {
-  animation: slideUp 0.3s ease;
+  animation: fadeIn 0.3s ease;
 }
 
 /* Button loading state */
