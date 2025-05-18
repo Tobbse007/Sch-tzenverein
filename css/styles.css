@@ -11,4 +11,40 @@ html {
   outline-offset: 2px;
 }
 
+/* Transitions for dropdown menus */
+.group:hover .group-hover\:visible {
+  transition-delay: 100ms;
+}
+
+/* Keep dropdown open when clicked */
+.dropdown-menu.dropdown-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* SVG rotation animation */
+.rotate-180 {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+/* Hover delay for dropdown menus */
+.group {
+  position: relative;
+}
+
+.dropdown-menu {
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+/* Desktop dropdown hover effects */
+@media (min-width: 1024px) {
+  .group:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
 /* Additional custom styles can be added here as needed */

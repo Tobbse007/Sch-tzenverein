@@ -16,30 +16,106 @@
     <!-- Header Section -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="index.html" class="text-xl font-bold text-green-800 flex items-center">
-                <span>Schützenverein Tell Quierschied</span>
-            </a>
-            <nav class="hidden md:flex space-x-6">
-                <a href="#" class="hover:text-green-700 transition duration-300">Start</a>
-                <a href="#about" class="hover:text-green-700 transition duration-300">Über uns</a>
-                <a href="#activities" class="hover:text-green-700 transition duration-300">Aktivitäten</a>
-                <a href="#team" class="hover:text-green-700 transition duration-300">Team</a>
-                <a href="#contact" class="hover:text-green-700 transition duration-300">Kontakt</a>
+            <!-- Logo & Title -->
+            <div class="flex items-center">
+                <div class="w-12 h-12 bg-gray-200 mr-3 rounded">
+                    <!-- Platzhalter für Logo -->
+                    <div class="w-full h-full flex items-center justify-center text-xs text-gray-500">Logo</div>
+                </div>
+                <a href="index.html" class="text-xl font-bold text-green-800">
+                    Schützenverein Tell Quierschied
+                </a>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex space-x-6 items-center">
+                <a href="#" class="hover:text-green-700 transition duration-300">Startseite</a>
+                
+                <!-- Verein Dropdown -->
+                <div class="relative dropdown group">
+                    <button class="dropdown-toggle flex items-center hover:text-green-700 transition duration-300">
+                        Verein
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300 z-50">
+                        <a href="#about" class="block px-4 py-2 hover:bg-gray-100">Über uns</a>
+                        <a href="#gastronomie" class="block px-4 py-2 hover:bg-gray-100">Gastronomie</a>
+                        <a href="#galerie" class="block px-4 py-2 hover:bg-gray-100">Galerie</a>
+                    </div>
+                </div>
+                
+                <!-- Schießsport Dropdown -->
+                <div class="relative dropdown group">
+                    <button class="dropdown-toggle flex items-center hover:text-green-700 transition duration-300">
+                        Schießsport
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300 z-50">
+                        <a href="#gewehre" class="block px-4 py-2 hover:bg-gray-100">Gewehre</a>
+                        <a href="#disziplinen" class="block px-4 py-2 hover:bg-gray-100">Disziplinen</a>
+                        <a href="#halle" class="block px-4 py-2 hover:bg-gray-100">Halle/Ausstattung</a>
+                    </div>
+                </div>
+                
+                <a href="#training" class="hover:text-green-700 transition duration-300">Training & Preise</a>
+                <a href="#aktuelles" class="hover:text-green-700 transition duration-300">Aktuelles</a>
             </nav>
-            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+            
+            <!-- Kontakt Button -->
+            <a href="#contact" class="hidden lg:inline-block bg-green-700 text-white hover:bg-green-800 px-4 py-2 rounded transition duration-300">
+                Kontaktieren Sie uns
+            </a>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="lg:hidden focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
         </div>
+        
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+        <div id="mobile-menu" class="hidden lg:hidden bg-white shadow-lg absolute w-full">
             <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
-                <a href="#" class="hover:text-green-700 transition duration-300">Start</a>
-                <a href="#about" class="hover:text-green-700 transition duration-300">Über uns</a>
-                <a href="#activities" class="hover:text-green-700 transition duration-300">Aktivitäten</a>
-                <a href="#team" class="hover:text-green-700 transition duration-300">Team</a>
-                <a href="#contact" class="hover:text-green-700 transition duration-300">Kontakt</a>
+                <a href="#" class="hover:text-green-700 transition duration-300">Startseite</a>
+                
+                <!-- Mobile Verein Dropdown -->
+                <div class="mobile-dropdown">
+                    <button class="flex justify-between items-center w-full hover:text-green-700 transition duration-300">
+                        Verein
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="mobile-dropdown-content hidden pl-4 mt-2 space-y-2">
+                        <a href="#about" class="block hover:text-green-700">Über uns</a>
+                        <a href="#gastronomie" class="block hover:text-green-700">Gastronomie</a>
+                        <a href="#galerie" class="block hover:text-green-700">Galerie</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile Schießsport Dropdown -->
+                <div class="mobile-dropdown">
+                    <button class="flex justify-between items-center w-full hover:text-green-700 transition duration-300">
+                        Schießsport
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="mobile-dropdown-content hidden pl-4 mt-2 space-y-2">
+                        <a href="#gewehre" class="block hover:text-green-700">Gewehre</a>
+                        <a href="#disziplinen" class="block hover:text-green-700">Disziplinen</a>
+                        <a href="#halle" class="block hover:text-green-700">Halle/Ausstattung</a>
+                    </div>
+                </div>
+                
+                <a href="#training" class="hover:text-green-700 transition duration-300">Training & Preise</a>
+                <a href="#aktuelles" class="hover:text-green-700 transition duration-300">Aktuelles</a>
+                <a href="#contact" class="bg-green-700 text-white hover:bg-green-800 px-4 py-2 rounded text-center transition duration-300">Kontaktieren Sie uns</a>
             </div>
         </div>
     </header>
