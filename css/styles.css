@@ -10,12 +10,15 @@ html {
   outline: none;
 }
 
-/* Nav item underline animation - for main nav items */
+/* Nav item styling with padding to minimize layout shifts */
 nav a, .dropdown-toggle {
   position: relative;
   display: inline-block;
+  padding: 0.15em 0; /* Add slight padding to minimize layout shift */
+  transition: color 0.3s ease, font-size 0.3s ease, font-weight 0.3s ease;
 }
 
+/* Nav item underline animation - for main nav items */
 nav a::after, .dropdown-toggle::after {
   content: '';
   position: absolute;
@@ -32,24 +35,24 @@ nav a:hover::after, .dropdown-toggle:hover::after {
   right: 0;
 }
 
-/* Active state for current page - green text with slightly larger font size */
+/* Active state for current page - without layout shifts */
 nav a.active, .dropdown-toggle.active {
   color: #15803d; /* green-700 */
-  font-weight: 500;
-  font-size: 1.05em; /* Slightly larger font size */
-  transform: translateY(-1px); /* Optional: slight upward shift for emphasis */
+  font-weight: 600; /* Make it bold */
+  font-size: 1.05em; /* Make it slightly larger */
+  /* No permanent underline for active state */
 }
 
-/* Remove the default underline for active items */
+/* Ensure underline still works on hover for active items */
 nav a.active::after, .dropdown-toggle.active::after {
-  /* We keep the default position (left: 50%, right: 50%) to ensure no underline is shown */
-  background-color: #15803d; /* Keep green color for when it appears on hover */
+  background-color: #15803d; /* Keep the color consistent */
 }
 
-/* Make sure the underline still appears when hovering an active item */
-nav a.active:hover::after, .dropdown-toggle.active:hover::after {
-  left: 0;
-  right: 0;
+/* Navbar container - add extra space to prevent jumping */
+nav.main-nav {
+  height: 3rem; /* Fixed height to prevent layout shifts */
+  display: flex;
+  align-items: center;
 }
 
 /* Completely redesigned dropdown animation - seamless slide from navbar */
@@ -240,6 +243,24 @@ input:focus, textarea:focus {
 .mobile-dropdown-content.open {
   max-height: 300px;
   opacity: 1;
+}
+
+/* Animation for dropdown arrow - even faster opening animation */
+.dropdown-toggle svg {
+  transition: transform 0.3s ease-out; /* Reduced from 0.5s to 0.3s for even faster opening */
+  transform-origin: center;
+}
+
+/* Rotate arrow on hover and when dropdown is active */
+.group:hover .dropdown-toggle svg,
+.active-dropdown .dropdown-toggle svg {
+  transform: rotate(-180deg);
+}
+
+/* When dropdown is closing, animate arrow back with matching delay and duration */
+.group:not(:hover) .dropdown-toggle svg {
+  transition: transform 0.7s ease-in; /* Keep closing speed the same */
+  transition-delay: 0.1s;
 }
 
 /* Additional custom styles can be added here as needed */

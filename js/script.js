@@ -112,49 +112,63 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Handle active navigation states based on current URL
-    function setActiveNavItem() {
-        const currentPath = window.location.pathname;
-        const currentHash = window.location.hash;
-        
-        // Clear all active states
+    function updateActiveNavItem(targetId) {
+        // Clear all active states first
         document.querySelectorAll('nav a, .dropdown-toggle').forEach(item => {
             item.classList.remove('active');
         });
         
-        // Set active state for exact matches (for main pages)
-        document.querySelectorAll('nav a').forEach(link => {
-            const href = link.getAttribute('href');
+        // Check if we have a hash target
+        if (targetId) {
+            // For regular links
+            document.querySelectorAll('nav a').forEach(link => {
+                if (link.getAttribute('href') === '#' + targetId) {
+                    link.classList.add('active');
+                }
+            });
             
-            // Check if the link matches current path or hash
-            if ((href === currentPath) || 
-                (href.startsWith('#') && href === currentHash) || 
-                (currentPath.endsWith('index.html') && href === '#')) {
-                link.classList.add('active');
-            }
-        });
-        
-        // Handle dropdown sections
-        document.querySelectorAll('.dropdown-menu a').forEach(link => {
-            const href = link.getAttribute('href');
-            if (href === currentHash) {
-                // Find parent dropdown and mark it as active
-                const parentDropdown = link.closest('.dropdown');
-                if (parentDropdown) {
-                    const dropdownToggle = parentDropdown.querySelector('.dropdown-toggle');
-                    if (dropdownToggle) {
-                        dropdownToggle.classList.add('active');
+            // For dropdown items - activate the parent dropdown
+            document.querySelectorAll('.dropdown-menu a').forEach(link => {
+                if (link.getAttribute('href') === '#' + targetId) {
+                    const parentDropdown = link.closest('.dropdown');
+                    if (parentDropdown) {
+                        const dropdownToggle = parentDropdown.querySelector('.dropdown-toggle');
+                        if (dropdownToggle) {
+                            dropdownToggle.classList.add('active');
+                        }
                     }
                 }
+            });
+        } else {
+            // If no targetId (homepage or initial load), activate home
+            const homeLink = document.querySelector('nav a[href="#"]');
+            if (homeLink) {
+                homeLink.classList.add('active');
             }
-        });
+        }
     }
     
-    // Set active nav item on page load
-    setActiveNavItem();
+    // Set initial active state based on current URL hash
+    const initialHash = window.location.hash.substring(1) || '';
+    updateActiveNavItem(initialHash);
     
-    // Update active state when hash changes
-    window.addEventListener('hashchange', setActiveNavItem);
-
+    // Update active state when clicking a nav link
+    document.querySelectorAll('nav a, .dropdown-menu a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                const targetId = href.substring(1);
+                updateActiveNavItem(targetId);
+            }
+        });
+    });
+    
+    // Update when hash changes
+    window.addEventListener('hashchange', function() {
+        const newHash = window.location.hash.substring(1);
+        updateActiveNavItem(newHash);
+    });
+    
     // Keyboard Navigation for Accessibility
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
     
