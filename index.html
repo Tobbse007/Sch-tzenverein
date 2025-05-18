@@ -28,21 +28,21 @@
             </div>
             
             <!-- Desktop Navigation -->
-            <nav class="hidden lg:flex space-x-6 items-center">
+            <nav class="hidden lg:flex space-x-6 items-center" aria-label="Hauptnavigation">
                 <a href="#" class="hover:text-green-700 transition duration-300">Startseite</a>
                 
                 <!-- Verein Dropdown -->
                 <div class="relative dropdown group">
-                    <button class="dropdown-toggle flex items-center transition duration-300">
+                    <button class="dropdown-toggle flex items-center transition duration-300" aria-haspopup="true" aria-expanded="false">
                         Verein
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
-                    <div class="dropdown-menu z-50">
-                        <a href="#about" class="block px-4 py-2"><span>Über uns</span></a>
-                        <a href="#gastronomie" class="block px-4 py-2"><span>Gastronomie</span></a>
-                        <a href="#galerie" class="block px-4 py-2"><span>Galerie</span></a>
+                    <div class="dropdown-menu z-50" role="menu">
+                        <a href="#about" class="block px-4 py-2" role="menuitem"><span>Über uns</span></a>
+                        <a href="#gastronomie" class="block px-4 py-2" role="menuitem"><span>Gastronomie</span></a>
+                        <a href="#galerie" class="block px-4 py-2" role="menuitem"><span>Galerie</span></a>
                     </div>
                 </div>
                 
@@ -50,16 +50,16 @@
                 
                 <!-- Schießsport Dropdown -->
                 <div class="relative dropdown group">
-                    <button class="dropdown-toggle flex items-center transition duration-300">
+                    <button class="dropdown-toggle flex items-center transition duration-300" aria-haspopup="true" aria-expanded="false">
                         Schießsport
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
-                    <div class="dropdown-menu z-50">
-                        <a href="#gewehre" class="block px-4 py-2"><span>Gewehre</span></a>
-                        <a href="#disziplinen" class="block px-4 py-2"><span>Disziplinen</span></a>
-                        <a href="#halle" class="block px-4 py-2"><span>Halle/Ausstattung</span></a>
+                    <div class="dropdown-menu z-50" role="menu">
+                        <a href="#gewehre" class="block px-4 py-2" role="menuitem"><span>Gewehre</span></a>
+                        <a href="#disziplinen" class="block px-4 py-2" role="menuitem"><span>Disziplinen</span></a>
+                        <a href="#halle" class="block px-4 py-2" role="menuitem"><span>Halle/Ausstattung</span></a>
                     </div>
                 </div>
                 

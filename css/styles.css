@@ -32,6 +32,26 @@ nav a:hover::after, .dropdown-toggle:hover::after {
   right: 0;
 }
 
+/* Active state for current page - green text with slightly larger font size */
+nav a.active, .dropdown-toggle.active {
+  color: #15803d; /* green-700 */
+  font-weight: 500;
+  font-size: 1.05em; /* Slightly larger font size */
+  transform: translateY(-1px); /* Optional: slight upward shift for emphasis */
+}
+
+/* Remove the default underline for active items */
+nav a.active::after, .dropdown-toggle.active::after {
+  /* We keep the default position (left: 50%, right: 50%) to ensure no underline is shown */
+  background-color: #15803d; /* Keep green color for when it appears on hover */
+}
+
+/* Make sure the underline still appears when hovering an active item */
+nav a.active:hover::after, .dropdown-toggle.active:hover::after {
+  left: 0;
+  right: 0;
+}
+
 /* Completely redesigned dropdown animation - seamless slide from navbar */
 
 /* Position the dropdown properly */
@@ -196,6 +216,30 @@ input:focus, textarea:focus {
 .group:not(:hover) .dropdown-menu:not(:hover) {
   transition: max-height 0.7s ease-in; /* Reduced from 0.9s to 0.7s for slightly faster closing */
   transition-delay: 0.1s; /* Keep the same delay before closing starts */
+}
+
+/* Mobile menu animations */
+#mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s ease-out;
+}
+
+#mobile-menu.open {
+  max-height: 500px; /* Adjust based on expected content height */
+}
+
+/* Mobile dropdown animations */
+.mobile-dropdown-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s ease-out, opacity 0.3s;
+}
+
+.mobile-dropdown-content.open {
+  max-height: 300px;
+  opacity: 1;
 }
 
 /* Additional custom styles can be added here as needed */
