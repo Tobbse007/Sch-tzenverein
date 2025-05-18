@@ -310,29 +310,4 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Close all other open dropdowns
             dropdowns.forEach(item => {
-                if (item !== dropdown) {
-                    item.classList.remove('active');
-                }
-            });
-            
-            // Toggle the clicked dropdown
-            dropdown.classList.toggle('active');
-        });
-    });
-    
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.dropdown')) {
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
-        }
-    });
-    
-    // Close dropdowns on scroll
-    window.addEventListener('scroll', () => {
-        dropdowns.forEach(dropdown => {
-            dropdown.classList.remove('active');
-        });
-    });
-});
+                if

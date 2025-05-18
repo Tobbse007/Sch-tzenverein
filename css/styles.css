@@ -274,8 +274,8 @@ input:focus, textarea:focus {
 
 /* Rotate arrow on hover and when dropdown is active */
 .group:hover .dropdown-toggle svg,
-.dropdown.active .dropdown-toggle svg {
-  transform: rotate(180deg);
+.active-dropdown .dropdown-toggle svg {
+  transform: rotate(-180deg);
 }
 
 /* When dropdown is closing, animate arrow back with matching delay and duration */
@@ -478,11 +478,6 @@ header {
   opacity: 0;
 }
 
-/* Make sure active dropdown is displayed properly */
-.dropdown.active .dropdown-menu {
-  display: block;
-}
-
 /* Dropdown menu with faster appearance */
 .dropdown-menu {
   display: none;
@@ -511,16 +506,6 @@ header {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
   }
-}
-
-/* Match styles for both hover and active states */
-.dropdown:hover .dropdown-toggle svg,
-.dropdown.active .dropdown-toggle svg {
-  transform: rotate(180deg);
-}
-
-.dropdown.active .dropdown-toggle {
-  color: #15803d; /* green-700 */
 }
 
 /* Dropdown items styling and animation - slower */
