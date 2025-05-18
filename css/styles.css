@@ -1,0 +1,14 @@
+/* Custom styles that go beyond Tailwind's capabilities */
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom focus states */
+:focus {
+  outline: 2px solid #047857;
+  outline-offset: 2px;
+}
+
+/* Additional custom styles can be added here as needed */
