@@ -70,67 +70,48 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Desktop dropdown functionality - Fixed version
+    // Dropdown toggle functionality - improved for better click handling
     const dropdowns = document.querySelectorAll('.dropdown');
     
     dropdowns.forEach(dropdown => {
         const button = dropdown.querySelector('.dropdown-toggle');
         const menu = dropdown.querySelector('.dropdown-menu');
         
-        // Track if dropdown is actively toggled by click
-        dropdown.isToggled = false;
-        
-        // Click handler for dropdown button
+        // Toggle dropdown on click
         button.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             
-            // Toggle the active state
-            dropdown.isToggled = !dropdown.isToggled;
-            
-            // Close all other dropdowns
+            // Close other dropdowns
             dropdowns.forEach(otherDropdown => {
-                if (otherDropdown !== dropdown) {
-                    otherDropdown.isToggled = false;
-                    otherDropdown.classList.remove('active-dropdown');
-                    otherDropdown.querySelector('svg').classList.remove('rotate-180');
+                if (otherDropdown !== dropdown && otherDropdown.classList.contains('active')) {
+                    otherDropdown.classList.remove('active');
                 }
             });
             
-            // Update current dropdown
-            if (dropdown.isToggled) {
-                dropdown.classList.add('active-dropdown');
-                dropdown.querySelector('svg').classList.add('rotate-180');
-            } else {
-                dropdown.classList.remove('active-dropdown');
-                dropdown.querySelector('svg').classList.remove('rotate-180');
-            }
+            // Toggle current dropdown
+            dropdown.classList.toggle('active');
+        });
+        
+        // Prevent dropdown from closing when clicking within it
+        menu.addEventListener('click', function(e) {
+            e.stopPropagation();
         });
     });
     
     // Close dropdowns when clicking outside
-    document.addEventListener('click', function() {
-        dropdowns.forEach(dropdown => {
-            dropdown.isToggled = false;
-            dropdown.classList.remove('active-dropdown');
-            dropdown.querySelector('svg').classList.remove('rotate-180');
-        });
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown')) {
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        }
     });
-
+    
     // Close dropdowns on scroll
     window.addEventListener('scroll', function() {
         dropdowns.forEach(dropdown => {
-            dropdown.isToggled = false;
-            dropdown.classList.remove('active-dropdown');
-            dropdown.querySelector('svg').classList.remove('rotate-180');
-        });
-    });
-
-    // Stop propagation for click events inside dropdown menu
-    dropdowns.forEach(dropdown => {
-        const menu = dropdown.querySelector('.dropdown-menu');
-        menu.addEventListener('click', function(e) {
-            e.stopPropagation();
+            dropdown.classList.remove('active');
         });
     });
 
@@ -329,27 +310,27 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Close all other open dropdowns
             dropdowns.forEach(item => {
-                if (item !== dropdown && item.classList.contains('active')) {
+                if (item !== dropdown) {
                     item.classList.remove('active');
                 }
             });
             
-            // Toggle current dropdown
+            // Toggle the clicked dropdown
             dropdown.classList.toggle('active');
-        });
-        
-        // Optional: Add hover functionality
-        dropdown.addEventListener('mouseenter', () => {
-            dropdown.classList.add('active');
-        });
-        
-        dropdown.addEventListener('mouseleave', () => {
-            dropdown.classList.remove('active');
         });
     });
     
     // Close dropdowns when clicking outside
-    document.addEventListener('click', () => {
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.dropdown')) {
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        }
+    });
+    
+    // Close dropdowns on scroll
+    window.addEventListener('scroll', () => {
         dropdowns.forEach(dropdown => {
             dropdown.classList.remove('active');
         });

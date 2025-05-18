@@ -274,8 +274,8 @@ input:focus, textarea:focus {
 
 /* Rotate arrow on hover and when dropdown is active */
 .group:hover .dropdown-toggle svg,
-.active-dropdown .dropdown-toggle svg {
-  transform: rotate(-180deg);
+.dropdown.active .dropdown-toggle svg {
+  transform: rotate(180deg);
 }
 
 /* When dropdown is closing, animate arrow back with matching delay and duration */
@@ -478,6 +478,51 @@ header {
   opacity: 0;
 }
 
+/* Make sure active dropdown is displayed properly */
+.dropdown.active .dropdown-menu {
+  display: block;
+}
+
+/* Dropdown menu with faster appearance */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0;
+  z-index: 1000;
+  margin-top: 0.5rem;
+  
+  /* Add immediate animation for faster appearance */
+  animation: fadeIn 0.15s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Match styles for both hover and active states */
+.dropdown:hover .dropdown-toggle svg,
+.dropdown.active .dropdown-toggle svg {
+  transform: rotate(180deg);
+}
+
+.dropdown.active .dropdown-toggle {
+  color: #15803d; /* green-700 */
+}
+
 /* Dropdown items styling and animation - slower */
 .dropdown-content a {
   padding: 12px 16px;
@@ -650,7 +695,7 @@ nav a:hover::after, .dropdown-button:hover::after {
 
 /* Stelle sicher, dass das Dropdown weiterhin funktioniert */
 .nav-dropdown:hover .dropdown-content {
-  max-height: 300px; /* Ensure this value is large enough */
+  max-height: 300px; /* Ensure this value is large genug */
   visibility: visible !important;
   opacity: 1 !important;
 }
