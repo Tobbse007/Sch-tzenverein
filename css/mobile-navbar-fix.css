@@ -1,0 +1,180 @@
+/* Mobile Navbar Fix - Globale Lösung für alle Seiten
+   Entfernt ungewünschten Weißraum und sorgt für perfekte Zentrierung in der mobilen Ansicht */
+
+@media (max-width: 1023px) {
+    /* Perfekte Zentrierung der Hauptnavbar-Komponente */
+    .navbar-main {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        min-height: 3rem; /* Reduzierte Höhe für bessere Zentrierung */
+        padding: 0;
+        margin: 0;
+    }
+    
+    /* Hamburger-Menü perfekt ausrichten */
+    .hamburger-menu {
+        margin: 0;
+        height: 20px; /* Etwas kleiner für bessere Proportionen */
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Logo-Bereich perfekt zentrieren */
+    .navbar-main > div:first-child {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Logo-Bild kleiner und exakt zentriert */
+    .navbar-main .w-12.h-12 {
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-right: 0.5rem; /* Reduzierter Abstand für bessere Balance */
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Navbar-Container mit perfekter Balance nach oben/unten */
+    .navbar-container {
+        padding: 0.4rem 0.75rem; /* Gleichmäßiges Padding oben und unten */
+        flex-direction: column;
+        min-height: auto;
+        margin: 0 auto;
+        display: flex;
+        align-items: stretch;
+    }
+    
+    /* Mobile Menü optimieren */
+    #mobile-menu {
+        margin-top: 0.25rem;
+        margin-bottom: 0;
+        padding: 0;
+    }
+    
+    /* Dropdown-Inhalte mit mehr Abstand */
+    .mobile-dropdown-content {
+        padding: 0.25rem 0;
+        margin: 0.25rem 0;
+    }
+    
+    /* Menü-Items mit mehr Abstand und größerer Schrift */
+    .mobile-menu-item, .mobile-dropdown-item {
+        padding: 0.7rem 0.75rem;
+        margin-bottom: 0.5rem;
+        min-height: 45px;
+        font-size: 1.05rem;
+        font-weight: 500;
+    }
+    
+    /* Dropdown-Buttons ebenfalls mit mehr Abstand und größerer Schrift */
+    .mobile-dropdown button {
+        padding: 0.7rem 0.75rem;
+        margin-bottom: 0.5rem;
+        min-height: 45px;
+        font-size: 1.05rem;
+        font-weight: 500;
+    }
+    
+    /* Mehr vertikaler Abstand zwischen allen Menüeinträgen */
+    #mobile-menu .mobile-menu-items > * {
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Verbesserte Darstellung des aktiven/aktuellen Menüpunkts */
+    .mobile-menu-item.text-green-700,
+    .mobile-dropdown-button.text-green-700,
+    .mobile-menu-item.font-bold,
+    .mobile-dropdown-button.font-bold {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #15803d !important; /* Primärgrün (entspricht Tailwind green-700) */
+    }
+    
+    /* Sicherstellen, dass alle aktiven Menüeinträge grün sind */
+    .mobile-menu-item.active, 
+    .mobile-dropdown-button.active,
+    .mobile-dropdown-item.active,
+    .mobile-menu-item[href*="training"].font-bold,
+    .mobile-menu-item[href*="schiessport"].font-bold,
+    .mobile-menu-item[href*="verein"].font-bold,
+    .mobile-menu-item[href*="aktuelles"].font-bold,
+    .mobile-menu-item[href*="kontakt"].font-bold,
+    .mobile-dropdown-button.active + .mobile-dropdown-content .mobile-dropdown-item {
+        color: #15803d !important; /* Primärgrün (entspricht Tailwind green-700) */
+    }
+    
+    /* Spezielle Regel für aktive Dropdown-Buttons */
+    .mobile-dropdown-button.font-bold svg,
+    .mobile-dropdown-button.text-green-700 svg {
+        color: #15803d; /* Grüner Pfeil für aktive Dropdown-Buttons */
+    }
+    
+    /* Kontakt-Button perfekt positionieren */
+    #mobile-menu .flex-1.flex.items-center.justify-center {
+        padding: 0.25rem 0;
+        min-height: auto;
+    }
+    
+    /* Kontakt-Button im Mobile-Menü besser hervorheben */
+    .mobile-menu-item.contact-button {
+        font-size: 1.05rem;
+        font-weight: 600;
+        padding: 0.8rem 0.75rem;
+        margin-top: 0.75rem !important;
+    }
+    
+    /* Mobile Dropdowns optimieren */
+    .mobile-dropdown {
+        margin-bottom: 0;
+    }
+    
+    /* Verbesserter Übergang zwischen Navbar und Inhalt */
+    header {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    
+    /* Mobile-Menu Container optimieren */
+    .mobile-menu-items {
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Optimierter Übergang zum Hauptinhalt */
+    header + main {
+        margin-top: -0.5rem;
+    }
+    
+    /* Angepasste Schriftgröße für bessere Lesbarkeit */
+    .navbar-main a.text-xl {
+        font-size: 1.1rem;
+        line-height: 1.3;
+    }
+    
+    /* Anpassung für den Container der zweizeiligen Titelzeile */
+    .navbar-main a.text-xl .flex.flex-col.leading-tight {
+        line-height: 1.1;
+    }
+    
+    /* Optimierungen für das geöffnete Menü */
+    #mobile-menu.open {
+        padding: 0;
+    }
+    
+    /* Spacing für die Leiste mit den Bars im Hamburger-Menü */
+    .hamburger-menu .bar {
+        height: 2px; /* Dünnere Balken */
+    }
+    
+    /* Anpassungen für die Container im Mobile-Menü */
+    #mobile-menu .px-3.pt-1.pb-1 {
+        padding-top: 0.125rem;
+        padding-bottom: 0.125rem;
+    }
+}
