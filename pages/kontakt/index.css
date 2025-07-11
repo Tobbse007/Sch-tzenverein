@@ -1,0 +1,824 @@
+/* Kontakt - Specialized CSS */
+
+/* CSS Variables for Contact theme */
+:root {
+    --kontakt-primary: #3498DB;
+    --kontakt-secondary: #9B59B6;
+    --kontakt-accent: #E74C3C;
+    --kontakt-light: #ECF0F1;
+    --kontakt-dark: #2C3E50;
+    --kontakt-success: #27AE60;
+    --kontakt-warning: #F39C12;
+    --kontakt-info: #17A2B8;
+    --kontakt-gradient: linear-gradient(135deg, var(--kontakt-primary), var(--kontakt-secondary));
+    --kontakt-shadow: 0 4px 15px rgba(52, 152, 219, 0.1);
+    --kontakt-border-radius: 12px;
+    --kontakt-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Main Content Styling */
+.kontakt-main {
+    padding: 2rem 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 100vh;
+}
+
+/* Hero Section */
+.kontakt-hero {
+    background: var(--kontakt-gradient);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    border-radius: var(--kontakt-border-radius);
+    position: relative;
+    overflow: hidden;
+    min-height: 60vh;
+}
+
+.kontakt-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../../Bilder/Schützenverein Schießbereich.jpg') center/cover;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+.kontakt-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.kontakt-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.kontakt-hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* Contact Methods Section */
+.contact-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.contact-card {
+    background: white;
+    border-radius: var(--kontakt-border-radius);
+    padding: 2rem;
+    box-shadow: var(--kontakt-shadow);
+    transition: var(--kontakt-transition);
+    border-left: 4px solid var(--kontakt-primary);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(52, 152, 219, 0.2);
+}
+
+.contact-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--kontakt-gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: white;
+}
+
+.contact-card h3 {
+    color: var(--kontakt-primary);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.contact-details {
+    margin-bottom: 1.5rem;
+}
+
+.contact-detail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+    color: var(--kontakt-dark);
+}
+
+.contact-detail i {
+    margin-right: 0.5rem;
+    color: var(--kontakt-primary);
+    width: 20px;
+}
+
+.contact-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Contact Form Section */
+.contact-form-section {
+    background: white;
+    border-radius: var(--kontakt-border-radius);
+    padding: 3rem 2rem;
+    margin-bottom: 3rem;
+    box-shadow: var(--kontakt-shadow);
+    position: relative;
+}
+
+.contact-form-section h2 {
+    text-align: center;
+    color: var(--kontakt-primary);
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.contact-form {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--kontakt-primary);
+    font-weight: 600;
+    transition: var(--kontakt-transition);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--kontakt-light);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: var(--kontakt-transition);
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--kontakt-primary);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    transform: translateY(-2px);
+}
+
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea {
+    border-color: var(--kontakt-accent);
+}
+
+.form-group .error-message {
+    color: var(--kontakt-accent);
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    display: none;
+}
+
+.form-group.error .error-message {
+    display: block;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* File Upload Styling */
+.file-upload {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.file-upload input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.file-upload-label {
+    display: block;
+    padding: 1rem;
+    border: 2px dashed var(--kontakt-light);
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--kontakt-transition);
+    background: var(--kontakt-light);
+}
+
+.file-upload-label:hover,
+.file-upload input[type="file"]:focus + .file-upload-label {
+    border-color: var(--kontakt-primary);
+    background: rgba(52, 152, 219, 0.05);
+}
+
+.file-upload-icon {
+    font-size: 2rem;
+    color: var(--kontakt-primary);
+    margin-bottom: 0.5rem;
+}
+
+/* Location & Map Section */
+.location-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.location-info {
+    background: white;
+    border-radius: var(--kontakt-border-radius);
+    padding: 2rem;
+    box-shadow: var(--kontakt-shadow);
+}
+
+.location-info h3 {
+    color: var(--kontakt-primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.address-details {
+    margin-bottom: 2rem;
+}
+
+.address-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: var(--kontakt-dark);
+}
+
+.address-item i {
+    margin-right: 1rem;
+    color: var(--kontakt-primary);
+    width: 24px;
+    text-align: center;
+}
+
+.map-container {
+    background: var(--kontakt-light);
+    border-radius: var(--kontakt-border-radius);
+    overflow: hidden;
+    position: relative;
+    min-height: 300px;
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--kontakt-dark);
+    font-size: 1.1rem;
+}
+
+.map-placeholder i {
+    font-size: 3rem;
+    color: var(--kontakt-primary);
+    margin-bottom: 1rem;
+}
+
+/* Opening Hours Section */
+.hours-section {
+    background: var(--kontakt-gradient);
+    color: white;
+    border-radius: var(--kontakt-border-radius);
+    padding: 3rem 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hours-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+    z-index: 1;
+}
+
+.hours-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.hours-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+}
+
+.hours-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.hours-card {
+    background: rgba(255,255,255,0.1);
+    padding: 2rem;
+    border-radius: var(--kontakt-border-radius);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.hours-card h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.hours-list {
+    list-style: none;
+    padding: 0;
+}
+
+.hours-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.hours-list li:last-child {
+    border-bottom: none;
+}
+
+.day {
+    font-weight: 600;
+}
+
+.time {
+    opacity: 0.9;
+}
+
+/* Team Section */
+.team-section {
+    background: white;
+    border-radius: var(--kontakt-border-radius);
+    padding: 3rem 2rem;
+    margin-bottom: 3rem;
+    box-shadow: var(--kontakt-shadow);
+}
+
+.team-section h2 {
+    text-align: center;
+    color: var(--kontakt-primary);
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.team-member {
+    text-align: center;
+    padding: 2rem;
+    background: var(--kontakt-light);
+    border-radius: var(--kontakt-border-radius);
+    transition: var(--kontakt-transition);
+    cursor: pointer;
+}
+
+.team-member:hover {
+    background: var(--kontakt-primary);
+    color: white;
+    transform: scale(1.05);
+}
+
+.member-avatar {
+    width: 120px;
+    height: 120px;
+    background: var(--kontakt-gradient);
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.member-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.member-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--kontakt-primary);
+    transition: var(--kontakt-transition);
+}
+
+.team-member:hover .member-name {
+    color: white;
+}
+
+.member-position {
+    color: var(--kontakt-secondary);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.team-member:hover .member-position {
+    color: rgba(255,255,255,0.9);
+}
+
+.member-contact {
+    font-size: 0.9rem;
+    color: var(--kontakt-dark);
+    opacity: 0.8;
+}
+
+.team-member:hover .member-contact {
+    color: rgba(255,255,255,0.8);
+}
+
+/* Buttons */
+.kontakt-btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: var(--kontakt-gradient);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: var(--kontakt-transition);
+    text-align: center;
+}
+
+.kontakt-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: white;
+}
+
+.kontakt-btn.secondary {
+    background: var(--kontakt-light);
+    color: var(--kontakt-primary);
+}
+
+.kontakt-btn.secondary:hover {
+    background: #3498db;
+    color: white;
+}
+
+.kontakt-btn.accent {
+    background: var(--kontakt-accent);
+}
+
+.kontakt-btn.accent:hover {
+    background: #C0392B;
+}
+
+.kontakt-btn.small {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.modal-content {
+    background: white;
+    border-radius: var(--kontakt-border-radius);
+    padding: 2rem;
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+    transform: scale(1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--kontakt-light);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--kontakt-dark);
+}
+
+/* Success Message */
+.success-message {
+    background: var(--kontakt-success);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+.success-message.show {
+    display: block;
+    animation: slideInUp 0.5s ease-out;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--kontakt-light);
+    border-top: 4px solid var(--kontakt-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Animations */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-in {
+    animation: slideInUp 0.6s ease-out forwards;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .kontakt-hero {
+        padding: 2rem 1rem;
+    }
+    
+    .kontakt-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .contact-methods {
+        grid-template-columns: 1fr;
+    }
+    
+    .location-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .hours-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-actions {
+        flex-direction: column;
+    }
+    
+    .modal-content {
+        max-width: 95%;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .kontakt-hero h1 {
+        font-size: 1.5rem;
+    }
+    
+    .contact-card {
+        padding: 1.5rem;
+    }
+    
+    .contact-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .member-avatar {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+    
+    .hours-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .kontakt-main {
+        background: white;
+    }
+    
+    .contact-card,
+    .contact-form-section,
+    .location-section,
+    .hours-section,
+    .team-section {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+    
+    .kontakt-btn,
+    .modal,
+    .file-upload {
+        display: none;
+    }
+    
+    .hours-section {
+        background: white;
+        color: black;
+    }
+      .hours-card {
+        background: white;
+        border: 1px solid #ccc;
+    }
+}
+
+/* CTA Section Override to ensure consistency */
+.section-padding.bg-green-700 {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+    background-color: #15803d !important;
+}
+
+@media (max-width: 1023px) {
+    .section-padding.bg-green-700 {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .section-padding.bg-green-700 {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+}
+
+/* Ensure CTA buttons have correct styling */
+.section-padding.bg-green-700 .btn-white,
+.section-padding.bg-green-700 .btn-outline-white {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.75rem 2rem !important;
+    border-radius: 0.375rem !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    min-height: 3rem !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+    z-index: 1 !important;
+}
+
+.section-padding.bg-green-700 .btn-white {
+    background-color: white !important;
+    color: #15803d !important;
+    border: 2px solid white !important;
+}
+
+.section-padding.bg-green-700 .btn-white:hover {
+    background-color: white !important;
+    color: #15803d !important;
+    border-color: white !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+.section-padding.bg-green-700 .btn-outline-white {
+    background-color: transparent !important;
+    color: white !important;
+    border: 2px solid white !important;
+}
+
+.section-padding.bg-green-700 .btn-outline-white:hover {
+    background-color: white !important;
+    color: #15803d !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+}

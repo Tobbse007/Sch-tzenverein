@@ -1,0 +1,802 @@
+/* Galerie CSS - Neues Design ohne "Alle Bilder" */
+
+/* Hero Section - Gleiche Styles wie über-uns Seite */
+#hero {
+    /* Disable any hover effects for hero section */
+    pointer-events: auto;
+    /* Same height as other pages */
+    min-height: 400px;
+}
+
+#hero img {
+    /* Prevent any scaling or transform effects on hero images */
+    transition: none !important;
+    transform: none !important;
+}
+
+#hero:hover img,
+#hero img:hover {
+    /* Explicitly disable hover effects */
+    transform: none !important;
+}
+
+/* Kategorie-Karten */
+.category-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.category-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    height: 200px;
+}
+
+.category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.category-card.active {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(21, 128, 61, 0.3);
+    border: 2px solid #15803d;
+}
+
+.category-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.category-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover .category-image img {
+    transform: scale(1.1);
+}
+
+.category-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: all 0.3s ease;
+}
+
+.category-card:hover .category-overlay {
+    background: linear-gradient(to bottom, rgba(21, 128, 61, 0.6), rgba(21, 128, 61, 0.8));
+}
+
+.image-count {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    backdrop-filter: blur(10px);
+}
+
+/* Galerie Grid - Masonry Layout für Originalgrößen */
+#gallery-grid {
+    columns: 1;
+    column-gap: 2rem;
+    padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+    #gallery-grid {
+        columns: 2;
+    }
+}
+
+@media (min-width: 1024px) {
+    #gallery-grid {
+        columns: 3;
+    }
+}
+
+@media (min-width: 1280px) {
+    #gallery-grid {
+        columns: 4;
+    }
+}
+
+.gallery-item {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 2rem;
+    break-inside: avoid;
+    transition: all 0.3s ease;
+}
+
+/* Gallery Cards */
+.gallery-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    width: 100%;
+}
+
+.gallery-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease;
+    max-width: 100%;
+}
+
+.gallery-card:hover .gallery-image {
+    transform: scale(1.05);
+}
+
+/* Gallery Overlay */
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3), transparent);
+    color: white;
+    padding: 2rem 1.5rem 1.5rem;
+    transform: translateY(50%);
+    transition: transform 0.4s ease;
+}
+
+.gallery-card:hover .gallery-overlay {
+    transform: translateY(0);
+}
+
+.gallery-info h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.gallery-info p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Animations */
+.fade-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.gallery-item {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Lightbox Styles - Verbessert für größere Bilder */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.lightbox:not(.hidden) {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 95vw;
+    max-height: 95vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -60px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 10001;
+    padding: 0.75rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 1.5rem 1rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 10001;
+    backdrop-filter: blur(10px);
+}
+
+.lightbox-prev {
+    left: -80px;
+}
+
+.lightbox-next {
+    right: -80px;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%) scale(1.1);
+}
+
+#lightbox-image {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 0.75rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-info {
+    text-align: center;
+    color: white;
+    margin-top: 2rem;
+    max-width: 600px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.lightbox-info h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.lightbox-info p {
+    font-size: 1rem;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 1200px) {
+    #gallery-grid {
+        columns: 3;
+        column-gap: 1.5rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .category-cards {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+    
+    .category-card {
+        height: 180px;
+    }
+    
+    #gallery-grid {
+        columns: 2;
+        column-gap: 1.5rem;
+    }
+    
+    .lightbox-prev {
+        left: -60px;
+    }
+    
+    .lightbox-next {
+        right: -60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .category-cards {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .category-card {
+        height: 160px;
+    }
+      #gallery-grid {
+        columns: 1;
+        column-gap: 1.5rem;
+    }
+    
+    .gallery-overlay {
+        padding: 1.5rem 1rem 1rem;
+    }
+    
+    .gallery-info h3 {
+        font-size: 1.1rem;
+    }
+    
+    .gallery-info p {
+        font-size: 0.85rem;
+    }
+    
+    .lightbox-prev,
+    .lightbox-next {
+        font-size: 1.5rem;
+        padding: 1rem 0.75rem;
+    }
+    
+    .lightbox-prev {
+        left: 20px;
+    }
+    
+    .lightbox-next {
+        right: 20px;
+    }
+    
+    .lightbox-close {
+        top: 20px;
+        right: 20px;
+        font-size: 2rem;
+    }
+    
+    #lightbox-image {
+        max-height: 70vh;
+    }
+    
+    .lightbox-info {
+        margin-top: 1rem;
+        padding: 1rem;
+    }
+    
+    .lightbox-info h3 {
+        font-size: 1.25rem;
+    }
+    
+    .lightbox-info p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .category-card {
+        height: 140px;
+    }
+      .category-overlay {
+        padding: 1rem;
+    }
+    
+    .lightbox-content {
+        max-width: 98vw;
+        max-height: 98vh;
+    }
+    
+    #lightbox-image {
+        max-height: 60vh;
+    }
+    
+    .lightbox-prev {
+        left: 10px;
+    }
+    
+    .lightbox-next {
+        right: 10px;
+    }
+    
+    .lightbox-close {
+        top: 10px;
+        right: 10px;
+    }
+}
+
+/* Spezielle Hover-Effekte */
+.gallery-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(21, 128, 61, 0.2));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.gallery-card:hover::before {
+    opacity: 1;
+}
+
+/* Accessibility */
+.gallery-card:focus,
+.category-card:focus {
+    outline: 3px solid #15803d;
+    outline-offset: 3px;
+}
+
+.lightbox-close:focus,
+.lightbox-prev:focus,
+.lightbox-next:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+/* Performance Optimierungen */
+.gallery-image,
+.category-image img {
+    will-change: transform;
+}
+
+.gallery-overlay,
+.category-overlay {
+    will-change: transform;
+}
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10001;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 10001;
+}
+
+.lightbox-prev {
+    left: -60px;
+}
+
+.lightbox-next {
+    right: -60px;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%) scale(1.1);
+}
+
+#lightbox-image {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 0.5rem;
+}
+
+.lightbox-info {
+    text-align: center;
+    color: white;
+    margin-top: 1rem;
+    max-width: 500px;
+}
+
+.lightbox-info h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.lightbox-info p {
+    font-size: 0.875rem;
+    opacity: 0.8;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 1024px) {
+    .gallery-card {
+        height: 280px;
+    }
+    
+    .lightbox-prev {
+        left: -40px;
+    }
+    
+    .lightbox-next {
+        right: -40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    .gallery-card {
+        height: 250px;
+    }
+    
+    .gallery-overlay {
+        padding: 1rem;
+    }
+    
+    .gallery-info h3 {
+        font-size: 1rem;
+    }
+    
+    .gallery-info p {
+        font-size: 0.8rem;
+    }
+    
+    .lightbox-prev,
+    .lightbox-next {
+        font-size: 1.25rem;
+        padding: 0.75rem;
+    }
+    
+    .lightbox-prev {
+        left: 10px;
+    }
+    
+    .lightbox-next {
+        right: 10px;
+    }
+    
+    .lightbox-close {
+        top: 10px;
+        right: 10px;
+        font-size: 1.5rem;
+    }
+    
+    #lightbox-image {
+        max-height: 60vh;
+    }
+}
+
+@media (max-width: 640px) {
+    .gallery-card {
+        height: 220px;
+    }
+    
+    .filter-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+    }
+    
+    .lightbox-content {
+        max-width: 95vw;
+        max-height: 95vh;
+    }
+    
+    #lightbox-image {
+        max-height: 50vh;
+    }
+}
+
+/* Animation für Filter-Übergang */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.gallery-item:not(.hidden) {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Loading Animation */
+.gallery-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+.gallery-loading::after {
+    content: "";
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e5e7eb;
+    border-top: 4px solid #15803d;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Hover-Effekte für bessere UX */
+.gallery-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(21, 128, 61, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.gallery-card:hover::before {
+    opacity: 1;
+}
+
+/* Verbesserte Accessibility */
+.gallery-card:focus {
+    outline: 2px solid #15803d;
+    outline-offset: 2px;
+}
+
+.filter-btn:focus {
+    outline: 2px solid #15803d;
+    outline-offset: 2px;
+}
+
+.lightbox-close:focus,
+.lightbox-prev:focus,
+.lightbox-next:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+/* ========== Footer Height Fixes ========== */
+.footer-container {
+    max-width: 1152px;
+}
+
+.footer-container .grid div {
+    min-height: auto !important; /* Remove forced height constraints */
+}
+
+/* Footer second row blocks - equal height grid layout like index.html */
+.footer-container .grid.mt-5 {
+    align-items: stretch; /* Equal height blocks */
+}
+
+/* All footer blocks should have natural height based on content */
+.footer-container .grid.mt-5 > div {
+    min-height: auto; /* Let content determine height */
+}
+
+/* Opening hours block - allow content to flow naturally without scrolling */
+.footer-container .grid.mt-5 > div:first-child {
+    min-height: auto; /* Natural content height */
+}
+
+.footer-container .grid.mt-5 > div:first-child .space-y-2 {
+    overflow: visible; /* No scrolling for opening hours */
+    max-height: none; /* No height restriction */
+}
+
+/* Ensure slideshow container uses full height */
+.footer-container .grid.mt-5 > div:last-child .slideshow-container {
+    height: 100%; /* Use full container height */
+    min-height: auto;
+}
+
+/* Specific fix for slideshow block link to use full height */
+.footer-container .grid.mt-5 > div:last-child > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Ensure Google Maps container has proper height */
+.footer-container .grid.mt-5 > div:nth-child(2) {
+    min-height: 200px;
+}
+
+@media (max-width: 768px) {
+    .footer-container .grid.mt-5 > div {
+        min-height: 200px;
+    }
+}

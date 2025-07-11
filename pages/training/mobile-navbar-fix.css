@@ -1,0 +1,46 @@
+/* Mobile Navbar Fix - Entfernt ungewünschten Weißraum und verbessert die mobile Ansicht */
+
+@media (max-width: 1023px) {
+    /* Die Hauptnavbar-Komponente besser ausrichten */
+    .navbar-main {
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        min-height: 3.25rem; /* Feste Mindesthöhe für konsistentes Layout */
+        padding: 0.25rem 0;
+    }
+    
+    /* Hamburger-Menü besser positionieren */
+    .hamburger-menu {
+        margin-right: 0.25rem; /* Weniger Abstand nach rechts */
+    }
+    
+    /* Bessere Ausrichtung der Logo-Bereichs */
+    .navbar-main > div:first-child {
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Mobile Menü Container optimieren */
+    .navbar-container {
+        padding: 0.5rem 0.75rem; /* Reduziertes Padding für kompaktere Ansicht */
+        flex-direction: column;
+        min-height: auto; /* Entfernt die feste Mindesthöhe */
+    }
+    
+    /* Mobile Menü Dropdown optimieren */
+    #mobile-menu {
+        margin-top: 0.5rem;
+    }
+    
+    /* Bessere Zentrierung des Kontakt-Buttons im mobilen Menü */
+    #mobile-menu .flex-1.flex.items-center.justify-center {
+        padding-top: 0.5rem;
+        padding-bottom: 0.25rem;
+    }
+    
+    /* Feinere Anpassung der Logo-Position */
+    .navbar-main .w-12.h-12 {
+        margin-right: 0.75rem; /* Weniger Abstand zwischen Logo und Text */
+    }
+}

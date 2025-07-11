@@ -1,0 +1,512 @@
+/* Konsolidierte CSS für die Über-uns-Seite */
+/* Enthält alle Styles aus: 
+   - ueber-uns.css
+   - ueber-uns-fix.css
+   - new-footer-fix.css
+*/
+
+/* Tailwind color extensions */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Basis-Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #374151;
+}
+
+/* ========== HERO SECTION ========== */
+#hero {
+    /* Disable any hover effects for hero section */
+    pointer-events: auto;
+    /* Same height as other pages */
+    min-height: 400px;
+}
+
+/* Entferne die grüne Box um die Menüpunkte beim Antippen */
+a, button, .dropdown-button, .nav-dropdown, .mobile-menu-item, .mobile-dropdown-button {
+    -webkit-tap-highlight-color: transparent !important; /* Entfernt das mobile Tap-Highlight */
+    outline: none !important; /* Entfernt Outlines bei Fokus */
+}
+
+a:focus, button:focus, .dropdown-button:focus, 
+.nav-dropdown:focus, .mobile-menu-item:focus, .mobile-dropdown-button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Wichtiger Fix für iOS Safari und andere mobile Browser */
+a:active, button:active, .dropdown-button:active, 
+.nav-dropdown:active, .mobile-menu-item:active, .mobile-dropdown-button:active {
+    background-color: transparent !important;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+#hero img {
+    /* Prevent any scaling or transform effects on hero images */
+    transition: none !important;
+    transform: none !important;
+}
+
+#hero:hover img,
+#hero img:hover {
+    /* Explicitly disable hover effects */
+    transform: none !important;
+}
+
+.hero-section {
+    background: linear-gradient(rgba(21, 128, 61, 0.8), rgba(22, 101, 52, 0.8)), 
+                url('../../Bilder/Schützenverein am Schießen 2.jpeg') center/cover no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.hero-overlay {
+    background: linear-gradient(135deg, rgba(21, 128, 61, 0.9) 0%, rgba(22, 101, 52, 0.8) 100%);
+}
+
+/* ========== ANIMATIONS ========== */
+/* Anmerkung: Alle standard Animationen werden deaktiviert um Konflikte zu vermeiden */
+@keyframes fadeInUp {
+    from, to { opacity: 1; transform: none; }
+}
+
+@keyframes slideInLeft {
+    from, to { opacity: 1; transform: none; }
+}
+
+@keyframes slideInRight {
+    from, to { opacity: 1; transform: none; }
+}
+
+@keyframes pulse {
+    0%, 50%, 100% { transform: none; }
+}
+
+@keyframes float {
+    0%, 50%, 100% { transform: none; }
+}
+
+/* Animation Klassen deaktiviert */
+.fade-in-up,
+.fade-in-up-delay,
+.slide-in-left,
+.slide-in-right,
+.loading-pulse,
+.floating {
+    animation: none !important;
+    transform: none !important;
+}
+
+/* ========== GRID RESET FÜR HOVER-EFFEKTE ========== */
+/* Entfernt alle grid-animationen, die mit hover scale kollidieren - AUSSER im Footer */
+.grid:not(.footer-container .grid) > * {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important; /* Flüssigere Transition */
+}
+
+/* ========== CARDS UND HOVER-EFFEKTE ========== */
+.card {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.card:hover {
+    border-color: #10b981;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    /* KEIN transform hier, nur visuelle Effekte */
+    transform: none !important;
+}
+
+/* Höhere Spezifität für Tailwind-Hover-Effekte */
+.image-container,
+[class*="transition-transform"],
+.relative.transition-transform,
+.hover\:scale-\[1\.02\] {
+    position: relative;
+    overflow: hidden;
+    transition-property: transform !important;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important; /* Ease-out-quint - extrem smooth */
+    transition-duration: 350ms !important; /* Optimal für flüssigen Effekt */
+    transform: translate3d(0, 0, 0); /* Verbessert Performance und verhindert Flackern */
+    will-change: transform; /* Optimiert Renderleistung */
+    backface-visibility: hidden; /* Verhindert Flimmern */
+}
+
+/* Explizit alle Bild-Transformationen verhindern - außer im Footer */
+.image-container:not(.footer-container *) img,
+[class*="transition-transform"]:not(.footer-container *) img,
+.relative.transition-transform:not(.footer-container *) img,
+.rounded-lg.shadow-lg:not(.footer-container *) img,
+.overflow-hidden:not(.footer-container *) img {
+    transform: none !important;
+    transition: none !important;
+    transform-origin: center !important;
+    transform-style: flat !important;
+}
+
+/* Deaktiviert zunächst die meisten hover Transformationen, außer spezifische Ausnahmen */
+*:not(.footer-container *):not(#backToTop):not(#backToTop *):hover {
+    transform: none;
+}
+
+/* Explizite Regel für hover:scale mit höchster Priorität */
+.hover\:scale-\[1\.02\]:hover {
+    transform: scale(1.02) !important;
+}
+
+/* Sehr spezifische Regeln mit hoher Priorität für image-container und andere Container */
+.image-container.hover\:scale-\[1\.02\]:hover,
+.transition-transform.hover\:scale-\[1\.02\]:hover,
+div[class*="transition-transform"].hover\:scale-\[1\.02\]:hover,
+.relative.transition-transform.hover\:scale-\[1\.02\]:hover,
+div.rounded-lg.shadow-lg.overflow-hidden.image-container.hover\:scale-\[1\.02\]:hover,
+div.relative.transition-transform.hover\:scale-\[1\.02\]:hover {
+    transform: scale(1.02) !important;
+    transition-property: transform !important;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transition-duration: 350ms !important;
+    will-change: transform;
+}
+
+/* Navigation Enhancements */
+nav .group:hover .group-hover\:opacity-100 {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+nav .group .group-hover\:opacity-100 {
+    transform: translateY(-10px);
+    transition: all 0.2s ease-in-out;
+}
+
+/* Stellt sicher, dass alle group-hover Effekte weiterhin funktionieren */
+.group:hover .group-hover\:scale-110 {
+    transform: scale(1.10) !important;
+}
+
+/* Sanftere Transition für group hover Elemente */
+.group [class*="group-hover"],
+.group-hover\:scale-110 {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* ========== SECTION SPACING UND TYPOGRAFIE ========== */
+section {
+    scroll-margin-top: 80px;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+/* ========== RESPONSIVE IMAGE HANDLING ========== */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Disable any zoom on hover effects */
+.image-container:hover img,
+[class*="transition-transform"]:hover img,
+.relative.transition-transform:hover img,
+.rounded-lg.shadow-lg:hover img,
+.overflow-hidden:hover img {
+    transform: none !important;
+    scale: 1 !important;
+}
+
+.aspect-w-3.aspect-h-4 {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 133.333333%; /* 4:3 aspect ratio */
+}
+
+.aspect-w-3.aspect-h-4 > img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    object-fit: cover;
+}
+
+/* ========== BUTTON ENHANCEMENTS ========== */
+.btn-primary {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    color: white;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+}
+
+/* ========== TEXT GRADIENTEN ========== */
+.text-gradient {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ========== BACK TO TOP BUTTON ========== */
+#backToTop {
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, opacity, visibility;
+    backface-visibility: hidden;
+}
+
+#backToTop:hover {
+    transform: translateY(-4px) !important;
+}
+
+#backToTop svg {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform;
+}
+
+#backToTop svg:hover {
+    transform: translateY(-2px) !important;
+}
+
+/* ========== FOOTER-SPEZIFISCHE STILE ========== */
+/* RESET: Alle alten Footer-Animationen entfernen */
+.footer-container * {
+    animation: none !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* PRÄZISE ZIELE: Nur die Hauptblöcke im Footer selektieren */
+.footer-container .grid > div.bg-gray-100.rounded-lg.shadow-md,
+.footer-container .grid > div.bg-green-700.rounded-lg.shadow-md,
+.footer-container .grid > div.bg-gray-100.rounded-lg.shadow-md.p-5.md\:col-span-4 {
+    /* Basis-Styles für alle Footer-Hauptblöcke */
+    transition-property: transform, box-shadow !important;
+    transition-duration: 300ms !important; 
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, box-shadow;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    position: relative;
+    z-index: 1;
+}
+
+/* HOVER-EFFEKT FÜR HAUPTBLÖCKE */
+.footer-container .grid > div.bg-gray-100.rounded-lg.shadow-md:hover,
+.footer-container .grid > div.bg-green-700.rounded-lg.shadow-md:hover,
+.footer-container .grid > div.bg-gray-100.rounded-lg.shadow-md.p-5.md\:col-span-4:hover {
+    transform: translateY(-0.5rem) !important;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05) !important;
+    z-index: 2;
+}
+
+/* SPEZIELLE BEHANDLUNG FÜR DEN KONTAKT-BLOCK */
+.footer-container .bg-gray-100.rounded-lg.shadow-md.p-3.md\:col-span-8.flex.flex-col {
+    transition-property: transform, box-shadow !important;
+    transition-duration: 300ms !important; 
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform: translate3d(0, 0, 0);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    position: relative;
+    z-index: 1;
+}
+
+.footer-container .bg-gray-100.rounded-lg.shadow-md.p-3.md\:col-span-8.flex.flex-col:hover {
+    transform: translateY(-0.5rem) !important;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05) !important;
+    z-index: 2;
+}
+
+/* VERHINDERN VON HOVER-EFFEKTEN BEI UNTERGEORDNETEN ELEMENTEN */
+.footer-container .grid > div.bg-gray-100.rounded-lg.shadow-md *,
+.footer-container .grid > div.bg-green-700.rounded-lg.shadow-md *,
+.footer-container .grid > div.bg-gray-100.rounded-lg.shadow-md.p-5.md\:col-span-4 *,
+.footer-container .bg-gray-100.rounded-lg.shadow-md.p-3.md\:col-span-8.flex.flex-col * {
+    transition: none !important;
+    transform: none !important;
+    pointer-events: none; /* Wichtig: Verhindert, dass untergeordnete Elemente eigene Hover-Effekte haben */
+}
+
+/* WIEDERHERSTELLEN VON POINTER-EVENTS FÜR LINKS */
+.footer-container a,
+.footer-container button {
+    pointer-events: auto !important;
+    transition: color 250ms ease, background-color 250ms ease !important;
+    position: relative;
+    z-index: 3;
+}
+
+.footer-container a:hover {
+    color: rgba(21, 128, 61, 1) !important;
+}
+
+/* SPEZIELLE BUTTON-STYLES */
+.footer-container a.bg-white {
+    transition: background-color 250ms ease !important;
+}
+
+.footer-container a.bg-white:hover {
+    background-color: #f3f4f6 !important;
+}
+
+/* RING-EFFEKT FÜR BESTIMMTE BOXEN */
+.footer-container .grid > div.hover\:ring-1.hover\:ring-green-600\/15:hover {
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05), 0 0 0 1px rgba(16, 185, 129, 0.15) !important;
+}
+
+/* MAPS UND SLIDESHOW IM FOOTER KORRIGIEREN */
+.footer-container iframe,
+.footer-container .slideshow-container,
+.footer-container .slideshow-images,
+.footer-container .slideshow-image {
+    pointer-events: auto !important;
+}
+
+/* EXTRA HOHE SPEZIFITÄT FÜR HAUPTBOXEN IM FOOTER */
+body .footer-container .grid > div.bg-gray-100.rounded-lg.shadow-md:hover,
+body .footer-container .grid > div.bg-green-700.rounded-lg.shadow-md:hover,
+body .footer-container .bg-gray-100.rounded-lg.shadow-md.p-3.md\:col-span-8.flex.flex-col:hover {
+    transform: translateY(-0.5rem) !important;
+}
+
+/* ========== MOBILE OPTIMIZATIONS ========== */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 60vh;
+        background-attachment: scroll;
+    }
+    
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-section p {
+        font-size: 1.1rem;
+    }
+    
+    .card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Mobile spezifische Anpassungen */
+@media (max-width: 1024px) {
+    .mobile-menu *:focus,
+    .mobile-menu *:active,
+    .mobile-dropdown *:focus,
+    .mobile-dropdown *:active {
+        outline: none !important;
+        outline-offset: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        -webkit-tap-highlight-color: transparent !important;
+    }
+}
+
+/* GARANTIERTE KORREKTHEIT AUCH BEI MEDIA QUERIES */
+@media all {
+    .footer-container .grid > div.bg-gray-100.rounded-lg.shadow-md:hover,
+    .footer-container .grid > div.bg-green-700.rounded-lg.shadow-md:hover,
+    .footer-container .grid > div.bg-gray-100.rounded-lg.shadow-md.p-5.md\:col-span-4:hover,
+    .footer-container .bg-gray-100.rounded-lg.shadow-md.p-3.md\:col-span-8.flex.flex-col:hover {
+        transform: translateY(-0.5rem) !important;
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05) !important;
+    }
+}
+
+/* ========== ACCESSIBILITY ========== */
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .card {
+        border: 2px solid #374151;
+    }
+    
+    .hero-overlay {
+        background: rgba(0, 0, 0, 0.8);
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #111827;
+        color: #f9fafb;
+    }
+    
+    .card {
+        background-color: #1f2937;
+        border-color: #374151;
+    }
+    
+    .card:hover {
+        background-color: #374151;
+    }
+}
+
+/* ========== PRINT STYLES ========== */
+@media print {
+    .hero-section {
+        background: #15803d;
+        color: white;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    nav, footer {
+        display: none;
+    }
+    
+    .card {
+        page-break-inside: avoid;
+        border: 1px solid #d1d5db;
+    }
+}

@@ -1,0 +1,47 @@
+/* Disziplinen CSS - Hero Section Fix */
+
+/* Hero Section - Gleiche Höhe wie Galerie-Seite */
+#hero {
+    /* Override any inherited height styles */
+    min-height: 400px !important;
+    /* Ensure responsive behavior */
+}
+
+/* Responsive adjustments for hero section */
+@media (max-width: 768px) {
+    #hero {
+        min-height: 350px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #hero {
+        min-height: 300px !important;
+    }
+}
+
+/* Hero content spacing adjustments */
+.hero-content {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* Title and subtitle spacing */
+#hero h1 {
+    margin-bottom: 0.75rem;
+}
+
+#hero p {
+    margin-bottom: 1rem;
+}
+
+/* CTA Section - Full Width Style */
+.full-width-cta {
+    width: 100vw !important;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    max-width: none !important;
+}

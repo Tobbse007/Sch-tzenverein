@@ -1,0 +1,225 @@
+/* Gallery Styles */
+.gallery-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    overflow: hidden; /* Verhindert, dass Elemente außerhalb sichtbar sind */
+}
+
+.gallery-wrapper {
+    flex: 1;
+    display: flex;
+    transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    min-width: 0; /* Prevent flexbox items from growing beyond container */
+    padding: 0; /* Kein zusätzlicher Abstand zum Rand */
+    will-change: transform; /* Optimiert für Rendering-Performance */
+}
+
+.gallery-item {
+    position: relative;
+    min-width: 25%; /* Genau 4 Bilder pro Ansicht */
+    flex: 0 0 25%; /* Fixe Breite von 25% - keine Flexibilität */
+    padding: 0 8px;
+    box-sizing: border-box;
+    overflow: hidden;
+    opacity: 0; /* Standard: unsichtbar */
+    transition: opacity 0.3s ease-out;
+    will-change: opacity; /* Optimiert für Rendering-Performance */
+}
+
+.gallery-image {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    transition: transform 0.5s ease;
+    cursor: pointer;
+}
+
+.gallery-image:hover {
+    transform: scale(1.05);
+}
+
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+    color: white;
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 0.3s ease;
+    border-bottom-left-radius: var(--border-radius-md);
+    border-bottom-right-radius: var(--border-radius-md);
+    pointer-events: none;
+}
+
+.gallery-item:hover .gallery-caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.gallery-caption h4 {
+    margin: 0 0 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.gallery-caption p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.gallery-button {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: var(--shadow-sm);
+    z-index: 5;
+    flex-shrink: 0;
+    margin: 0 10px;
+}
+
+.gallery-button:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.gallery-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Lightbox styles */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    margin: auto;
+}
+
+.lightbox-image {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: var(--border-radius-md);
+}
+
+.lightbox-caption {
+    text-align: center;
+    color: white;
+    padding: 15px;
+    margin-top: 10px;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: var(--border-radius-md);
+}
+
+.lightbox-button {
+    background-color: rgba(255,255,255,0.2);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.lightbox-button:hover {
+    background-color: rgba(255,255,255,0.3);
+}
+
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255,255,255,0.2);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.lightbox-close:hover {
+    background-color: rgba(255,255,255,0.3);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .gallery-item {
+        min-width: 33.333%;
+        flex: 0 0 33.333%; /* 3 items per view on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-item {
+        min-width: 50%;
+        flex: 0 0 50%; /* 2 items per view on tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-item {
+        min-width: 100%;
+        flex: 0 0 100%; /* 1 item per view on smartphones */
+    }
+}

@@ -1,0 +1,255 @@
+/* Gastronomie Seite - Spezifische Styles */
+
+/* CSS-Variablen für Gastronomie */
+:root {
+  --gastro-primary: #15803d;
+  --gastro-accent: #166534;
+  --gastro-warm: #f59e0b;
+  --gastro-warm-light: #fbbf24;
+  --gastro-text: #1f2937;
+  --gastro-bg: #ffffff;
+  --gastro-section-bg: #f9fafb;
+}
+
+/* Hero Section für Gastronomie */
+#hero {
+  background: linear-gradient(135deg, var(--gastro-primary) 0%, var(--gastro-accent) 100%);
+  min-height: 400px;
+}
+
+/* Menü & Getränke Sections */
+.menu-section {
+  background: var(--gastro-section-bg);
+  padding: 4rem 0;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.menu-category {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-category:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.menu-category h3 {
+  color: var(--gastro-primary);
+  border-bottom: 2px solid var(--gastro-warm);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dotted #e5e7eb;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.menu-item-info {
+  flex: 1;
+}
+
+.menu-item-name {
+  font-weight: 600;
+  color: var(--gastro-text);
+  margin-bottom: 0.25rem;
+}
+
+.menu-item-description {
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+.menu-item-price {
+  font-weight: 600;
+  color: var(--gastro-primary);
+  margin-left: 1rem;
+  flex-shrink: 0;
+}
+
+/* Öffnungszeiten Section */
+.opening-hours {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hours-grid {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.hours-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.hours-row:last-child {
+  border-bottom: none;
+}
+
+.hours-day {
+  font-weight: 500;
+  color: var(--gastro-text);
+}
+
+.hours-time {
+  color: var(--gastro-primary);
+  font-weight: 600;
+}
+
+.hours-closed {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* Besonderheiten Section */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.feature-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-3px);
+}
+
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--gastro-warm) 0%, var(--gastro-warm-light) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+/* Reservierung Section */
+.reservation-section {
+  background: linear-gradient(135deg, var(--gastro-primary) 0%, var(--gastro-accent) 100%);
+  color: white;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.reservation-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.reservation-button {
+  background: var(--gastro-warm);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 1.5rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.reservation-button:hover {
+  background: var(--gastro-warm-light);
+  transform: translateY(-2px);
+}
+
+/* Galerie Grid für Gastronomie Bilder */
+.gastro-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.gastro-gallery img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.gastro-gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .menu-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .menu-item-price {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+  
+  .gastro-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .gastro-gallery {
+    grid-template-columns: 1fr;
+  }
+  
+  .menu-category {
+    padding: 1.5rem;
+  }
+  
+  .feature-card {
+    padding: 1.5rem;
+  }
+}

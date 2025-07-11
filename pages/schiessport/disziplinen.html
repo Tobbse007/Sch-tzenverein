@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disziplinen - Schützenverein Tell Quierschied</title>
+    <meta name="description" content="Schießsport-Disziplinen des Schützenvereins Tell Quierschied - Luftgewehr, Luftpistole, Kleinkalliber und Großkalliber">
+    
+    <!-- Optimierte Ressourcen-Hinweise -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          fontFamily: {
+            'sans': ['Poppins', 'sans-serif'],
+          }
+        }
+      }
+    </script>    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/styles.css?v=20250615-16">
+    <link rel="stylesheet" href="../../css/slideshow.css">
+    <link rel="stylesheet" href="disziplinen.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16x16.png">
+    <link rel="manifest" href="../../site.webmanifest">
+    <meta name="theme-color" content="#15803d">
+    
+    <!-- Meta-Tags für SEO -->
+    <meta name="keywords" content="Disziplinen, Schießsport, Luftgewehr, Luftpistole, Kleinkalliber, Großkalliber, Schützenverein Tell, Quierschied">
+    <meta name="author" content="Schützenverein Tell Quierschied">
+    
+    <!-- Open Graph Tags für Social Media -->
+    <meta property="og:title" content="Disziplinen - Schützenverein Tell Quierschied">
+    <meta property="og:description" content="Schießsport-Disziplinen des Schützenvereins Tell Quierschied - Luftgewehr, Luftpistole, Kleinkalliber und Großkalliber">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:site_name" content="Schützenverein Tell Quierschied">
+</head>
+<body class="disziplinen-page">
+    <!-- Header Section - Fixed floating navbar -->
+    <header>
+        <div class="navbar-container">
+            <!-- Navbar Hauptbereich -->
+            <div class="navbar-main">
+                <!-- Logo & Title - Left side -->
+                <div class="flex items-center">
+                    <div class="w-12 h-12 mr-3 rounded overflow-hidden" aria-hidden="true">
+                        <img src="../../Bilder/Schützenverein Logo.jpeg" alt="Schützenverein Tell Logo" class="w-full h-full object-cover">
+                    </div>
+                    <a href="../../index.html" class="text-xl font-bold text-green-800">
+                        <div class="flex flex-col leading-tight">
+                            <span class="whitespace-nowrap">Schützenverein Tell</span>
+                            <span>Quierschied</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex justify-center items-center space-x-2 lg:space-x-3" aria-label="Hauptnavigation">
+                    <a href="../../index.html" class="hover:text-green-700 transition duration-300 whitespace-nowrap">Startseite</a>
+                    
+                    <!-- Verein Dropdown -->
+                    <div class="nav-dropdown">
+                        <button class="dropdown-button hover:text-green-700 flex items-center transition duration-300 whitespace-nowrap" aria-expanded="false" aria-haspopup="true">
+                            Verein
+                            <svg class="w-4 h-4 ml-1 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="dropdown-content" role="menu">
+                            <a href="../verein/ueber-uns.html" role="menuitem"><span>Über uns</span></a>
+                            <a href="../verein/gastronomie.html" role="menuitem"><span>Gastronomie</span></a>
+                            <a href="../verein/galerie.html" role="menuitem"><span>Galerie</span></a>
+                        </div>
+                    </div>
+                    
+                    <a href="../aktuelles/index.html" class="hover:text-green-700 transition duration-300 whitespace-nowrap">Aktuelles</a>
+                      <!-- Schießsport Dropdown -->
+                    <div class="nav-dropdown">
+                        <button class="dropdown-button text-green-700 font-bold flex items-center transition duration-300 whitespace-nowrap" aria-expanded="false" aria-haspopup="true">
+                            Schießsport
+                            <svg class="w-4 h-4 ml-1 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="dropdown-content" role="menu">
+                            <a href="disziplinen.html" class="active" role="menuitem"><span>Disziplinen</span></a>
+                            <a href="halle.html" role="menuitem"><span>Halle/Ausstattung</span></a>
+                        </div>
+                    </div>                    <a href="../training/index.html" class="hover:text-green-700 transition duration-300 whitespace-nowrap">Training & Preise</a>
+                </nav>
+                  <!-- Kontakt Button - nur Desktop -->
+                <a href="../kontakt/index.html" class="btn bg-green-700 text-white hover:bg-green-800 transition-all duration-300 hidden lg:inline-flex lg:items-center whitespace-nowrap">
+                    Kontakt & FAQ
+                </a>
+                
+                <!-- Hamburger Menu Button - nur mobil -->
+                <button id="mobile-menu-button" class="hamburger-menu lg:hidden focus:outline-none flex flex-col justify-between" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu - direkt in der Navbar integriert -->
+            <div id="mobile-menu" class="hidden lg:hidden" aria-labelledby="mobile-menu-button">
+                <div class="px-3 pt-1 pb-1 flex flex-col">
+                    <div class="mobile-menu-items">
+                        <a href="../../index.html" class="mobile-menu-item">Startseite</a>
+                        
+                        <!-- Mobile Verein Dropdown -->
+                        <div class="mobile-dropdown">
+                            <button class="mobile-menu-item mobile-dropdown-button" aria-expanded="false" aria-haspopup="true">
+                                <span>Verein</span>
+                                <svg class="w-4 h-4 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div class="mobile-dropdown-content" role="menu">
+                                <a href="../verein/ueber-uns.html" class="mobile-dropdown-item" role="menuitem">Über uns</a>
+                                <a href="../verein/gastronomie.html" class="mobile-dropdown-item" role="menuitem">Gastronomie</a>
+                                <a href="../verein/galerie.html" class="mobile-dropdown-item" role="menuitem">Galerie</a>
+                            </div>
+                        </div>
+                        
+                        <a href="../aktuelles/index.html" class="mobile-menu-item">Aktuelles</a>
+                          <!-- Mobile Schießsport Dropdown -->
+                        <div class="mobile-dropdown">
+                            <button class="mobile-menu-item mobile-dropdown-button text-green-700 font-bold" aria-expanded="false" aria-haspopup="true">
+                                <span>Schießsport</span>
+                                <svg class="w-4 h-4 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div class="mobile-dropdown-content" role="menu">
+                                <a href="disziplinen.html" class="mobile-dropdown-item" role="menuitem">Disziplinen</a>
+                                <a href="halle.html" class="mobile-dropdown-item" role="menuitem">Halle/Ausstattung</a>
+                            </div>
+                        </div>
+                        
+                        <a href="../training/index.html" class="mobile-menu-item">Training & Preise</a>
+                    </div>
+                    <!-- Button Container mit Flexbox für mittige Positionierung -->
+                    <div class="flex-1 flex items-center justify-center py-0 min-h-[35px]">
+                        <a href="../kontakt/index.html" class="mobile-menu-item contact-button">Kontakt & FAQ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>    <!-- Hero Section mit Hintergrundbild -->    
+    <section id="hero" class="text-white relative min-h-[300px] flex items-center">
+        <!-- Hintergrundbild mit Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="../../Bilder/Schützenverein am Schießen 1.jpeg" alt="Disziplinen - Schützenverein Tell" class="w-full h-full object-cover">
+            <!-- Dunkles Overlay -->
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+        </div>
+        
+        <!-- Content -->
+        <div class="container mx-auto px-4 sm:px-6 flex flex-col items-center text-center hero-content relative z-10">
+            <div class="max-w-5xl mx-auto px-4">
+                <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Disziplinen im Schießsport</h1>
+                <p class="text-sm sm:text-base md:text-lg mb-4 sm:mb-6 max-w-xl mx-auto">Luftgewehr <span class="mx-2 text-xl">•</span> Luftpistole <span class="mx-2 text-xl">•</span> Kleinkalliber <span class="mx-2 text-xl">•</span> Großkalliber</p>
+            </div>
+        </div>
+    </section><!-- Main Content -->
+    <main>
+
+        <!-- Überblick Disziplinen Section -->
+        <section class="py-12 sm:py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-title font-bold text-center text-3xl sm:text-4xl mb-4" data-animate data-animation="fade">Unsere Schießsport-Disziplinen</h2>
+                <p class="text-center text-gray-700 leading-relaxed text-lg max-w-5xl mx-auto mb-16" data-animate data-animation="fade">
+                    Der Schießsport bietet eine faszinierende Vielfalt an Disziplinen für alle Altersgruppen und Erfahrungsstufen. In unserem Verein können Sie verschiedene Schießdisziplinen erlernen und perfektionieren - von der ersten Grundausbildung bis hin zum Wettkampfsport auf höchstem Niveau.
+                </p>
+                
+                <!-- Disziplinen Übersicht Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16" data-animate>
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 text-center hover:transform hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-lg">
+                        <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg text-green-800 mb-2">Luftgewehr</h3>
+                        <p class="text-sm text-gray-600">Präzision auf 10 Meter</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 text-center hover:transform hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-lg">
+                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg text-blue-800 mb-2">Luftpistole</h3>
+                        <p class="text-sm text-gray-600">Konzentration und Kontrolle</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 text-center hover:transform hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-lg">
+                        <div class="w-16 h-16 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg text-orange-800 mb-2">Kleinkalliber</h3>
+                        <p class="text-sm text-gray-600">Tradition trifft Moderne</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 text-center hover:transform hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-lg">
+                        <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg text-purple-800 mb-2">Wettkampf</h3>
+                        <p class="text-sm text-gray-600">Sportlicher Vergleich</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Luftgewehr Section -->
+        <section class="py-16 bg-gradient-to-br from-green-50 to-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div data-animate>
+                        <h2 class="text-3xl lg:text-4xl font-bold text-green-800 mb-6">
+                            Luftgewehr - Die Königsdisziplin
+                        </h2>
+                        <p class="text-lg text-gray-700 mb-6">
+                            Eine präzise Disziplin mit Diabolo-Geschossen auf 10 Meter Distanz. Der Zehntel-Ring misst nur 0,5 mm im Durchmesser.
+                        </p>
+                        
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-green-600 rounded-full mr-3"></div>
+                                <span class="text-gray-700"><strong>Entfernung:</strong> 10 Meter</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-green-600 rounded-full mr-3"></div>
+                                <span class="text-gray-700"><strong>Munition:</strong> 4,5 mm Diabolo-Geschosse</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-green-600 rounded-full mr-3"></div>
+                                <span class="text-gray-700"><strong>Wettkampf:</strong> 40 oder 60 Schuss</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-green-600 rounded-full mr-3"></div>
+                                <span class="text-gray-700"><strong>Maximale Ringzahl:</strong> 10,9 Ringe pro Schuss</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-green-600">
+                            <h4 class="font-semibold text-green-800 mb-2">Besonderheiten</h4>
+                            <p class="text-gray-600">
+                                Erfordert Konzentration, Körperbeherrschung und präzise Atemtechnik. Wir bieten Einzel- und Mannschaftstraining an.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative" data-animate>
+                        <img src="../../Bilder/Schützenverein Luftgewehr.jpeg" alt="Luftgewehrschießen" class="w-full h-96 object-cover rounded-2xl shadow-xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Luftpistole Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 lg:order-1 relative" data-animate>
+                        <img src="../../Bilder/Schützenverein Luftpistole.jpeg" alt="Luftpistolenschießen" class="w-full h-96 object-cover rounded-2xl shadow-xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+                    </div>
+                    
+                    <div class="order-1 lg:order-2" data-animate>
+                        <h2 class="text-3xl lg:text-4xl font-bold text-blue-800 mb-6">
+                            Luftpistole - Präzision in der Hand
+                        </h2>
+                        <p class="text-lg text-gray-700 mb-6">
+                            Einhändiges Schießen mit Luftpistole - erfordert Armkraft und hohe Stabilität.
+                        </p>
+                        
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
+                                <span class="text-gray-700"><strong>Haltung:</strong> Einhändiger freier Anschlag</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
+                                <span class="text-gray-700"><strong>Schusszeit:</strong> 1 Stunde 45 Minuten für 40 Schuss</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
+                                <span class="text-gray-700"><strong>Zielscheibe:</strong> Ringmaße wie beim Luftgewehr</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
+                                <span class="text-gray-700"><strong>Altersklassen:</strong> Ab 12 Jahren möglich</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                            <h4 class="font-semibold text-blue-800 mb-2">Training und Technik</h4>
+                            <p class="text-gray-600">
+                                Trockenübungen für Stabilität und Atemtechnik. Gezieltes Training für Armmuskulatur und ruhiges Zielen.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kleinkalliber Section -->
+        <section class="py-16 bg-gradient-to-br from-orange-50 to-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12" data-animate>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-orange-800 mb-6">
+                        Kleinkaliber - Tradition und Präzision
+                    </h2>
+                    <p class="text-lg text-gray-700 max-w-5xl mx-auto">
+                        Mit echten Gewehrpatronen auf 50 Meter - verbindet Tradition mit moderner Technik.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                    <!-- Kleinkalliber Gewehr -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-animate>
+                        <img src="../../Bilder/Schützenverein Kleinkalliber.jpeg" alt="Kleinkaliber Gewehr" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-orange-800 mb-4">Kleinkalliber Gewehr</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <span class="w-3 h-3 bg-orange-500 rounded-full mr-3"></span>
+                                    <span class="text-gray-700"><strong>Kaliber:</strong> .22 lfB (5,6 mm)</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-3 h-3 bg-orange-500 rounded-full mr-3"></span>
+                                    <span class="text-gray-700"><strong>Entfernung:</strong> 50 Meter</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-3 h-3 bg-orange-500 rounded-full mr-3"></span>
+                                    <span class="text-gray-700"><strong>Wettkampf:</strong> 40 oder 60 Schuss</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-3 h-3 bg-orange-500 rounded-full mr-3"></span>
+                                    <span class="text-gray-700"><strong>Zielscheibe:</strong> DSB-Scheibe mit Zeichnung</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mt-4">
+                                Das Kleinkalibergewehr erfordert besondere Sorgfalt und Erfahrung. Die Ballistik echter Munition macht jeden Schuss zu einer neuen Herausforderung.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Kleinkalliber Pistole -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-animate>
+                        <img src="../../Bilder/Schützenverein Kleinkaliber2.jpg" alt="Kleinkaliber Pistole" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-orange-800 mb-4">Kleinkalliber Pistole</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <span class="w-3 h-3 bg-orange-500 rounded-full mr-3"></span>
+                                    <span class="text-gray-700"><strong>Distanz:</strong> 25 Meter</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-3 h-3 bg-orange-500 rounded-full mr-3"></span>
+                                    <span class="text-gray-700"><strong>Disziplinen:</strong> Standard, Sport, Duell</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-3 h-3 bg-orange-500 rounded-full mr-3"></span>
+                                    <span class="text-gray-700"><strong>Schussfolge:</strong> Zeitschießen und Präzision</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-3 h-3 bg-orange-500 rounded-full mr-3"></span>
+                                    <span class="text-gray-700"><strong>Besonderheit:</strong> Verschiedene Zeitstufen</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mt-4">
+                                Kombiniert Präzision und Schnelligkeit in verschiedenen Zeitstufen.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sicherheitshinweise -->
+                <div class="bg-orange-100 border-l-4 border-orange-500 p-6 rounded-lg" data-animate>
+                    <div class="flex items-center mb-4">
+                        <svg class="w-6 h-6 text-orange-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 14.5c-.77.833.192 2.5 1.732 2.5z"/>
+                        </svg>
+                        <h4 class="font-semibold text-orange-800">Wichtige Sicherheitsbestimmungen</h4>
+                    </div>
+                    <p class="text-orange-700">
+                        Sicherheitseinweisung und Sachkundenachweis erforderlich. Unsere Ausbilder begleiten den gesamten Lernprozess.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Großkaliber Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div data-animate>
+                        <h2 class="text-3xl lg:text-4xl font-bold text-red-800 mb-6">
+                            Großkaliber - Für erfahrene Schützen
+                        </h2>
+                        <p class="text-lg text-gray-700 mb-6">
+                            Königsklasse für erfahrene Schützen. Kaliber ab .30 auf Distanzen bis 300 Meter.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                            <div class="bg-red-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-red-800 mb-2">Beliebte Kaliber</h4>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• .308 Winchester</li>
+                                    <li>• .30-06 Springfield</li>
+                                    <li>• .223 Remington</li>
+                                    <li>• 6,5 mm Creedmoor</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-red-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-red-800 mb-2">Distanzen</h4>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• 100 Meter (Standard)</li>
+                                    <li>• 200 Meter (erweitert)</li>
+                                    <li>• 300 Meter (Meisterschaft)</li>
+                                    <li>• Variable Distanzen</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-red-100 border-l-4 border-red-600 p-6 rounded-lg">
+                            <h4 class="font-semibold text-red-800 mb-2">Voraussetzungen</h4>
+                            <p class="text-red-700">
+                                Waffenbesitzkarte und Erfahrung erforderlich. Ausbildungskurse im Verein möglich.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative" data-animate>
+                        <img src="../../Bilder/Schützenverein Schießbereich.jpg" alt="Großkaliber Schießbereich" class="w-full h-96 object-cover rounded-2xl shadow-xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-2xl"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <p class="text-sm font-medium">Unser Großkaliber-Schießstand</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Jugend und Nachwuchs Section -->
+        <section class="py-16 bg-gradient-to-br from-yellow-50 to-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12" data-animate>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-yellow-800 mb-6">
+                        Jugend- und Nachwuchsförderung
+                    </h2>
+                    <p class="text-lg text-gray-700 max-w-5xl mx-auto">
+                        Gezielte Nachwuchsförderung mit speziellen Programmen und kindgerechter Ausrüstung.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <!-- Bambini (6-9 Jahre) -->
+                    <div class="bg-white rounded-xl shadow-lg p-6" data-animate>
+                        <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.01M15 10h1.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-yellow-800 mb-4 text-center">Bambini (6-9 Jahre)</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <li>• Lichtpunkt-Schießen</li>
+                            <li>• Spielerische Übungen</li>
+                            <li>• Konzentrationstraining</li>
+                            <li>• Sicherheitsschulung</li>
+                            <li>• Bewegungskoordination</li>
+                        </ul>
+                        <div class="mt-4 p-3 bg-yellow-50 rounded-lg">
+                            <p class="text-sm text-yellow-700"><strong>Trainingszeit:</strong> Samstags 10:00-11:30 Uhr</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Jugend (10-14 Jahre) -->
+                    <div class="bg-white rounded-xl shadow-lg p-6" data-animate>
+                        <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-green-800 mb-4 text-center">Jugend (10-14 Jahre)</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <li>• Luftgewehr-Grundausbildung</li>
+                            <li>• Anschlagtechnik</li>
+                            <li>• Erste Wettkämpfe</li>
+                            <li>• Technik-Training</li>
+                            <li>• Mannschaftsgeist</li>
+                        </ul>
+                        <div class="mt-4 p-3 bg-green-50 rounded-lg">
+                            <p class="text-sm text-green-700"><strong>Trainingszeit:</strong> Dienstags 17:00-19:00 Uhr</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Junioren (15-18 Jahre) -->
+                    <div class="bg-white rounded-xl shadow-lg p-6" data-animate>
+                        <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-blue-800 mb-4 text-center">Junioren (15-18 Jahre)</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <li>• Luftgewehr & Luftpistole</li>
+                            <li>• Wettkampfvorbereitung</li>
+                            <li>• Mentales Training</li>
+                            <li>• Leistungssport-Optionen</li>
+                            <li>• Trainer-Ausbildung</li>
+                        </ul>
+                        <div class="mt-4 p-3 bg-blue-50 rounded-lg">
+                            <p class="text-sm text-blue-700"><strong>Trainingszeit:</strong> Mo, Di, Fr 17:00-20:00 Uhr</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Jugendförderung Highlights -->
+                <div class="bg-gradient-to-r from-yellow-100 to-orange-100 rounded-xl p-8" data-animate>
+                    <h3 class="text-2xl font-bold text-yellow-800 mb-6 text-center">Besondere Fördermaßnahmen</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+                                </svg>
+                            </div>
+                            <h4 class="font-semibold text-yellow-800 mb-2">Kostenlose Ausrüstung</h4>
+                            <p class="text-sm text-gray-600">Vereinswaffen und Zubehör für alle Jugendlichen</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                                </svg>
+                            </div>
+                            <h4 class="font-semibold text-orange-800 mb-2">Wettkampfunterstützung</h4>
+                            <p class="text-sm text-gray-600">Übernahme von Startgebühren und Fahrtkosten</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                </svg>
+                            </div>
+                            <h4 class="font-semibold text-red-800 mb-2">Talentförderung</h4>
+                            <p class="text-sm text-gray-600">Individuelle Betreuung für besonders begabte Schützen</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                </svg>
+                            </div>
+                            <h4 class="font-semibold text-purple-800 mb-2">Lehrgänge</h4>
+                            <p class="text-sm text-gray-600">Teilnahme an Verbandslehrgängen und Trainingslagern</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call-to-Action Section -->
+        <section class="bg-green-700 py-16 full-width-cta">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Bereit für Ihr erstes Training?
+                </h2>
+                <p class="text-xl mb-8 opacity-90 max-w-4xl mx-auto">
+                    Entdecken Sie die faszinierende Welt des Schießsports! Kommen Sie zu unserem kostenlosen Schnuppertraining.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="../training/index.html" class="btn-white">
+                        Training & Preise
+                    </a>
+                    <a href="../kontakt/index.html" class="btn-outline-white">
+                        Jetzt Kontakt aufnehmen
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt-4 relative bg-white pb-8">
+        <div class="container mx-auto px-4">
+            <!-- Floating Footer Container -->
+            <div class="footer-container max-w-6xl mx-auto" role="contentinfo" aria-label="Footer">
+                <!-- First row boxes - Zwei Spalten -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-5 mb-5">
+                    <!-- Vereins & Kontakt Info Box - 8 columns -->
+                    <div class="bg-gray-100 rounded-lg shadow-md p-3 md:col-span-8 flex flex-col transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-md hover:ring-1 hover:ring-green-600/15">
+                        <div class="flex items-center mb-2 justify-center">
+                            <div class="w-10 h-10 rounded-full mr-2 overflow-hidden border-2 border-white shadow-md">
+                                <img src="../../Bilder/Schützenverein Logo.jpeg" alt="Schützenverein Tell Logo" class="w-full h-full object-cover">
+                            </div>
+                            <div class="font-bold text-lg text-green-800">Schützenverein Tell Quierschied</div>
+                        </div>
+                        <p class="text-gray-600 text-center text-sm mb-2">Tradition, Sport und Gemeinschaft in Quierschied seit 1958.</p>
+                        
+                        <div class="border-t border-gray-200 pt-2">
+                            <h4 class="text-center text-base mb-2 text-green-800 relative inline-block font-semibold">Kontakt & Information</h4>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                                <div class="flex items-start">
+                                    <svg class="w-4 h-4 mr-1 mt-0.5 text-green-700 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                    <span class="text-gray-600">Beispielstraße 123, 66287 Quierschied</span>
+                                </div>
+                                
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-1 text-green-700 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 012 2z"></path>
+                                    </svg>
+                                    <a href="mailto:info@sv-tell.de" class="text-gray-600 hover:text-green-700">info@sv-tell.de</a>
+                                </div>
+                                
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-1 text-green-700 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                    </svg>
+                                    <a href="tel:+4969887766554" class="text-gray-600 hover:text-green-700">+49 6988 77665 54</a>
+                                </div>
+                                
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-1 text-green-700 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span class="text-gray-600">Di, Fr: 17:00 - 20:00 Uhr</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Vereins Web Box - 4 columns -->
+                    <a href="https://www.vereins-web.de" target="_blank" rel="noopener" class="block md:col-span-4">
+                        <div class="bg-green-700 rounded-lg shadow-md p-4 flex flex-col transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-md cursor-pointer">
+                            <p class="text-white text-center mb-2 font-bold text-lg">
+                                Erstellt von <span class="text-white hover:underline">Vereins Web</span>
+                            </p>
+                            <div class="flex justify-center mb-2">
+                                <div class="bg-white rounded-md w-16 h-16 flex items-center justify-center shadow-md">
+                                    <span class="text-green-700 font-bold text-2xl">VW</span>
+                                </div>
+                            </div>
+                            <p class="text-white text-sm text-center mb-2">
+                                Kostengünstiges Hosting & moderne Webseiten für Vereine.
+                            </p>
+                            <div class="text-center">
+                                <span class="bg-white text-green-700 font-medium py-1 px-3 rounded-md hover:bg-gray-100 transition-colors inline-block text-sm">Kostenloser erster Entwurf!</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Zweite Reihe - Drei gleichgroße Blöcke -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-5 mt-5">                    <!-- Öffnungszeiten Box (4 columns) -->
+                    <div class="bg-gray-100 rounded-lg shadow-md p-5 md:col-span-4 h-full flex flex-col transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-md hover:ring-1 hover:ring-green-600/15">
+                        <h4 class="text-center text-lg mb-4 text-green-800 font-semibold">Unsere Öffnungszeiten</h4>
+                        <div id="footer-oeffnungszeiten-container" class="space-y-2">
+                            <div class="bg-white p-2 rounded-md shadow-sm">
+                                <p class="text-gray-500 text-sm text-center">Lade Öffnungszeiten...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Anfahrt (4 columns) mit interaktiver Google Maps Karte -->
+                    <div class="bg-gray-100 rounded-lg shadow-md md:col-span-4 h-full overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-md hover:ring-1 hover:ring-green-600/15">
+                        <div class="h-full w-full relative" style="min-height: 200px;">
+                            <!-- Google Maps iframe mit voller Größe -->
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d658.8966622782679!2d7.042471268880212!3d49.3334066987419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4795e2e9c5efe1b3%3A0xac51bc46247afdd9!2sSchienenweg%2042b%2C%2066287%20Quierschied!5e0!3m2!1sde!2sde!4v1716827963793!5m2!1sde!2sde"
+                                width="100%" 
+                                height="100%" 
+                                style="border:0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                    
+                    <!-- Impressionen Slideshow (4 columns) -->
+                    <div class="bg-gray-100 rounded-lg shadow-md md:col-span-4 h-full overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-md hover:ring-1 hover:ring-green-600/15">
+                        <a href="../verein/galerie.html" class="block w-full h-full">
+                            <div class="relative w-full h-full slideshow-container">
+                                <div class="slideshow-images">
+                                    <img src="../../Bilder/Schützenverein Gastronomie Terasse 2.jpeg" alt="Schützenverein Impression" class="slideshow-image active w-full h-full object-cover">
+                                    <img src="../../Bilder/Schützenverein am Schießen 1.jpeg" alt="Schützenverein Impression" class="slideshow-image w-full h-full object-cover">
+                                    <img src="../../Bilder/Schützenverein Luftdruckhalle.jpeg" alt="Schützenverein Impression" class="slideshow-image w-full h-full object-cover">
+                                    <img src="../../Bilder/Schützenverein mehrere Leute auf der Terasse.jpeg" alt="Schützenverein Impression" class="slideshow-image w-full h-full object-cover">
+                                    <img src="../../Bilder/Schützenverein ortspokal gewinner 2024.jpg" alt="Schützenverein Impression" class="slideshow-image w-full h-full object-cover">
+                                </div>
+                                <!-- Hover-Overlay für den Effekt -->
+                                <div class="slideshow-hover-overlay">
+                                    <div class="slideshow-hover-text">
+                                        <div class="flex flex-col items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                            </svg>
+                                            Mehr Bilder ansehen
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Copyright einfache Textzeile -->
+                <div class="mt-5 text-center">
+                    <p class="text-sm text-gray-600">&copy; 2025 Schützenverein Tell Quierschied. <a href="#" class="hover:text-green-700">Impressum</a> | <a href="#" class="hover:text-green-700">Datenschutz</a> | <a href="#" class="hover:text-green-700">Satzung</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" aria-label="Zurück nach oben" class="fixed bottom-8 right-8 bg-green-700 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transform translate-y-4 transition-all duration-300 ease-in-out hover:bg-green-800 hover:-translate-y-1 focus:outline-none z-20 border-none cursor-pointer sm:w-12 sm:h-12 sm:right-8 sm:bottom-8">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-300 hover:-translate-y-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>    <!-- JavaScript -->
+    <script src="../../js/script.js"></script>
+    <script src="../../js/slideshow.js"></script>
+    <script src="../../js/strapi-api.js"></script>    <script>
+        // Footer Öffnungszeiten laden
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('[FOOTER] Lade dynamische Öffnungszeiten für Disziplinen-Seite...');
+            renderOeffnungszeitenFooter('footer-oeffnungszeiten-container');
+        });
+    </script>
+</body>
+</html>

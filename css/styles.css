@@ -2,8 +2,10 @@
 
 /* ========== CSS-Variablen (Custom Properties) ========== */
 :root {
+  --font-family-base: 'Poppins', sans-serif;
   --color-primary: #15803d;
   --color-primary-dark: #166534;
+  --color-primary-hover: #16a34a;
   --color-white: #ffffff;
   --color-text: #333333;
   --color-background: #ffffff;
@@ -37,6 +39,36 @@
 html {
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent; /* Entfernt blaues Highlight bei Tap auf mobilen Geräten */
+  font-family: var(--font-family-base);
+}
+
+/* ========== Custom Scrollbar - Global für alle Seiten ========== */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f8fafc;
+    border-radius: 6px;
+    margin: 4px 0; /* Abstand oben und unten für besseres Aussehen */
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #10b981, #059669);
+    border-radius: 6px;
+    border: 2px solid #f8fafc; /* Weißer Rand für eleganten Look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #059669, #047857);
+    border-color: #f1f5f9;
+    transform: scale(1.1);
+}
+
+::-webkit-scrollbar-corner {
+    background: #f8fafc;
 }
 
 body {
@@ -46,7 +78,17 @@ body {
   display: flex;
   flex-direction: column;
   color: var(--color-text);
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  line-height: 1.6;
   overflow-x: hidden; /* Horizontales Scrollen verhindern */
+}
+
+/* Typografie für Überschriften */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-base);
+  font-weight: 600;
+  line-height: 1.3;
 }
 
 /* Verbesserte Bildfluidität */
@@ -64,12 +106,34 @@ img {
   margin-left: auto;
 }
 
+/* Section Padding Class */
+.section-padding {
+  padding-top: var(--section-padding-mobile);
+  padding-bottom: var(--section-padding-mobile);
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: var(--section-padding-tablet);
+    padding-bottom: var(--section-padding-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding-top: var(--section-padding-desktop);
+    padding-bottom: var(--section-padding-desktop);
+  }
+}
+
 /* Responsive Typografie */
 .section-title {
-  font-size: clamp(1.5rem, 5vw, 2.25rem);
-  margin-bottom: 2.5rem;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  margin-bottom: 1.5rem;
   font-weight: 700;
   text-align: center;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
 }
 
 .text-left {
@@ -78,13 +142,6 @@ img {
 
 .text-right {
   text-align: right;
-}
-
-/* Ensure section titles have proper alignment with text */
-.section-title {
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-  font-size: clamp(1.75rem, 5vw, 2.5rem);
 }
 
 /* Remove default margin-bottom for section titles that need to align with text */
@@ -118,19 +175,92 @@ header {
   right: 0;
   z-index: 50;
   background-color: transparent !important;
-  padding: 0.75rem; /* Increased back to original */
+  padding: 0.75rem;
 }
 
-.navbar-container {
-  max-width: 1200px; /* Increased back to original width */
+.navbar-container {  max-width: 1100px;
+  width: 90%;
   margin: 0 auto;
   background-color: var(--color-white);
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-md);
-  padding: 0.5rem 1.2rem; /* Increased for more space */
+  padding: 0.75rem 0.5rem 0.75rem 1.25rem; /* Ursprüngliches Padding wiederhergestellt */
+  display: flex;
+  overflow: visible;
+  gap: 0;
+  position: relative;
+}
+
+/* Desktop: Universeller Flexbox Ansatz für alle Navbar-Strukturen */
+@media (min-width: 1024px) {  .navbar-container {
+    display: grid;
+    grid-template-columns: 300px 1fr 250px; /* Zurück zur vorherigen Einstellung */
+    align-items: center;
+    min-height: auto;
+    position: relative;
+    padding: 0.75rem 1.25rem; /* Gleichmäßiges Padding */
+    overflow: visible;
+  }
+  
+  .navbar-main {
+    display: contents; /* Macht wrapper transparent für Grid */
+  }
+  /* Logo container - erste Spalte, ursprüngliche Position */
+  .navbar-container > div:first-child,
+  .navbar-main > div:first-child {
+    grid-column: 1;
+    justify-self: start;
+  }    /* Navigation - zweite Spalte, deutlich weiter nach rechts verschoben */
+  .navbar-container nav,
+  .navbar-main nav,
+  .navbar-container > nav {
+    grid-column: 2;
+    display: flex !important;
+    justify-content: flex-end; /* Navigation ganz nach rechts */
+    align-items: center;    gap: 0.5rem; /* Reduzierte Abstände zwischen Menüpunkten */
+    justify-self: end; /* Navigation nach rechts in der Grid-Spalte */
+    white-space: nowrap;
+    margin-left: 2rem; /* Weniger Abstand von links für moderate Rechtsverschiebung */
+    padding-right: 0.5rem; /* Weniger Abstand vom rechten Rand */
+  }
+  /* Button - dritte Spalte, feste Position */
+  .navbar-container .btn,
+  .navbar-main .btn,
+  .navbar-container > .btn {
+    grid-column: 3;
+    justify-self: end;
+    position: relative !important;
+    transform: none !important;
+    margin: 0 !important;
+    z-index: 1;
+    min-width: 160px; /* Mindestbreite für konsistente Positionierung */  }
+    /* Entferne Button aus nav falls es dort drin ist */
+  nav .btn {
+    display: none;
+  }
+  
+  /* Spezifische Regel nur für Disziplinen-Seite: zusätzlicher linker Abstand für Contact Button */
+  .disziplinen-page .navbar-container .btn,
+  .disziplinen-page .navbar-main .btn,
+  .disziplinen-page .navbar-container > .btn {
+    margin-left: 1em !important;
+  }
+}
+
+/* Mobile: Vertikales Layout */
+@media (max-width: 1023px) {
+  .navbar-container {
+    flex-direction: column;
+    min-height: 4.25rem;
+  }
+}
+
+/* Navbar Hauptbereich (Logo, Nav, Hamburger) */
+.navbar-main {
   display: flex;
   align-items: center;
-  overflow: visible;
+  justify-content: space-between;  width: 100%;
+  gap: 1rem;
 }
 
 nav a, .dropdown-toggle, .dropdown-button {
@@ -145,23 +275,53 @@ nav a, .dropdown-toggle, .dropdown-button {
   pointer-events: auto;
 }
 
-/* Top nav underline animation */
-nav a::after, .dropdown-toggle::after, .dropdown-button::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  right: 50%;
-  height: 2px;
-  background-color: var(--color-primary);
+/* Hover-Effekt mit animiertem Balken für normale Links - nur für Navigation, nicht für Button */
+.navbar-container nav a:not(.dropdown-button):not(.btn)::after,
+nav a:not(.dropdown-button):not(.btn)::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -2px !important;
+  left: 50% !important;
+  right: 50% !important;
+  height: 2px !important;
+  background-color: var(--color-primary) !important;
   transition: 
     left var(--transition-normal),
-    right var(--transition-normal);
+    right var(--transition-normal) !important;
+  z-index: 1 !important;
 }
 
-nav a:hover::after, .dropdown-toggle:hover::after, .dropdown-button:hover::after {
-  left: 0;
-  right: 0;
+.navbar-container nav a:not(.dropdown-button):not(.btn):hover::after,
+nav a:not(.dropdown-button):not(.btn):hover::after {
+  left: 0 !important;
+  right: 0 !important;
+}
+
+/* Hover-Farbänderung für alle Navigation-Links - aber nicht für Button */
+.navbar-container nav a:not(.btn):hover,
+.navbar-container .dropdown-button:not(.btn):hover,
+nav a:not(.btn):hover, 
+.dropdown-button:not(.btn):hover {
+  color: var(--color-primary) !important;
+}
+
+/* Button Hover-Effekte entfernen/korrigieren */
+.navbar-container .btn::after,
+.navbar-main .btn::after,
+.btn::after {
+  display: none !important;
+}
+
+.navbar-container .btn:hover,
+.navbar-main .btn:hover {
+  transform: none !important;
+}
+
+/* Zusätzlicher Abstand für Training & Preise Link zum Button */
+@media (min-width: 1024px) {
+  .training-link {
+    margin-right: 1rem !important; /* Weniger Abstand zum Button */
+  }
 }
 
 nav a.active, .dropdown-toggle.active, .dropdown-button.active {
@@ -182,11 +342,11 @@ nav a.active::after, .dropdown-toggle.active::after, .dropdown-button.active::af
 
 .dropdown-menu, .dropdown-content {
   position: absolute;
-  left: 50%;
+  left: 50%; /* Zentrale Position unter dem Button */
   top: 100%;
   transform: translateX(-50%);
   background-color: var(--color-white);
-  min-width: 160px;
+  min-width: 180px; /* Etwas breiter für bessere Lesbarkeit */
   box-shadow: var(--shadow-dropdown);
   border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
   padding: 0.5rem 0;
@@ -270,6 +430,28 @@ nav a.active::after, .dropdown-toggle.active::after, .dropdown-button.active::af
 .dropdown-content a:hover, .dropdown-menu a:hover {
   color: var(--color-primary);
   background: none;
+  outline: none; /* Entfernt grünen Rand beim Anklicken */
+}
+
+.dropdown-content a:focus, .dropdown-menu a:focus {
+  outline: none; /* Entfernt grünen Rand beim Fokussieren */
+  background: none;
+}
+
+/* Active state for current page in dropdown */
+.dropdown-content a.active, .dropdown-menu a.active {
+  color: var(--color-primary) !important;
+  font-weight: bold;
+  outline: none; /* Entfernt grünen Rand für aktive Links */
+}
+
+.dropdown-content a.active span::after, .dropdown-menu a.active span::after {
+  transform: scaleX(0);
+  background-color: var(--color-primary);
+}
+
+.dropdown-content a.active:hover span::after, .dropdown-menu a.active:hover span::after {
+  transform: scaleX(1);
 }
 
 /* Remove default underline for dropdown links */
@@ -277,17 +459,60 @@ nav a.active::after, .dropdown-toggle.active::after, .dropdown-button.active::af
   display: none !important;
 }
 
-/* Dropdown arrow animation */
-.dropdown-toggle svg, .dropdown-button svg {
-  transition: transform var(--transition-normal);
-  transform-origin: center;
+/* Komplette Entfernung aller Outlines für Dropdown-Links */
+.dropdown-content a,
+.dropdown-menu a,
+.nav-dropdown a {
+  outline: none !important;
+  outline-offset: 0 !important;
 }
 
+.dropdown-content a:focus,
+.dropdown-menu a:focus,
+.nav-dropdown a:focus,
+.dropdown-content a:active,
+.dropdown-menu a:active,
+.nav-dropdown a:active {
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Verbesserte Dropdown-Pfeil-Animation - mit vollständiger Trennung von Hover-Effekten */
+.dropdown-toggle svg, .dropdown-button svg {
+  transform-origin: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  position: relative;
+  display: inline-block;
+  margin-left: 4px;
+  pointer-events: none; /* Verhindert, dass SVG Hover-Effekte abfängt */
+  /* Einheitliche, sanfte Transition */
+  transition: transform 0.25s ease-out;
+  /* Stabile Ausgangsposition */
+  transform: rotate(0deg);
+}
+
+/* Isolierte Rotationsregel für Pfeile - unabhängig vom Text-Hover */
 .nav-dropdown:hover .dropdown-toggle svg,
 .nav-dropdown:hover .dropdown-button svg,
 .dropdown:hover .dropdown-toggle svg,
-.dropdown:hover .dropdown-button svg {
-  transform: rotate(180deg);
+.dropdown:hover .dropdown-button svg,
+.mobile-dropdown button[aria-expanded="true"] svg {
+  transform: rotate(180deg); /* Einfache 180-Grad-Rotation */
+}
+
+/* Optimierte Ausrichtung für Dropdown-Buttons */
+.nav-dropdown .dropdown-button,
+.mobile-dropdown button {
+  display: inline-flex;
+  align-items: center; /* Vertikale Ausrichtung */
+  gap: 0.25rem; /* Gleichmäßiger Abstand zwischen Text und Pfeil */
+  /* Verhindert, dass Hover flackert */
+  justify-content: center;
+  /* Erweiterte Hitbox für bessere Benutzererfahrung */
+  padding: 0.15rem 0.15rem 0.15rem 0;
 }
 
 /* Invisible buffer to prevent flicker */
@@ -301,6 +526,22 @@ nav a.active::after, .dropdown-toggle.active::after, .dropdown-button.active::af
   z-index: 49;
 }
 
+/* Navbar Contact Button - Specific styling for navbar button */
+.navbar-container .btn {
+  font-size: 0.85rem; /* Ein bisschen kleinere Schrift */
+  padding: 0.55rem 1.6rem; /* Etwas weniger Padding */
+  white-space: nowrap;  
+  min-height: 2.7rem; /* Etwas kleinere Höhe */
+  box-shadow: var(--shadow-sm);
+  font-weight: 600;
+  min-width: 140px; /* Etwas kleinere Mindestbreite */
+  margin-right: 0; /* Button fest am rechten Rand */
+  margin-left: 0; /* Kein zusätzlicher linker Abstand */
+  position: relative;
+  z-index: 20; /* Höherer z-index für bessere Sichtbarkeit */
+  flex-shrink: 0; /* Verhindert, dass der Button zusammenschrumpft */
+}
+
 /* Container für nicht-transparente Elemente */
 .nav-container-wrapper {
   position: relative;
@@ -311,7 +552,7 @@ nav a.active::after, .dropdown-toggle.active::after, .dropdown-button.active::af
 .btn {
   background-color: var(--color-primary);
   color: var(--color-white);
-  padding: 0.6rem 1.4rem;
+  padding: 0.5rem 1.2rem;
   border-radius: var(--border-radius-sm);
   font-weight: 500;
   letter-spacing: 0.01em;
@@ -327,16 +568,24 @@ nav a.active::after, .dropdown-toggle.active::after, .dropdown-button.active::af
   cursor: pointer;
   text-decoration: none;
   border: none;
-  font-size: clamp(0.875rem, 4vw, 1rem);
-  min-height: 2.75rem;
+  font-size: 0.9rem;
+  min-height: 2.5rem;
   min-width: max-content;
   touch-action: manipulation; /* Verbessert Touch-Verhalten */
+  z-index: 0;
+}
+
+/* Button Text über dem Shine-Effekt */
+.btn > * {
+  position: relative;
+  z-index: 2;
 }
 
 .btn:hover {
-  background-color: var(--color-primary-dark);
-  transform: translateY(-2px);
+  background-color: var(--color-primary-hover);
+  transform: translateY(-3px);
   box-shadow: var(--shadow-lg);
+  color: var(--color-white);
 }
 
 .btn:active {
@@ -351,12 +600,21 @@ nav a.active::after, .dropdown-toggle.active::after, .dropdown-button.active::af
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
-  transition: left 0.7s;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255,255,255,0.3) 30%, 
+    rgba(255,255,255,0.6) 50%, 
+    rgba(255,255,255,0.3) 70%, 
+    transparent 100%
+  );
+  transition: left 0.6s ease-out;
+  z-index: 1;
+  opacity: 0;
 }
 
 .btn:hover::after {
   left: 100%;
+  opacity: 1;
 }
 
 /* Responsive Button-Varianten */
@@ -381,67 +639,107 @@ nav a.active::after, .dropdown-toggle.active::after, .dropdown-button.active::af
   color: var(--color-white);
 }
 
-/* ========== Back to Top Button ========== */
-.back-to-top {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background-color: var(--color-primary);
-  color: white;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  display: flex;
+/* White Button Variants for CTA sections */
+.btn-white {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  padding: 0.75rem 2rem;
+  border-radius: var(--border-radius-sm);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-md);
+  top: 0;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-lg);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(1rem);
-  transition: 
-    opacity 0.3s ease,
-    visibility 0.3s ease,
-    transform 0.3s ease,
-    background-color 0.3s ease;
-  z-index: 20;
-  border: none;
+  text-align: center;
   cursor: pointer;
+  text-decoration: none;
+  border: 2px solid var(--color-white);
+  font-size: 1rem;
+  min-height: 3rem;
+  min-width: max-content;
+  touch-action: manipulation;
+  z-index: 0;
 }
 
-.back-to-top svg {
-  width: 1.5rem;
-  height: 1.5rem;
-  transition: transform 0.3s ease;
-}
-
-.back-to-top:hover {
-  background-color: var(--color-primary-dark);
+.btn-white:hover {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  border-color: var(--color-white);
   transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
 }
 
-.back-to-top:hover svg {
-  transform: translateY(-2px);
+.btn-outline-white {
+  background-color: transparent;
+  color: var(--color-white);
+  padding: 0.75rem 2rem;
+  border-radius: var(--border-radius-sm);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-md);
+  top: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  border: 2px solid var(--color-white);
+  font-size: 1rem;
+  min-height: 3rem;
+  min-width: max-content;
+  touch-action: manipulation;
+  z-index: 0;
 }
 
-.back-to-top.visible {
+.btn-outline-white:hover {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Shine effect for white buttons */
+.btn-white::after, .btn-outline-white::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(0,0,0,0.1) 30%, 
+    rgba(0,0,0,0.2) 50%, 
+    rgba(0,0,0,0.1) 70%, 
+    transparent 100%
+  );
+  transition: left 0.6s ease-out;
+  z-index: 1;
+  opacity: 0;
+}
+
+.btn-white:hover::after, .btn-outline-white:hover::after {
+  left: 100%;
   opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
 }
 
-@media (max-width: 640px) {
-  .back-to-top {
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-  
-  .back-to-top svg {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
+/* Ensure text is above shine effect */
+.btn-white > *, .btn-outline-white > * {
+  position: relative;
+  z-index: 2;
 }
+
+/* ========== Back to Top Button ========== */
+/* Back to Top Button is now implemented with Tailwind classes */
 
 @media (max-width: 1024px) {
   header {
@@ -450,6 +748,20 @@ nav a.active::after, .dropdown-toggle.active::after, .dropdown-button.active::af
   
   .navbar-container {
     padding: 0.6rem 1.25rem;
+    width: 95%; /* Etwas breiter auf mittelgroßen Bildschirmen */
+  }
+    .navbar-container a .flex-col span:first-child {
+    font-size: 1rem; /* Kleinere Schrift auf Tablets */
+  }
+  
+  .navbar-container a .flex-col span:last-child {
+    font-size: 1rem; /* Gleiche Größe für beide Zeilen */
+  }
+  
+  /* Adjust button on medium screens */
+  .navbar-container .btn {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.8rem;
   }
   
   #hero h1 {
@@ -497,9 +809,15 @@ nav a.active::after, .dropdown-toggle.active::after, .dropdown-button.active::af
   .section-title {
     margin-bottom: 2rem;
   }
-  
-  .btn {
+    .btn {
     padding: 0.55rem 1.3rem;
+  }
+  
+  /* Improved contact button styling for tablets */
+  .navbar-container .btn {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.7rem;
+    min-height: 2.1rem;
   }
   
   #team .grid {
@@ -552,6 +870,32 @@ nav a.active::after, .dropdown-toggle.active::after, .dropdown-button.active::af
   #mobile-menu {
     border-radius: 0 0 var(--border-radius-sm) var(--border-radius-sm);
   }
+    /* Anpassungen für mobile Menü Links bei kleinen Bildschirmen - einheitliche Größe */
+  #mobile-menu a {
+    padding: 0.75rem 0.8rem; /* Angepasstes Padding für Konsistenz */
+    margin: 0 0.3rem 0.25rem 0.3rem; /* Einheitlicher Abstand */
+    min-height: 48px; /* Gleiche Mindesthöhe */
+  }
+  
+  .mobile-dropdown button {
+    padding: 0.75rem 0.8rem; /* Angepasstes Padding für Konsistenz */
+    margin: 0 0.3rem 0.25rem 0.3rem; /* Einheitlicher Abstand */
+    min-height: 48px; /* Gleiche Mindesthöhe */
+  }
+  
+  
+  #mobile-menu a[href="#contact"] {
+    margin: 0 0.3rem 0.25rem 0.3rem; /* Einheitlicher Abstand */
+    padding: 0.75rem 0.8rem; /* Angepasstes Padding für Konsistenz */
+    min-height: 48px; /* Gleiche Mindesthöhe */
+  }
+  
+  /* Anpassungen für mobile-menu-item bei kleinen Bildschirmen */
+  .mobile-menu-item {
+    padding: 0.75rem 0.8rem; /* Angepasstes Padding für kleine Bildschirme */
+    margin: 0 0.3rem 0.25rem 0.3rem; /* Einheitlicher Abstand */
+    min-height: 48px; /* Gleiche Mindesthöhe */
+  }
   
   #hero {
     min-height: 70vh;
@@ -599,8 +943,7 @@ nav a.active::after, .dropdown-toggle.active::after, .dropdown-button.active::af
 /* ========== Hero Section Styles ========== */
 #hero {
   position: relative;
-  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
-  min-height: 90vh;
+  min-height: 70vh;  /* Reduzierte Höhe von 90vh auf 70vh */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -608,38 +951,11 @@ nav a.active::after, .dropdown-toggle.active::after, .dropdown-button.active::af
   padding-top: 6rem;
   padding-bottom: 3rem;
   margin-top: 0;
-  background-size: cover;
-  background-position: center;
   overflow: hidden;
   z-index: 1;
 }
 
-#hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Darker overlay for better text contrast */
-  background-image: url('../images/hero-background.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: 0.25; /* Slightly increased opacity */
-  z-index: -1;
-}
-
-#hero::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(0deg, rgba(21, 128, 61, 0.7), rgba(22, 101, 52, 0.6)); /* Adjusted opacity */
-  z-index: -1;
-}
+/* Hero-Stile werden jetzt direkt im HTML mit Tailwind-Klassen umgesetzt */
 
 .hero-content {
   position: relative;
@@ -709,56 +1025,35 @@ nav a.active::after, .dropdown-toggle.active::after, .dropdown-button.active::af
   }
 }
 
+/* Spezifische Höhenanpassung für den Hero-Bereich NUR auf der Startseite */
+.home-hero {
+    min-height: 60vh !important; /* Kleinere Höhe nur für die Startseite mit !important, um andere Regeln zu überschreiben */
+}
+
+/* Responsive Anpassungen für die Startseite */
+@media (max-width: 1024px) {
+    .home-hero {
+        min-height: 50vh !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-hero {
+        min-height: 40vh !important;
+    }
+}
+
 /* ========== Image Optimization Styles ========== */
 .image-container {
   position: relative;
   overflow: hidden;
 }
 
-.lazy-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: 
-    opacity 0.5s ease,
-    transform 0.7s ease;
-}
+/* Lazy-image Regeln wurden entfernt, da sie nicht mehr benötigt werden */
 
-.lazy-image.loaded {
-  opacity: 1;
-}
+/* Image-placeholder Regeln wurden entfernt, da sie nicht mehr benötigt werden */
 
-.lazy-image:not(.loaded) {
-  opacity: 0;
-}
-
-.image-placeholder {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #f3f4f6;
-  transition: opacity 0.5s ease;
-}
-
-.lazy-image.loaded + .image-placeholder {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Image hover effects */
-.image-container img:hover {
-  transform: scale(1.05);
-}
+/* Image hover effects removed - no transform effects */
 
 /* Basic animations */
 @keyframes fadeIn {
@@ -840,4 +1135,490 @@ input[type="checkbox"]:checked {
   }
 }
 
+/* ========== Vorstand Member Styles ========== */
+.team-member-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 2px solid var(--color-primary);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member-image:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.team-member-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top; /* Fokus auf den oberen Teil des Bildes (Kopf) */
+}
+
+@media (max-width: 768px) {
+  .team-member-image {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-member-image {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+/* ========== Wave Divider Styles ========== */
+.wave-divider {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+  line-height: 0;
+  overflow: hidden;
+  transform: translateY(1px); /* Ensure smooth connection with footer */
+}
+
+.wave-divider svg path {
+  transition: fill 0.3s ease;
+}
+
+.wave-divider:hover svg path {
+  fill: #f9fafb; /* Slightly different color on hover */
+}
+
+/* ========== Footer Styles ========== */
+/* All footer styles have been moved to Tailwind classes in the HTML */
+
+/* Mobile responsive adjustments are now handled by Tailwind's responsive classes */
+
+/* Media queries for extreme edge cases can be added if needed */
+
 /* ========== End of Styles ========== */
+
+/* Navbar Logo und Title Styles */
+.navbar-container a .flex-col {
+  line-height: 1.1;
+}
+
+.navbar-container a .flex-col span:first-child {
+  font-size: 1.1rem; /* Schriftgröße für beide Teile */
+}
+
+.navbar-container a .flex-col span:last-child {
+  font-size: 1.1rem; /* Gleiche Schriftgröße wie oben */
+}
+
+/* Zusätzliches Styling für den Navbar-Button - ENTFERNT, da es die obere Regel überschreibt */
+/* Alle Button-Styles sind jetzt in der ersten .navbar-container .btn Regel vereint */
+
+/* Button im Navbar mit verbesserter Positionierung */
+@media (min-width: 1024px) and (max-width: 1280px) {
+  .navbar-container .btn {
+    font-size: 0.8rem !important; /* Noch etwas kleiner bei mittleren Bildschirmgrößen */
+    padding: 0.35rem 0.8rem !important;
+  }
+}
+
+/* ========== Verbesserte Mobile Navbar Styles ========== */
+/* Mobile Menü als Teil der Navbar - nahtlos integriert */
+#mobile-menu {
+  background-color: var(--color-white);
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  /* Standard-Transition (für Schließen: schnell→langsam = ease-in) */
+  transition: max-height 0.3s ease-in, 
+              opacity 0.3s ease-in,
+              visibility 0.3s ease-in;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 0.25rem;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Öffnen-Animation: langsam→schnell (ease-out) */
+#mobile-menu.opening {
+  transition: max-height 0.3s ease-out, 
+              opacity 0.3s ease-out,
+              visibility 0.3s ease-out;
+}
+
+/* Schließen-Animation: schnell→langsam (ease-in) */
+#mobile-menu.closing {
+  transition: max-height 0.3s ease-in, 
+              opacity 0.3s ease-in,
+              visibility 0.3s ease-in;
+}
+
+#mobile-menu.open {
+  max-height: 700px; /* Mehr Platz für alle Inhalte */
+  padding: 0.125rem 0; /* Weiter reduzierter oberer Abstand für nähere Positionierung */
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile Menu Container - sorgt für korrekte Ausrichtung mit reduziertem Padding */
+#mobile-menu .px-4 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.125rem; /* Weiter reduzierter oberer Abstand für nähere Positionierung */
+  padding-bottom: 1rem; /* Symmetrischer unterer Abstand */
+}
+
+#mobile-menu .px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.125rem; /* Weiter reduzierter oberer Abstand für nähere Positionierung */
+  padding-bottom: 1rem; /* Symmetrischer unterer Abstand */
+}
+
+/* Mobile Menu Links - einheitliche Größe für alle Menüpunkte */
+#mobile-menu a {
+  display: block;
+  padding: 0.75rem 1rem; /* Einheitliches Padding für alle Links */
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-normal), background-color var(--transition-normal);
+  border-radius: 4px;
+  margin: 0 0.5rem 0.25rem 0.5rem; /* Kleiner einheitlicher Abstand zwischen den Elementen */
+  min-height: 48px; /* Mindesthöhe für Touch-Freundlichkeit */
+  display: flex;
+  align-items: center;
+}
+
+#mobile-menu a:hover {
+  color: var(--color-primary);
+  background-color: #f8f9fa;
+}
+
+/* Verbesserte Mobile Dropdown Styles - einheitliche Größe mit anderen Menüpunkten */
+.mobile-dropdown button {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem; /* Gleiches Padding wie normale Links */
+  color: var(--color-text);
+  font-weight: 500;
+  cursor: pointer;
+  transition: color var(--transition-normal), background-color var(--transition-normal);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+  margin: 0 0.5rem 0.25rem 0.5rem; /* Gleicher Abstand wie normale Links */
+  min-height: 48px; /* Gleiche Mindesthöhe wie normale Links */
+}
+
+.mobile-dropdown button svg {
+  transition: transform 0.4s ease;
+  transform-origin: center;
+}
+
+.mobile-dropdown button:hover {
+  color: var(--color-primary);
+  background-color: #f8f9fa;
+}
+
+/* Mobile Menu Styling - Einheitliche Ausrichtung und Größe */
+.mobile-menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.75rem 1rem; /* Einheitliches Padding für alle Menüpunkte */
+    color: inherit;
+    text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+    text-align: left;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-radius: 4px;
+    margin: 0 0.5rem 0.25rem 0.5rem; /* Einheitlicher Abstand zwischen den Elementen */
+    min-height: 48px; /* Mindesthöhe für Touch-Freundlichkeit */
+}
+
+.mobile-menu-item:hover {
+    color: var(--color-primary);
+    background-color: #f8f9fa;
+}
+
+.mobile-menu-item:last-child {
+    border-bottom: none !important;
+    margin-top: 1rem; /* Zusätzlicher oberer Abstand für den letzten Menüpunkt (Kontakt-Button) */
+}
+
+/* Spezielle Positionierung für Kontakt-Button in mobilen Menüs */
+.mobile-menu-item[href*="contact"],
+.mobile-menu-item.contact-button,
+#mobile-menu a[href*="contact"] {
+    margin-top: 1rem !important; /* Zusätzlicher Abstand zum vorherigen Menüpunkt */
+    border-bottom: none !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border: none !important;
+}
+
+/* Element vor dem Kontakt Button sollte keine untere Linie haben */
+.mobile-menu-item + .mobile-menu-separator + .mobile-menu-item.contact-button,
+.mobile-menu-separator + .mobile-menu-item.contact-button {
+    border-top: none !important;
+    border: none !important;
+}
+
+/* Das Element direkt vor dem Separator soll keine untere Linie haben */
+.mobile-menu-item:has(+ .mobile-menu-separator),
+.mobile-menu-item + .mobile-menu-separator {
+    border-bottom: none !important;
+    border: none !important;
+}
+
+/* Alle Elemente direkt vor dem Kontakt-Button sollen keine Border haben */
+.mobile-menu-item:has(+ .mobile-menu-item.contact-button),
+.mobile-menu-item + .mobile-menu-item.contact-button {
+    border-bottom: none !important;
+    border: none !important;
+}
+
+/* Mobile Dropdown Styling - Push-Down-Verhalten mit einheitlicher Größe */
+.mobile-dropdown {
+    width: 100%;
+}
+
+/* Kontakt Button Styling - Exakt wie auf der Startseite */
+.mobile-menu-item.contact-button {
+    background-color: var(--color-primary) !important;
+    color: var(--color-white) !important;
+    padding: 0.5rem 1.2rem !important;
+    border-radius: var(--border-radius-sm) !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.01em !important;
+    position: relative !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+    top: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    border: none !important;
+    border-bottom: none !important;
+    border-top: none !important;
+    font-size: 0.9rem !important;
+    min-height: 2.5rem !important;
+    min-width: max-content !important;
+    touch-action: manipulation !important;
+}
+
+.mobile-menu-item.contact-button:hover {
+    background-color: var(--color-primary-hover) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    color: var(--color-white) !important;
+}
+
+.mobile-menu-item.contact-button:active {
+    transform: translateY(2px) !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+.mobile-dropdown-button {
+    border-bottom: 1px solid rgba(0,0,0,0.1) !important;
+}
+
+.mobile-dropdown-button svg {
+  transform-origin: center;
+  flex-shrink: 0;
+  /* Einheitliche Animation - passend zur Desktop-Version */
+  transition: transform 0.25s ease-out;
+}
+
+/* Mobile Dropdown Content - Optimiert für bessere Animationen */
+.mobile-dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    background-color: rgba(248, 249, 250, 0.9);
+    border-left: 3px solid #22c55e;
+    margin-left: 1rem;
+    margin-bottom: 0;
+    margin-top: 0 !important;
+    border-radius: 0 4px 4px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-property: max-height, opacity, visibility, transform, margin-top, margin-bottom;
+}
+
+.mobile-dropdown-content.open {
+    max-height: 300px; /* Erhöht für mehr Inhalt */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    margin-bottom: 8px;
+    margin-top: 0.5rem !important;
+}
+
+.mobile-dropdown-button[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+}
+
+.mobile-dropdown-button[aria-expanded="false"] svg {
+    transform: rotate(0deg);
+}
+
+/* Mobile Dropdown Items */
+.mobile-dropdown-item {
+    display: block;
+    padding: 10px 16px;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.mobile-dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.mobile-dropdown-item:hover {
+    background-color: rgba(34, 197, 94, 0.1);
+    color: var(--color-primary);
+    padding-left: 20px;
+}
+
+/* Kontaktieren Sie uns Button im mobilen Menü - angepasste Größe */
+#mobile-menu a[href="#contact"] {
+  color: #ffffff;
+  background-color: var(--color-primary);
+  padding: 0.75rem 1rem; /* Gleiches Padding wie andere Menüpunkte */
+  margin: 0 0.5rem 0.25rem 0.5rem; /* Gleicher Abstand wie andere Menüpunkte */
+  border-radius: var(--border-radius-sm);
+  text-align: center;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  min-height: 48px; /* Gleiche Mindesthöhe wie andere Menüpunkte */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#mobile-menu a[href="#contact"]:hover {
+  background-color: var(--color-primary-hover);
+  color: #ffffff;
+}
+
+/* ========== Hamburger Menu Styles ========== */
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 24px;
+  cursor: pointer;
+  z-index: 100;
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-right: 5px;
+}
+
+.hamburger-menu .bar {
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-primary);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+  position: absolute;
+  left: 0;
+  transform-origin: center;
+}
+
+/* Absolute Positionierung für exakte Symmetrie */
+.hamburger-menu .bar:nth-child(1) {
+  top: 0;
+}
+
+.hamburger-menu .bar:nth-child(2) {
+  top: 10.5px; /* Exakte Mitte: (24px - 3px) / 2 */
+}
+
+.hamburger-menu .bar:nth-child(3) {
+  top: 21px; /* 24px - 3px */
+}
+
+/* Animation für das X - mathematisch perfekt symmetrisch */
+.hamburger-menu.active .bar:nth-child(1) {
+  transform: translateY(10.5px) rotate(45deg); /* Bewegung zur exakten Mitte */
+}
+
+.hamburger-menu.active .bar:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.hamburger-menu.active .bar:nth-child(3) {
+  transform: translateY(-10.5px) rotate(-45deg); /* Bewegung zur exakten Mitte */
+}
+
+/* Responsive Hamburger Menu Display */
+@media (max-width: 1023px) {
+  #mobile-menu-button {
+    display: flex !important;
+  }
+  
+  nav.lg\:flex {
+    display: none !important;
+  }
+}
+
+/* ========== Active Menu Highlighting for Homepage ========== */
+/* Enhanced active menu item styling for Homepage/Startseite */
+.navbar-main nav a[href="index.html"].text-green-700.font-bold,
+.mobile-menu a[href="index.html"].text-green-700.font-bold {
+    color: #15803d !important;
+    font-weight: 700 !important;
+    position: relative;
+}
+
+/* Add underline indicator ONLY on hover for desktop active menu */
+.navbar-main nav a[href="index.html"].text-green-700.font-bold:hover::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #15803d;
+    border-radius: 1px;
+}
+
+/* Mobile active menu styling - only background highlight on hover */
+.mobile-menu a[href="index.html"].text-green-700.font-bold:hover {
+    background-color: rgba(21, 128, 61, 0.1);
+}
+
+/* Ensure active menu item color stays green on hover */
+.navbar-main nav a[href="index.html"].text-green-700.font-bold:hover,
+.mobile-menu a[href="index.html"].text-green-700.font-bold:hover {
+    color: #15803d !important;
+}

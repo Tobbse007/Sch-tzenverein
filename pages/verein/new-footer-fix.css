@@ -1,0 +1,114 @@
+/* KOMPLETTE CSS-LÖSUNG FÜR FOOTER-HOVER-EFFEKTE - OHNE JAVASCRIPT */
+/* Optimiert für die Über-uns-Seite */
+
+/* RESET: Alle alten Footer-Animationen entfernen */
+.footer-container * {
+    animation: none !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* PRÄZISE ZIELE: Nur die Hauptblöcke im Footer selektieren */
+.footer-container .grid > div.bg-gray-100.rounded-lg.shadow-md,
+.footer-container .grid > div.bg-green-700.rounded-lg.shadow-md,
+.footer-container .grid > div.bg-gray-100.rounded-lg.shadow-md.p-5.md\:col-span-4 {
+    /* Basis-Styles für alle Footer-Hauptblöcke */
+    transition-property: transform, box-shadow !important;
+    transition-duration: 300ms !important; 
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, box-shadow;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    position: relative;
+    z-index: 1;
+}
+
+/* HOVER-EFFEKT FÜR HAUPTBLÖCKE */
+.footer-container .grid > div.bg-gray-100.rounded-lg.shadow-md:hover,
+.footer-container .grid > div.bg-green-700.rounded-lg.shadow-md:hover,
+.footer-container .grid > div.bg-gray-100.rounded-lg.shadow-md.p-5.md\:col-span-4:hover {
+    transform: translateY(-0.5rem) !important;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05) !important;
+    z-index: 2;
+}
+
+/* SPEZIELLE BEHANDLUNG FÜR DEN KONTAKT-BLOCK */
+.footer-container .bg-gray-100.rounded-lg.shadow-md.p-3.md\:col-span-8.flex.flex-col {
+    transition-property: transform, box-shadow !important;
+    transition-duration: 300ms !important; 
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform: translate3d(0, 0, 0);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    position: relative;
+    z-index: 1;
+}
+
+.footer-container .bg-gray-100.rounded-lg.shadow-md.p-3.md\:col-span-8.flex.flex-col:hover {
+    transform: translateY(-0.5rem) !important;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05) !important;
+    z-index: 2;
+}
+
+/* VERHINDERN VON HOVER-EFFEKTEN BEI UNTERGEORDNETEN ELEMENTEN */
+.footer-container .grid > div.bg-gray-100.rounded-lg.shadow-md *,
+.footer-container .grid > div.bg-green-700.rounded-lg.shadow-md *,
+.footer-container .grid > div.bg-gray-100.rounded-lg.shadow-md.p-5.md\:col-span-4 *,
+.footer-container .bg-gray-100.rounded-lg.shadow-md.p-3.md\:col-span-8.flex.flex-col * {
+    transition: none !important;
+    transform: none !important;
+    pointer-events: none; /* Wichtig: Verhindert, dass untergeordnete Elemente eigene Hover-Effekte haben */
+}
+
+/* WIEDERHERSTELLEN VON POINTER-EVENTS FÜR LINKS */
+.footer-container a,
+.footer-container button {
+    pointer-events: auto !important;
+    transition: color 250ms ease, background-color 250ms ease !important;
+    position: relative;
+    z-index: 3;
+}
+
+.footer-container a:hover {
+    color: rgba(21, 128, 61, 1) !important;
+}
+
+/* SPEZIELLE BUTTON-STYLES */
+.footer-container a.bg-white {
+    transition: background-color 250ms ease !important;
+}
+
+.footer-container a.bg-white:hover {
+    background-color: #f3f4f6 !important;
+}
+
+/* RING-EFFEKT FÜR BESTIMMTE BOXEN */
+.footer-container .grid > div.hover\:ring-1.hover\:ring-green-600\/15:hover {
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05), 0 0 0 1px rgba(16, 185, 129, 0.15) !important;
+}
+
+/* MAPS UND SLIDESHOW IM FOOTER KORRIGIEREN */
+.footer-container iframe,
+.footer-container .slideshow-container,
+.footer-container .slideshow-images,
+.footer-container .slideshow-image {
+    pointer-events: auto !important;
+}
+
+/* EXTRA HOHE SPEZIFITÄT FÜR HAUPTBOXEN IM FOOTER */
+body .footer-container .grid > div.bg-gray-100.rounded-lg.shadow-md:hover,
+body .footer-container .grid > div.bg-green-700.rounded-lg.shadow-md:hover,
+body .footer-container .bg-gray-100.rounded-lg.shadow-md.p-3.md\:col-span-8.flex.flex-col:hover {
+    transform: translateY(-0.5rem) !important;
+}
+
+/* GARANTIERTE KORREKTHEIT AUCH BEI MEDIA QUERIES */
+@media all {
+    .footer-container .grid > div.bg-gray-100.rounded-lg.shadow-md:hover,
+    .footer-container .grid > div.bg-green-700.rounded-lg.shadow-md:hover,
+    .footer-container .grid > div.bg-gray-100.rounded-lg.shadow-md.p-5.md\:col-span-4:hover,
+    .footer-container .bg-gray-100.rounded-lg.shadow-md.p-3.md\:col-span-8.flex.flex-col:hover {
+        transform: translateY(-0.5rem) !important;
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05) !important;
+    }
+}

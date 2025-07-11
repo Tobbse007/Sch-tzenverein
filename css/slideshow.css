@@ -1,0 +1,61 @@
+/* Slideshow Styles */
+.slideshow-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.slideshow-images {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slideshow-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    z-index: 1;
+}
+
+.slideshow-image.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* Hover-Effekt für die Slideshow */
+.slideshow-hover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+}
+
+.slideshow-container:hover .slideshow-hover-overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.slideshow-hover-text {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.slideshow-container:hover .slideshow-hover-text {
+    opacity: 1;
+    transform: translateY(0);
+}

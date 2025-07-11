@@ -1,0 +1,63 @@
+/* Gallery overlay adjustments */
+.gallery-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 220px;
+}
+
+.gallery-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 20px;
+    opacity: 0.8; /* Make the overlay slightly visible by default */
+    transform: translateY(10px); /* Weniger nach unten verschoben, damit Titel höher erscheint */
+    transition: all 0.3s ease;
+    height: 100%; /* Stellt sicher, dass der Container die volle Höhe hat */
+    overflow: hidden; /* Verhindert, dass lange Inhalte sichtbar werden */
+}
+
+.gallery-card:hover .gallery-overlay {
+    opacity: 1;
+    transform: translateY(0); /* Show fully on hover */
+}
+
+.gallery-info {
+    color: white;
+    text-align: center;
+    position: absolute; /* Absolut positioniert im Overlay */
+    bottom: 5px; /* Höher positioniert - mehr Abstand vom unteren Rand */
+    left: 0;
+    right: 0;
+    padding: 0 20px;
+}
+
+/* Beschreibungstexte ausblenden, bis hover */
+.gallery-info p {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+/* Beschreibungstexte beim Hover anzeigen */
+.gallery-card:hover .gallery-info p {
+    opacity: 1;
+    max-height: 100px; /* Genug Platz für mehrere Zeilen */
+}

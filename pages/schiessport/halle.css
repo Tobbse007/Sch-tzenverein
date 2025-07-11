@@ -1,0 +1,173 @@
+/* Halle & Ausstattung CSS */
+
+/* Full Width CTA Override */
+.bg-green-700.section-padding {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+/* Hero Section - Responsive Höhen */
+#hero {
+    /* Prevent any scaling or transform effects on hero images */
+    pointer-events: auto;
+}
+
+#hero img {
+    /* Prevent any scaling or transform effects on hero images */
+    transition: none !important;
+    transform: none !important;
+}
+
+#hero:hover img,
+#hero img:hover {
+    /* Explicitly disable hover effects */
+    transform: none !important;
+}
+
+/* Responsive Hero Heights - Gleiche Höhe wie Über uns Seite */
+@media (max-width: 640px) {
+    #hero {
+        min-height: 300px !important;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1023px) {
+    #hero {
+        min-height: 350px !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    #hero {
+        min-height: 400px !important;
+    }
+}
+
+/* Content Sections */
+.anlagen-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.anlage-card {
+    background: #ffffff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.anlage-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.anlage-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.anlage-card:hover img {
+    transform: scale(1.05);
+}
+
+.anlage-content {
+    padding: 1.5rem;
+}
+
+.anlage-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #15803d;
+    margin-bottom: 0.5rem;
+}
+
+.anlage-description {
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+/* Ausstattung Icons */
+.ausstattung-icon {
+    width: 3rem;
+    height: 3rem;
+    background: #15803d;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem auto;
+    color: white;
+}
+
+/* Technische Daten Tabelle */
+.tech-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.tech-table th,
+.tech-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tech-table th {
+    background-color: #f9fafb;
+    font-weight: 600;
+    color: #15803d;
+}
+
+.tech-table tr:hover {
+    background-color: #f9fafb;
+}
+
+/* Sicherheits-Badges */
+.safety-badge {
+    display: inline-flex;
+    align-items: center;
+    background: #dcfce7;
+    color: #15803d;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin: 0.25rem;
+}
+
+.safety-badge svg {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+}
+
+/* Responsive Verbesserungen */
+@media (max-width: 768px) {
+    .anlagen-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .anlage-content {
+        padding: 1rem;
+    }
+    
+    .tech-table {
+        font-size: 0.875rem;
+    }
+    
+    .tech-table th,
+    .tech-table td {
+        padding: 0.5rem;
+    }
+}

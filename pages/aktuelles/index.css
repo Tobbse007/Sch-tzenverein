@@ -1,0 +1,744 @@
+/* Aktuelles Seite - Spezifische Styles */
+
+/* ========== Active Menu Highlighting ========== */
+/* Enhanced active menu item styling for Aktuelles page */
+.navbar-main nav a[href*="aktuelles"].text-green-700.font-bold,
+.mobile-menu a[href*="aktuelles"].text-green-700.font-bold {
+    color: #15803d !important;
+    font-weight: 700 !important;
+    position: relative;
+}
+
+/* Add underline indicator ONLY on hover for desktop active menu */
+.navbar-main nav a[href*="aktuelles"].text-green-700.font-bold:hover::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #15803d;
+    border-radius: 1px;
+}
+
+/* Mobile active menu styling - only background highlight on hover */
+.mobile-menu a[href*="aktuelles"].text-green-700.font-bold:hover {
+    background-color: rgba(21, 128, 61, 0.1);
+}
+
+/* Ensure active menu item color stays green on hover */
+.navbar-main nav a[href*="aktuelles"].text-green-700.font-bold:hover,
+.mobile-menu a[href*="aktuelles"].text-green-700.font-bold:hover {
+    color: #15803d !important;
+}
+
+/* CSS-Variablen für Aktuelles */
+:root {
+  --news-primary: #1e40af;
+  --news-accent: #1e3a8a;
+  --news-highlight: #3b82f6;
+  --news-text: #1f2937;
+  --news-bg: #ffffff;
+  --news-section-bg: #f8fafc;
+  --news-card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Blog Post Card Styling - Full Width Cards */
+.news-articles {
+  background: #ffffff;
+  padding: 3rem 0;
+}
+
+.news-articles article {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 
+              0 1px 2px rgba(0, 0, 0, 0.06);
+  margin-bottom: 2.5rem;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  padding: 2.5rem 0;
+}
+
+.news-articles article:hover {
+  border-color: #cbd5e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 
+              0 2px 6px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+}
+
+.news-articles article:last-child {
+  margin-bottom: 0;
+}
+
+/* Remove alternating background colors since we have cards now */
+.news-articles article.bg-white,
+.news-articles article.bg-gray-50 {
+  background: #f8fafc !important;
+}
+
+/* Blog Post Images - Remove container styling that looks like frames */
+.news-articles article .relative.overflow-hidden {
+  border-radius: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 1.5rem 0 !important;
+}
+
+/* Remove Tailwind styling from image containers */
+.news-articles article .relative.overflow-hidden.rounded-2xl {
+  border-radius: 0 !important;
+}
+
+.news-articles article .relative.overflow-hidden.shadow-xl {
+  box-shadow: none !important;
+}
+
+.news-articles article .relative.overflow-hidden.mb-8 {
+  margin-bottom: 1.5rem !important;
+}
+
+/* Remove gradient overlay over images */
+.news-articles article .relative.overflow-hidden .absolute.inset-0.bg-gradient-to-t {
+  display: none !important;
+}
+
+/* Alternative selector for gradient overlay */
+.news-articles article .absolute.inset-0[class*="bg-gradient"] {
+  display: none !important;
+}
+
+/* Improve spacing hierarchy */
+.news-articles article .text-center.mb-8 {
+  margin-bottom: 1rem !important;
+}
+
+.news-articles article h3.mb-6 {
+  margin-bottom: 0.75rem !important;
+}
+
+/* Date styling improvements - now handled by colorful date blocks above */
+
+/* Date styling improvements - Colorful date blocks */
+.news-articles article .text-gray-500 {
+  background: linear-gradient(135deg, #15803d, #166534) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.025em !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 20px !important;
+  font-size: 0.875rem !important;
+  display: inline-block !important;
+  box-shadow: 0 2px 8px rgba(21, 128, 61, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.news-articles article .text-gray-500:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(21, 128, 61, 0.4) !important;
+}
+
+/* Green separator line after excerpt paragraph only */
+.news-articles article .prose p.text-gray-700:first-child::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #15803d, #166534);
+  margin: 1rem auto 1rem 0;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px rgba(21, 128, 61, 0.4);
+}
+
+/* Reduziere Abstände zwischen Texten und Abschnitten */
+.news-articles article .mb-8 {
+  margin-bottom: 1.5rem !important;
+}
+
+.news-articles article .mb-6 {
+  margin-bottom: 1rem !important;
+}
+
+.news-articles article .prose p {
+  margin-bottom: 1rem !important;
+}
+
+.news-articles article .prose {
+  line-height: 1.6 !important;
+}
+
+/* Reduziere Abstände im Text-Container */
+.news-articles article .text-center.mb-8 {
+  margin-bottom: 1rem !important;
+}
+
+.news-articles article h3.mb-6 {
+  margin-bottom: 0.75rem !important;
+}
+
+/* Blog Post Images - Original proportions, scaled down smaller, no frame effects */
+.news-articles article .relative.overflow-hidden img {
+  height: auto !important;
+  width: 100%;
+  max-width: 65%;
+  object-fit: contain;
+  border-radius: 12px !important;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0 auto;
+  display: block;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Hero Section für Aktuelles */
+#hero {
+  background: linear-gradient(135deg, var(--news-primary) 0%, var(--news-accent) 100%);
+  min-height: 400px;
+}
+
+/* News Grid Layout */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.news-card {
+  background: var(--news-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--news-card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+}
+
+.news-card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.news-card-content {
+  padding: 1.5rem;
+}
+
+.news-card-date {
+  color: var(--news-highlight);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.news-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--news-text);
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.news-card-excerpt {
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+
+
+/* Featured News Section */
+.featured-news {
+  background: var(--news-section-bg);
+  padding: 4rem 0;
+  margin-bottom: 3rem;
+}
+
+.featured-article {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.featured-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.featured-content h2 {
+  font-size: 2rem;
+  color: var(--news-text);
+  margin-bottom: 1rem;
+}
+
+.featured-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+
+
+
+
+
+
+/* Archive Links */
+.archive-section {
+  background: var(--news-section-bg);
+  padding: 2rem 0;
+  margin-top: 3rem;
+}
+
+.archive-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.archive-link {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--news-text);
+  transition: transform 0.3s ease;
+}
+
+.archive-link:hover {
+  transform: translateY(-2px);
+}
+
+/* CTA Section - Simple & Clean Design */
+.cta-section {
+  max-width: 900px;
+  margin: 4rem auto 0 auto;
+  padding: 0 var(--container-padding-mobile);
+}
+
+.cta-container {
+  background: var(--color-primary);
+  border-radius: 8px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+.cta-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-family-base);
+}
+
+.cta-text {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-buttons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  min-width: 150px;
+  font-family: var(--font-family-base);
+}
+
+.cta-buttons .btn-primary {
+  background: white;
+  color: var(--color-primary);
+  border: none;
+}
+
+.cta-buttons .btn-primary:hover {
+  background: #f8f9fa;
+}
+
+.cta-buttons .btn-secondary {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.cta-buttons .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: white;
+  box-shadow: 0 4px 15px rgba(21, 128, 61, 0.15);
+}
+
+/* ========== CTA Buttons (Training Style) ========== */
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.875rem 2rem;
+  background: white;
+  color: var(--color-primary);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background: #f9fafb;
+}
+
+.btn-outline-white {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.875rem 2rem;
+  background: transparent;
+  color: white;
+  text-decoration: none;
+  border: 2px solid white;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-white:hover {
+  background: white;
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.section-padding {
+  padding: 4rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ========== End CTA Buttons ========== */
+
+/* ========== Read More Link Styles ========== */
+.read-more-link {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  background: none;
+  text-decoration: none;
+}
+
+.read-more-link:hover {
+  text-decoration: underline;
+}
+
+.read-more-link svg {
+  transition: transform 0.3s ease;
+}
+
+/* Content wrapper styles */
+.content-wrapper {
+  position: relative;
+}
+
+/* Smooth transitions for content */
+.content-preview-mobile,
+.content-full-mobile,
+.content-preview,
+.content-full {
+  transition: opacity 0.3s ease;
+}
+
+/* ========== End Read More Styles ========== */
+
+/* Responsive Design Improvements */
+@media (max-width: 768px) {
+  .cta-container {
+    padding: 2.5rem 1.5rem;
+    margin: 0 1rem;
+  }
+  
+  .cta-title {
+    font-size: 1.5rem;
+  }
+  
+  .cta-text {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .cta-buttons a {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* Typography improvements for news articles */
+.news-articles article h3 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem) !important;
+  line-height: 1.2 !important;
+  color: #1f2937 !important;
+  margin-bottom: 1.5rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.025em !important;
+}
+
+/* Article content improvements */
+.news-articles article .prose {
+  max-width: none !important;
+}
+
+.news-articles article .prose p {
+  margin-bottom: 1.25rem !important;
+  line-height: 1.7 !important;
+}
+
+.news-articles article .prose p:first-of-type {
+  font-size: 1.125rem !important;
+  color: #374151 !important;
+  font-weight: 500 !important;
+}
+
+.news-articles article .prose p:not(:first-of-type) {
+  color: #4b5563 !important;
+}
+
+/* Improved container spacing */
+.news-articles article .max-w-4xl {
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+/* Better hover effects for images */
+.news-articles article:hover img {
+  transform: scale(1.02) !important;
+}
+
+/* Overall news section improvements */
+.news-articles .max-w-6xl {
+  max-width: 72rem !important;
+  margin: 0 auto !important;
+  padding: 0 1.5rem !important;
+}
+
+/* Article container width optimization */
+.news-articles article .max-w-4xl {
+  max-width: 65rem !important;
+  margin: 0 auto !important;
+}
+
+/* Enhanced visual hierarchy */
+.news-articles article .text-center {
+  margin-bottom: 2rem !important;
+}
+
+/* Date container improvements */
+.news-articles article .flex.items-center.justify-center {
+  margin-bottom: 1rem !important;
+}
+
+/* Better visual separation between articles */
+.news-articles article:not(:last-child) {
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 3rem;
+}
+
+/* Subtle background variation for even more visual interest */
+.news-articles article:nth-child(even) {
+  background: #f1f5f9 !important;
+}
+
+.news-articles article:nth-child(odd) {
+  background: #f8fafc !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .news-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .featured-article {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+    .featured-content h2 {
+    font-size: 1.5rem;
+  }
+  
+  .news-articles article {
+    margin-bottom: 2rem;
+    padding: 1.5rem 0;
+  }
+    .news-articles article .max-w-4xl {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+    .news-articles article .relative.overflow-hidden img {
+    max-width: 80% !important;
+  }
+  
+  .news-articles article h3 {
+    font-size: 1.75rem !important;
+    margin-bottom: 1rem !important;
+  }
+}
+
+/* Responsive improvements for colorful date blocks */
+@media (max-width: 768px) {
+  .news-articles article .text-gray-500 {
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .news-articles article .text-gray-500 {
+  padding: 0.3rem 0.6rem !important;
+    font-size: 0.75rem !important;
+  }
+  
+  .news-articles article .prose p.text-gray-700:first-child::after {
+    width: 40px;
+    height: 2px;
+    margin: 1rem auto 1rem 0;
+  }
+}
+
+/* Animation für News Cards beim Laden */
+.news-card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.news-card:nth-child(2) { animation-delay: 0.1s; }
+.news-card:nth-child(3) { animation-delay: 0.2s; }
+.news-card:nth-child(4) { animation-delay: 0.3s; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Read More Functionality - Desktop und Mobile mit verschiedenen Limits */
+.article-content {
+  position: relative;
+}
+
+.article-text {
+  transition: max-height 0.4s ease-in-out;
+  overflow: hidden;
+}
+
+/* Desktop: Kürzung erst ab vielen Wörtern */
+.article-text.collapsed {
+  max-height: 500px; /* Desktop: ~200 Wörter - viel mehr Text */
+  position: relative;
+}
+
+.article-text.collapsed::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(transparent, rgba(248, 250, 252, 1));
+  pointer-events: none;
+}
+
+.read-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #16a34a;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.read-more-link:hover {
+  color: #15803d;
+}
+
+.read-more-link svg {
+  transition: transform 0.3s ease;
+  width: 16px;
+  height: 16px;
+}
+
+.read-more-link.expanded svg {
+  transform: rotate(180deg);
+}
+
+/* Mobile Anpassungen */
+@media (max-width: 768px) {
+  .article-text.collapsed {
+    max-height: 120px; /* Mobile: ~50 Wörter - viel weniger */
+  }
+  
+  .article-text.collapsed::after {
+    height: 40px;
+  }
+  
+  .read-more-link {
+    font-size: 0.85rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .article-text.collapsed {
+    max-height: 100px; /* Kleine Mobile: ~40 Wörter */
+  }
+}

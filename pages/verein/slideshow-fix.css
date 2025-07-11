@@ -1,0 +1,37 @@
+/* Verstärkter Fix für den Hover-Effekt der Slideshow auf der Über-uns-Seite */
+/* Dies überschreibt die Animation-Deaktivierungen mit höchster Priorität */
+
+/* Grundeinstellungen für den Text wiederherstellen */
+.slideshow-hover-text {
+    opacity: 0 !important;
+    transform: translateY(20px) !important;
+    transition: opacity 0.3s ease, transform 0.3s ease !important;
+    animation: none !important; /* Verhindert Konflikte mit anderen Animationen */
+}
+
+/* Hover-Zustand für den Text erzwingen */
+.slideshow-container:hover .slideshow-hover-text {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    visibility: visible !important;
+}
+
+/* Stellt sicher, dass die Transitions für den Hintergrund-Overlay funktionieren */
+.slideshow-hover-overlay {
+    background-color: rgba(0, 0, 0, 0) !important;
+    transition: background-color 0.3s ease !important;
+    animation: none !important; /* Verhindert Konflikte mit anderen Animationen */
+}
+
+/* Hover-Zustand für den Hintergrund-Overlay erzwingen */
+.slideshow-container:hover .slideshow-hover-overlay {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Direktes Targeting der SVG und des Textes innerhalb des Hover-Textes */
+.slideshow-hover-text svg,
+.slideshow-hover-text div {
+    opacity: inherit !important;
+    transform: inherit !important;
+    transition: inherit !important;
+}
