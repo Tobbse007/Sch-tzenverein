@@ -165,13 +165,26 @@ document.addEventListener('DOMContentLoaded', function() {
     function ensureActiveMenuItemIsGreen() {
         // Ermitteln der aktuellen Seite aus dem Pfad
         const currentPath = window.location.pathname;
+        const isHomePage = currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('/index.html') || currentPath.endsWith('/');
         
         // Alle mobilen Menüpunkte durchgehen
         const allMenuItems = document.querySelectorAll('.mobile-menu-item, .mobile-dropdown-button, .mobile-dropdown-item');
         
         allMenuItems.forEach(item => {
-            // Prüfen, ob dieser Menüpunkt zur aktuellen Seite passt
-            if (item.href && item.href.includes(currentPath)) {
+            // Spezielle Prüfung für die Startseite
+            if (isHomePage && item.href) {
+                const href = item.href.toLowerCase();
+                const isStartseite = href.endsWith('/index.html') || href.endsWith('/');
+                
+                // Nur wenn es wirklich der Startseite-Link ist
+                if (isStartseite && !href.includes('/pages/')) {
+                    item.style.fontWeight = '700';
+                    item.style.color = '#15803d'; // Primärgrün (entspricht Tailwind green-700)
+                    return; // Andere Bedingungen überspringen
+                }
+            } 
+            // Normale Prüfung für andere Seiten
+            else if (item.href && item.href.includes(currentPath) && currentPath.length > 1) {
                 // Fett und grün machen
                 item.style.fontWeight = '700';
                 item.style.color = '#15803d'; // Primärgrün (entspricht Tailwind green-700)
@@ -204,16 +217,56 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
             }
+            
+            // Wenn auf Startseite, sicherstellen dass Dropdown-Button NICHT grün ist, wenn nicht relevant
+            if (isHomePage && item.classList.contains('mobile-dropdown-button')) {
+                // Keine Aktion für Dropdown-Buttons auf der Startseite, wenn nicht Startseite selbst
+                if (!item.textContent.trim().toLowerCase().includes('startseite')) {
+                    // Sicherstellen, dass der Button nicht grün ist
+                    item.style.removeProperty('color');
+                    item.style.removeProperty('font-weight');
+                    item.classList.remove('text-green-700');
+                    item.classList.remove('font-bold');
+                    
+                    const icon = item.querySelector('svg');
+                    if (icon) {
+                        icon.style.removeProperty('color');
+                    }
+                }
+            }
+        });
+    }
+    
+    // Funktion zum Zurücksetzen der Stile vor dem Anwenden
+    function resetActiveStyles() {
+        // Alle mobilen Menüpunkte durchgehen und zurücksetzen
+        const allMenuItems = document.querySelectorAll('.mobile-menu-item, .mobile-dropdown-button, .mobile-dropdown-item');
+        
+        allMenuItems.forEach(item => {
+            // Nur Stil zurücksetzen, wenn nicht durch HTML bereits als aktiv markiert
+            if (!item.classList.contains('text-green-700') && !item.classList.contains('font-bold')) {
+                item.style.removeProperty('color');
+                item.style.removeProperty('font-weight');
+                
+                // Auch SVG Icons zurücksetzen
+                const icon = item.querySelector('svg');
+                if (icon) {
+                    icon.style.removeProperty('color');
+                }
+            }
         });
     }
     
     // Initial ausführen
+    resetActiveStyles();
     optimizeMobileNavbar();
     ensureActiveMenuItemIsGreen();
     
     // Bei Größenänderung des Fensters erneut ausführen
     window.addEventListener('resize', function() {
+        resetActiveStyles();
         optimizeMobileNavbar();
+        ensureActiveMenuItemIsGreen();
     });
     
     // Bei Klick auf Hamburger-Menü optimieren
@@ -221,8 +274,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (mobileMenuButton) {
         mobileMenuButton.addEventListener('click', function() {
             // Kurze Verzögerung für Animation
-            setTimeout(optimizeMobileNavbar, 50);
-            setTimeout(ensureActiveMenuItemIsGreen, 50);
+            setTimeout(function() {
+                resetActiveStyles();
+                optimizeMobileNavbar();
+                ensureActiveMenuItemIsGreen();
+            }, 50);
         });
     }
     
@@ -231,8 +287,11 @@ document.addEventListener('DOMContentLoaded', function() {
     dropdownButtons.forEach(button => {
         button.addEventListener('click', function() {
             // Kurze Verzögerung für Animation
-            setTimeout(optimizeMobileNavbar, 50);
-            setTimeout(ensureActiveMenuItemIsGreen, 50);
+            setTimeout(function() {
+                resetActiveStyles();
+                optimizeMobileNavbar();
+                ensureActiveMenuItemIsGreen();
+            }, 50);
         });
     });
 });
